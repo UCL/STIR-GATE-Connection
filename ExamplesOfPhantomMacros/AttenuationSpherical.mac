@@ -1,0 +1,35 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+#For tracking
+/gate/world/daughters/name SphericalPhantom
+/gate/world/daughters/insert sphere
+/gate/CylindricalPhantom/setMaterial Water
+/gate/CylindricalPhantom/vis/forceSolid
+/gate/CylindricalPhantom/vis/setColor blue
+/gate/CylindricalPhantom/geometry/setRadius 15 cm
+/gate/CylindricalPhantom/attachPhantomSD 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

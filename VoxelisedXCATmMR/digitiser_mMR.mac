@@ -1,0 +1,25 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/digitizer/Singles/insert                        adder
+/gate/digitizer/Singles/insert                        readout
+/gate/digitizer/Singles/readout/setDepth              1
+
+
+/gate/digitizer/Singles/insert crystalblurring
+/gate/digitizer/Singles/crystalblurring/setCrystalResolutionMin 0.130
+/gate/digitizer/Singles/crystalblurring/setCrystalResolutionMax 0.145
+/gate/digitizer/Singles/crystalblurring/setCrystalQE 0.9
+/gate/digitizer/Singles/crystalblurring/setCrystalEnergyOfReference 511. keV
+
+
+/gate/digitizer/Singles/insert timeResolution
+/gate/digitizer/Singles/timeResolution/setTimeResolution 2.92969 ns
+
+/gate/digitizer/Singles/insert thresholder
+#/gate/digitizer/Singles/thresholder/setThreshold 430. keV
+/gate/digitizer/Singles/thresholder/setThreshold 100. keV
+/gate/digitizer/Singles/insert upholder
+/gate/digitizer/Singles/upholder/setUphold 610. keV

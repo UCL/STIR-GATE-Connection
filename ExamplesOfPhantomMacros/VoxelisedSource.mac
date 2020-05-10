@@ -1,0 +1,32 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/source/addSource SourcePhantom voxel
+/gate/source/SourcePhantom/reader/insert image
+
+# INSERT THE TRANSLATOR THAT WILL CONVERT THE IMAGE FROM DIGITAL VALUES TO
+# ACTIVITY VALUES
+/gate/source/SourcePhantom/imageReader/translator/insert linear
+/gate/source/SourcePhantom/imageReader/linearTranslator/setScale  0.0001 Bq
+# READ IMAGE
+/gate/source/SourcePhantom/imageReader/readFile activity.h33
+
+# POSITION OF THE SOURCE (its default position is in the 1st quarter, so #it has to be
+# shifted over half its dimensions in the negative direction on each axis)
+# ODD Input Image Size: -(voxel_size_x*image_size_x)/2 -(voxel_size_y*image_size_y)/2 -(voxel_size_z*image_size_z)/2
+# EVEN Input Image Size: -(voxel_size_x*image_size_x)/2 - voxel_size_x/2 -(voxel_size_y*image_size_y)/2 - voxel_size_y/2 -(voxel_size_z*image_size_z)/2
+
+/gate/source/SourcePhantom/setPosition -222 -222 -130 mm
+
+# CHARACTERIZATION OF THE SOURCE (no difference with an analytical source)
+/gate/source/SourcePhantom/setType backtoback
+/gate/source/SourcePhantom/gps/particle gamma
+/gate/source/SourcePhantom/setForcedUnstableFlag false
+/gate/source/SourcePhantom/setForcedHalfLife 6586.2 s
+/gate/source/SourcePhantom/gps/energytype Mono
+/gate/source/SourcePhantom/gps/monoenergy 511. keV
+/gate/source/SourcePhantom/gps/angtype iso
+#/gate/source/SourcePhantom/gps/confine NULL
+/gate/source/SourcePhantom/dump 1

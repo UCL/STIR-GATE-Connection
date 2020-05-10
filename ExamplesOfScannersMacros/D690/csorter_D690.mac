@@ -1,0 +1,16 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/digitizer/Coincidences/setOffset          0. ns
+
+/gate/digitizer/Coincidences/setWindow          4.9 ns
+
+/gate/digitizer/name                            delay
+
+/gate/digitizer/insert                          coincidenceSorter
+
+/gate/digitizer/delay/setWindow                 11.5 ns
+
+/gate/digitizer/delay/setOffset                 500. ns

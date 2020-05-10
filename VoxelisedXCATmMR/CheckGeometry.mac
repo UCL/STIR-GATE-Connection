@@ -1,0 +1,44 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+## ENABLE UI
+/vis/enable
+
+## VISUALISE
+/control/execute visualisation.mac
+
+# MATERIALS
+/gate/geometry/setMaterialDatabase GateMaterials.db
+
+# "WORLD" DIMENSION
+/gate/world/geometry/setXLength       80. cm
+/gate/world/geometry/setYLength       80. cm
+/gate/world/geometry/setZLength       31. cm
+
+# SCANNER GEOMETRY
+/control/execute geometry_mMR.mac
+
+## VOXELISED PHANTOM
+/control/execute phantomReg.mac 
+
+## PHYSICS INTERACTIONS
+/control/execute physics.mac
+
+## PHYSICS INITIALISE
+/gate/run/initialize
+
+## SOURCE
+/control/execute source.mac
+
+## DISABLE OUTPUT
+/gate/output/allowNoOutput
+
+## ACQUISITION TIME (short for visualisation purpose)
+/gate/application/setTimeSlice   0.0000001 s
+/gate/application/setTimeStart   0 ms
+/gate/application/setTimeStop    0.0000001 s
+
+/gate/application/startDAQ
+

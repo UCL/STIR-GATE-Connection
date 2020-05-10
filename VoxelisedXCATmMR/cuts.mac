@@ -1,0 +1,24 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/physics/Gamma/SetCutInRegion      crystal 1.0 cm
+
+/gate/physics/Electron/SetCutInRegion   crystal 1.0 cm
+
+/gate/physics/Positron/SetCutInRegion   crystal 1.0 cm
+
+
+
+
+
+#/gate/physics/Gamma/SetCutInRegion      phantom 0.1 mm
+
+#/gate/physics/Electron/SetCutInRegion   phantom 0.1 mm
+
+#/gate/physics/Positron/SetCutInRegion   phantom 0.1 mm
+
+
+
+#/gate/physics/SetMaxStepSizeInRegion    phantom 0.01 mm

@@ -1,0 +1,25 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## AUTHOR: Vesna Cuplov
+## Copyright (C) 2014-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/digitizer/Singles/insert deadtime
+/gate/digitizer/Singles/deadtime/setDeadTime 432. ns
+/gate/digitizer/Singles/deadtime/setMode paralysable
+/gate/digitizer/Singles/deadtime/chooseDTVolume block
+/gate/digitizer/Coincidences/setWindow 5.85938 ns
+/gate/digitizer/Coincidences/setOffset 0. ns
+/gate/digitizer/Coincidences/MultiplesPolicy takeWinnerOfGoods
+/gate/digitizer/Coincidences/minSectorDifference 8
+/gate/digitizer/Coincidences/describe
+
+
+
+
+
+
+
+
+
+

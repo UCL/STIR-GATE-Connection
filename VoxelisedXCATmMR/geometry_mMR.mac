@@ -1,0 +1,69 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+#    ECAT
+# This is a version of the Siemens mMR but without gaps, i.e. 9 crystals per block in transaxial direction as opposed to 8
+
+/gate/world/daughters/name            ecat
+/gate/world/daughters/insert          cylinder
+/gate/ecat/setMaterial                Air
+/gate/ecat/geometry/setRmax           348.0 mm
+/gate/ecat/geometry/setRmin           328.0 mm
+/gate/ecat/geometry/setHeight         265.0 mm
+/gate/ecat/vis/setVisible             0
+/gate/ecat/vis/setColor               white
+/gate/ecat/vis/forceWireframe
+
+#    BLOCK
+
+
+/gate/ecat/daughters/name             block
+/gate/ecat/daughters/insert           box
+/gate/block/placement/setTranslation  338.0 0.0 0.0 mm
+/gate/block/geometry/setXLength       20.0 mm
+/gate/block/geometry/setYLength       36.5625 mm
+/gate/block/geometry/setZLength       32.5 mm
+/gate/block/setMaterial               Air
+/gate/block/vis/setVisible            1
+/gate/block/vis/setColor              yellow
+/gate/block/vis/forceWireframe
+
+
+#    C R Y S T A L
+
+/gate/block/daughters/name            crystal
+/gate/block/daughters/insert          box
+/gate/crystal/geometry/setXLength     20.0 mm
+/gate/crystal/geometry/setYLength     4.0625 mm
+/gate/crystal/geometry/setZLength     4.0625 mm
+/gate/crystal/setMaterial             LSO
+/gate/crystal/vis/setVisible          1
+/gate/crystal/vis/setColor            blue
+/gate/crystal/vis/forceSolid
+
+#    R E P E A T    C R Y S T A L
+
+
+/gate/crystal/repeaters/insert            cubicArray
+/gate/crystal/cubicArray/setRepeatNumberX 1
+/gate/crystal/cubicArray/setRepeatNumberY 9
+/gate/crystal/cubicArray/setRepeatNumberZ 8
+/gate/crystal/cubicArray/setRepeatVector 0.0 4.0625 4.0625 mm
+
+
+/gate/block/repeaters/insert       linear
+/gate/block/linear/setRepeatNumber 8
+/gate/block/linear/setRepeatVector 0.0 0.0 32.5 mm
+/gate/block/repeaters/insert       ring
+/gate/block/ring/setRepeatNumber   56
+
+/gate/systems/ecat/block/attach   block
+/gate/systems/ecat/crystal/attach crystal
+/gate/crystal/attachCrystalSD
+
+
+/gate/systems/ecat/describe
+
+

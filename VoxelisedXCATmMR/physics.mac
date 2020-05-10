@@ -1,0 +1,10 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/physics/addPhysicsList empenelope
+
+/gate/physics/processList Enabled
+
+/gate/physics/processList Initialized

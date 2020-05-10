@@ -1,0 +1,36 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+#For tracking
+/gate/world/daughters/name CylindricalPhantom
+/gate/world/daughters/insert cylinder
+/gate/CylindricalPhantom/setMaterial Water
+/gate/CylindricalPhantom/vis/forceSolid
+/gate/CylindricalPhantom/vis/setColor blue
+/gate/CylindricalPhantom/geometry/setRmax 15 cm 
+/gate/CylindricalPhantom/geometry/setHeight 26. cm
+/gate/CylindricalPhantom/attachPhantomSD 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

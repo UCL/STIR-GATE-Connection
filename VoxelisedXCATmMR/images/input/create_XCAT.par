@@ -1,0 +1,581 @@
+mode = 0		# program mode (0 = phantom, 1 = heart lesion, 2 = spherical lesion, 3 = plaque, 4 = vectors, 5 = save anatomical variation) SEE NOTE 0
+act_phan_each = 1	# activity_phantom_each_frame (1=save phantom to file, 0=don't save)
+atten_phan_each = 1	# attenuation_coeff_phantom_each_frame (1=save phantom to file, 0=don't save)
+act_phan_ave = 0	# activity_phantom_average    (1=save , 0=don't save) see NOTE 1
+atten_phan_ave = 0	# attenuation_coeff_phantom_average  (1=save, 0=don't save) see NOTE 1
+
+#########
+motion_option = 1	# motion_option  (0=beating heart only, 1=respiratory motion only, 2=both motions) see NOTE 2
+
+#####################
+out_period = 5		# output_period (SECS) (if <= 0, then output_period=time_per_frame*output_frames)
+time_per_frame = 1	# time_per_frame (SECS) (**IGNORED unless output_period<=0**)
+out_frames = 20		# output_frames (# of output time frames ) --1
+
+hrt_period = 1			# hrt_period (SECS) (length of beating heart cycle; normal = 1s) see NOTE 3 
+hrt_start_ph_index = 0.0	# hrt_start_phase_index (range=0 to 1; ED=0, ES=0.4) see NOTE 3 
+heart_base = vmale50_heart.nrb	# basename for heart files (male = vmale50_heart.nrb; female = vfemale50_heart.nrb)
+heart_curve_file = heart_curve.txt	# name for file containing time curve for heart
+
+apical_thin = 0.0	# apical_thinning (0 to 1.0 scale, 0.0 = not present, 0.5 = halfway present, 1.0 = completely thin)
+uniform_heart = 0	# sets the thickness of the LV (0 = default, nonuniform wall thickness; 1 = uniform wall thickness for LV)
+
+hrt_v1 = 0.0		# sets the LV end-diastolic volume (0 = do not change); see NOTE 3A
+hrt_v2 = 0.0		# sets the LV end-systolic volume (0 = do not change); see NOTE 3A
+hrt_v3 = 0.0		# sets the LV volume at the beginning of the quiet phase (0 = do not change); see NOTE 3A
+hrt_v4 = 0.0		# sets the LV volume at the end of the quiet phase (0 = do not change); see NOTE 3A
+hrt_v5 = 0.0		# sets the LV volume during reduced filling, before end-diastole (0 = do not change); see NOTE 3A
+
+hrt_t1 = 0.5		# sets the duration from end-diastole to end-systole, hrt_v1 to hrt_v2 (default = 0.5s); see NOTE 3A
+hrt_t2 = 0.192		# sets the duration from end-systole to beginning of quiet phase, hrt_v2 to hrt_v3 (default = 0.192s); see NOTE 3A
+hrt_t3 = 0.115		# sets the duration of quiet phase, hrt_v3 to hrt_v4 (default = 0.115s); see NOTE 3A
+hrt_t4 = 0.193		# sets the duration from end of quiet phase to reduced filling, hrt_v4 to hrt_v5 (default = 0.193s); see NOTE 3A
+
+resp_period = 5                 # resp_period (SECS) (length of respiratory cycle; normal breathing = 5s) see NOTE 3
+resp_start_ph_index = 0.0	# resp_start_phase_index (range=0 to 1, full exhale= 0.0, full inhale=0.4) see NOTE 3
+max_diaphragm_motion = 2.0	# max_diaphragm_motion  (extent in cm's of diaphragm motion; normal breathing = 2 cm) see NOTE 4
+max_AP_exp = 0 #0.5		# max_AP_expansion  (extent in cm's of the AP expansion of the chest; normal breathing = 1.2 cm) see NOTE 4
+dia_filename = tumor_curve.dat				#name of curve defining diaphragm motion during respiration
+ap_filename = ap_curve.dat     					#name of curve defining chest anterior-posterior motion during respiration
+
+hrt_motion_x = 0.0		#hrt_motion_x (extent in cm's of the heart's lateral motion during breathing; default = 0.0 cm)
+hrt_motion_y = 0.5		#hrt_motion_y (extent in cm's of the heart's AP motion during breathing; default = 1.2 cm)
+hrt_motion_z = 2.0		#hrt_motion_z (extent in cm's of the heart's up/down motion during breathing; default = 2.0 cm)
+
+hrt_motion_rot_xz = 0.0		#hrt_motion_rot_xz (extent in degrees of the heart's xz rotation during breathing; default = 0.0 ) SEE NOTE 4 and NOTE 8 
+hrt_motion_rot_yx = 0.0		#hrt_motion_rot_yx (extent in degrees of the heart's yx rotation during breathing; default = 0.0 ) SEE NOTE 4 and NOTE 8
+hrt_motion_rot_zy = 0.0		#hrt_motion_rot_zy (extent in degrees of the heart's zy rotation during breathing; default = 0.0 ) SEE NOTE 4 and NOTE 8
+
+vessel_flag = 0			# vessel_flag (1 = include arteries and veins, 0 = do not include) 
+coronary_art_flag = 0          # coronary artery flag (1 = include coronary arteries, 0 = do not include)
+coronary_vein_flag = 0           # coronary vein flag (1 = include coroanry veins, 0 = do not include)
+papillary_flag = 0		# papillary_flag (1 = include papillary muscles in heart, 0 = do not include)
+
+arms_flag = 0		# arms_flag (0 = no arms, 1 = arms at the side)
+gender = 0		# male or female phantom (0 = male, 1 = female), be sure to adjust below accordingly
+organ_file = vmale50.nrb	# name of organ file that defines all organs (male = vmale50.nrb, female - vfemale50.nrb)
+
+phan_rotx = 0.0	# degree to rotate the entire phantom by the x-axis
+phan_roty = 0.0	# degree to rotate the entire phantom by the y-axis
+phan_rotz = 0.0	# degree to rotate the entire phantom by the z-axis
+
+nurbs_save = 0	# nurbs_save (1 = save the phantom in a format for the separate CT projector program, 0 = do not save)
+ct_output = 0	# ct_output (0 = new format for CT projector, 1 = older format)
+
+color_code = 0	# color_code (1 = save the phantom as an activity phantom with each structure set to unique integer value, 0 = do not save)
+iodine_flag = 0	# iodine_flag (1 = set blood to have iodine contrast, 0 = do not use contrast)
+
+lung_scale = 1	# lung_scale (value to scale the lungs from 0 to 1)
+lv_radius_scale = 1		# lv_radius_scale (value from 0 to 1 to scale the radius of the left ventricle)
+lv_length_scale = 1		# lv_length_scale (value from 0 to 1 to scale the length of the left ventricle)
+
+yellow_marrow_flag = 0	# yellow_marrow_flag (1 = include yellow marrow, 0 = do not)
+yellow_bone_marrow_activity = 0	# activity value for the yellow marrow
+mesh_save = 0	# mesh_save (1 = save the phantom as meshes, 0 = do not save)
+
+phantom_long_axis_scale = 1.0		# phantom_long_axis_scale (scales phantom laterally - scales everything including the heart) SEE NOTE 5
+phantom_short_axis_scale = 1.0		# phantom_short_axis_scale (scales phantom AP - scales everything including the heart) SEE NOTE 5 
+phantom_height_scale = 1.0		# phantom_height_scale (scales phantom height - scales everything including the heart) SEE NOTE 5
+
+head_cir_scale = 1.0			# head_circumference_scale (scales head radially - scales everything in head) SEE NOTE 5
+head_height_scale = 1.0                 # head_height_scale (scales head height - scales everything in head) SEE NOTE 5
+head_skin_cir_scale = 1.0		# head_skin_circumference_scale (scales head radially - scales only outer skin) SEE NOTE 5
+
+torso_long_axis_scale = 1.0		# torso_long_axis_scale (sets torso, chest and abdomen, transverse axis - scales everything including the heart) SEE NOTE 5
+torso_short_axis_scale = 1.0		# torso_short_axis_scale (sets torso, chest and abdomen, AP axis - scales everything including the heart) SEE NOTE 5
+
+chest_skin_long_axis_scale = 1.0		# chest_skin_long_axis_scale (sets chest transverse axis - scales only body outline) SEE NOTE 5  
+chest_skin_short_axis_scale = 1.0		# chest_skin_short_axis_scale (sets chest AP axis - scales only body outline) SEE NOTE 5
+
+abdomen_skin_long_axis_scale = 1.0		# abdomen_skin_long_axis_scale (sets abdomen transverse axis - scales only body outline) SEE NOTE 5  
+abdomen_skin_short_axis_scale = 1.0		# abdomen_skin_short_axis_scale (sets abdomen AP axis - scales only body outline) SEE NOTE 5
+
+pelvis_skin_long_axis_scale = 1.0		# pelvis_skin_long_axis_scale (sets pelvis transverse axis - scales only body outline) SEE NOTE 5
+pelvis_skin_short_axis_scale = 1.0		# pelvis_skin_short_axis_scale (sets pelvis AP axis - scales only body outline) SEE NOTE 5
+
+arms_cir_scale = 1.0 			# arms_circumference_scale (scales arms radially - scales everything in arms) SEE NOTE 5
+arms_length_scale = 1.0			# arms_length_scale (scales arms length - scales everything in arms) SEE NOTE 5
+arms_skin_cir_scale = 1.0		# arms_skin_circumference_scale (scales arms radially - scales only outer skin) SEE NOTE 5
+
+legs_cir_scale = 1.0			# legs_circumference_scale (scales legs radially - scales everything in legs) SEE NOTE 5
+legs_length_scale = 1.0                 # legs_length_scale (scales legs length - scales everything in legs) SEE NOTE 5
+legs_skin_cir_scale = 1.0		# legs_skin_circumference_scale (scales legs radially - scales only outer skin) SEE NOTE 5
+
+bones_scale = 1.0	# bones_scale (scales all bones in 2D about their centerlines, makes each bone thicker)  SEE NOTE 5
+
+head_torso_muscle_scale = 1.0	# head_torso_muscle_scale (compresses/expands the muscles radially)  SEE NOTE 5
+arms_muscle_cir_scale = 1.0	# arms_muscle_cir_scale (compresses/expands the muscles radially)  SEE NOTE 5
+legs_muscle_cir_scale = 1.0	# legs_muscle_cir_scale (compresses/expands the muscles radially)  SEE NOTE 5
+
+hrt_scale_x = 1.0		# hrt_scale x  
+hrt_scale_y = 1.0		# hrt_scale y  
+hrt_scale_z = 1.0		# hrt_scale z  
+
+breast_type = 0		# breast_type (0=supine, 1=prone) 
+which_breast = 0	# which_breast (0 = none, 1 = both, 2 = right only, 3=left only )
+breast_to_compress = 0	# breast to apply compression (0 = none, 1 = right, 2 = left, 3 = both)
+compression_type = 0	# type of compression (0 = top/bottom, 1 = side to side)
+compression_factor = 0.5	# factor to compress breast by (0 full compression - 1 no compression)
+
+rbreast_long_axis_scale = 1.0	# right breast_long_axis (sets the breasts lateral dimension) SEE NOTE 5
+rbreast_short_axis_scale = 1.0	# right breast_short_axis (sets the breasts antero-posterior dimension) SEE NOTE 5
+rbreast_height_scale = 1.0	# right breast_height (sets the breasts height)  SEE NOTE 5
+
+vol_rbreast = 0.0               # sets rbreast volume by scaling in 3D, will over-rule above scalings
+
+rbr_theta = 10.0		# theta angle of the right breast (angle the breast is tilted transversely (sideways) from the center of the chest SEE NOTE 5
+rbr_phi = 0.0		# phi angle of the right breast (angle the breast is tilted up (+)  or down (-) SEE NOTE 5
+r_br_tx = 0.0		# x translation for right breast 
+r_br_ty	= 0.0		# y translation for right breast 
+r_br_tz = 0.0		# z translation for right breast 
+
+lbreast_long_axis_scale = 1.0   # left breast_long_axis (sets the breasts lateral dimension) SEE NOTE 5
+lbreast_short_axis_scale = 1.0  # left breast_short_axis (sets the breasts antero-posterior dimension) SEE NOTE 5
+lbreast_height_scale = 1.0      # left breast_height (sets the breasts height)  SEE NOTE 5
+
+vol_lbreast = 0.0		# sets lbreast volume by scaling in 3D, will over-rule above scalings
+
+lbr_theta = 10.0                # theta angle of the left breast (angle the breast is tilted transversely (sideways) from the center of the chest SEE NOTE 5
+lbr_phi = 0.0           # phi angle of the left breast (angle the breast is tilted up (+)  or down (-) SEE NOTE 5
+l_br_tx	= 0.0		# x translation for left breast 
+l_br_ty = 0.0		# y translation for left breast 
+l_br_tz	= 0.0		# z translation for left breast 
+
+rdiaph_liv_scale = 1.0		# height of right_diaphragm/liver dome (0 = flat, 1 = original height, > 1 raises the diaphragm)  SEE NOTE 5
+ldiaph_scale = 1.0		# height of left diaphragm dome (0 = flat, 1 = original height, > raises the diaphragm)  SEE NOTE 5
+
+frac_H2O = 0.5	# fraction (by weight) of water in wet bone and wet spine (used to calc. atten coeff)
+
+thickness_skin = 0		# thickness of the skin (cm), if greater than 0, it adds a skin layer to the body
+
+marrow_flag = 1			# render marrow (0 = no, 1 = yes)
+thickness_skull = 0.2		# thickness skull (cm)
+thickness_mandible = 0.3 	# thickness mandible (cm)
+thickness_sternum = 0.4		# thickness sternum  (cm)
+thickness_scapula = 0.35	# thickness scapulas (cm)
+thickness_ribs = 0.3		# thickness ribs     (cm)
+thickness_backbone = 0.4	# thickness backbone (cm)
+thickness_pelvis = 0.4		# thickness pelvis (cm)
+thickness_collar = 0.35		# thickness collarbones (cm)
+thickness_humerus = 0.45	# thickness humerus (cm)
+thickness_radius = 0.45		# thickness radius (cm)
+thickness_ulna = 0.45		# thickness ulna (cm)
+thickness_hand = 0.35		# thickness hand bones (cm)
+thickness_femur = 0.5		# thickness femur (cm)
+thickness_tibia = 0.6		# thickness tibia (cm)
+thickness_fibula = 0.5		# thickness fibula (cm)
+thickness_patella = 0.3		# thickness patella (cm)
+thickness_foot = 0.4		# thickness foot bones (cm)
+thickness_sacrum = 0.25		# thickness sacrum (cm)
+ 
+thickness_si = 0.6	# thickness of small intestine wall (cm)
+thickness_li = 0.6	# thickness of large intestine wall (cm)
+si_air_flag = 1		# 0 = do not include air and 1 = include air in small intestine
+li_air_flag = 5		# location of air in the large intestine see NOTE 6
+
+thickness_stomach = 0.7	# thickness of stomach wall (cm)
+thickness_esoph = 0.3	# thickness of the esophagus wall (cm)
+thickness_trachea = 0.15	# thickness of the trachea wall (cm)
+use_res = 1		# 0 = use high resolution to calc volumes, 1 = use pixel_width and slice_width below
+
+vol_prostate = 0.0	# set the volume of the prostate; (0 = do not change)
+vol_testes = 0.0	# set the volume of the testes; (0 = do not change)
+vol_liver = 0.0		# set the volume of the liver; (0 = do not change)
+vol_stomach = 0.0	# set the volume of the stomach; (0 = do not change)
+vol_pancreas = 0.0	# set the volume of the pancreas; (0 = do not change)
+vol_spleen = 0.0	# set the volume of the spleen; (0 = do not change)
+vol_gall_bladder = 0.0	# set the volume of the gall_bladder; (0 = do not change)
+vol_rkidney = 0.0	# set the volume of the right kidney; (0 = do not change)
+vol_lkidney = 0.0	# set the volume of the left kidney; (0 = do not change)
+vol_radrenal = 0.0	# set the volume of the right adrenal; (0 = do not change)
+vol_ladrenal = 0.0	# set the volume of the left adrenal; (0 = do not change)
+vol_small_intest = 0.0	# set the volume of the small intestine; (0 = do not change)
+vol_large_intest = 0.0	# set the volume of the large intestine; (0 = do not change)
+vol_bladder = 0.0	# set the volume of the bladder; (0 = do not change)
+vol_rthyroid = 0.0	# set the volume of the right thyroid; (0 = do not change)
+vol_lthyroid = 0.0	# set the volume of the left thyroid; (0 = do not change)
+vol_thymus = 0.0	# set the volume of the thymus; (0 = do not change)
+vol_salivary = 0.0	# set the volume of the salivary glands; (0 = do not change)
+vol_pituitary = 0.0	# set the volume of the pituitary gland; (0 = do not change)
+vol_eyes = 0.0		# set the volume of the eyes; (0 = do not change)
+vol_rovary = 0.0	# set the volume of the right ovary; (0 = do not change)
+vol_lovary = 0.0	# set the volume of the left ovary; (0 = do not change)
+vol_ftubes = 0.0	# set the volume of the fallopian tubes; (0 = do not change)
+vol_uterus = 0.0	# set the volume of the uterus; (0 = do not change)
+vol_vagina = 0.0	# set the volume of the vagina; (0 = do not change)
+vol_larynx = 0.0	# set the volume of the larynx/pharynx; (0 = do not change)
+vol_trachea = 0.0	# set the volume of the trachea (total); (0 = do not change)
+vol_esoph = 0.0		# set the volume of the esophagus (total); (0 = do not change)
+vol_epidy = 0.0		# set the volume of the epididymus; (0 = do not change)
+
+##############################################
+########################################
+pixel_width = 0.4 # pixel width (cm);  see NOTE 7
+slice_width = 0.40625 # slice width (cm);
+array_size = 110 # array size 45
+subvoxel_index = 1 # subvoxel_index (=1,2,3,4 -> 1,8,27,64 subvoxels/voxel, respectively)
+startslice = 322 # start_slice;
+endslice = 385 # end_slice;
+
+d_ZY_rotation = 0	# change in zy_rotation (beta) in deg. (0); see NOTE 8
+d_XZ_rotation = 0	# change in xz_rotation ( phi) in deg. (0); 
+d_YX_rotation = 0	# change in yx_rotation ( psi) in deg. (0); 
+X_tr = 0.0	# x translation in mm ; 
+Y_tr = 0.0	# y translation in mm ;
+Z_tr = 0.0	# z translation in mm ;
+
+activity_unit = 0	# activity units (1= scale by voxel volume (multiply activity value times pixel_width * pixel_width * slice_width; 0= don't scale) 
+
+myoLV_act = 2897.981144		# hrt_myoLV_act - activity in left ventricle myocardium
+myoRV_act = 2897.981144		# hrt_myoRV_act - activity in right ventricle myocardium
+myoLA_act = 2897.981144		# hrt_myoLA_act - activity in left atrium myocardium
+myoRA_act = 2897.981144		# hrt_myoRA_act - activity in right atrium myocardium
+bldplLV_act = 2897.981144		# hrt_bldplLV_act - activity in left ventricle chamber (blood pool)
+bldplRV_act = 2897.981144		# hrt_bldplRV_act - activity in right ventricle chamber (blood pool)
+bldplLA_act = 2897.981144		# hrt_bldplLA_act - activity in left atria chamber (blood pool)
+bldplRA_act = 2897.981144		# hrt_bldplRA_act - activity in right atria chamber (blood pool)
+
+coronary_art_activity = 2452.062938			# artery_activity;
+coronary_vein_activity = 2452.062938			# vein_activity;
+
+valve_thickness = 0.1		# thickness of the AV valves (cm);
+
+body_activity = 2650.2645343			# body_activity (background activity);
+skin_activity = 1632.266526			# skin_activity (used if skin_thickness is > 0)
+rbreast_activity = 2		# right breast activity;
+lbreast_activity = 2		# left breast activity;
+muscle_activity = 3076.642192			# muscle activity;
+brain_activity = 2			# brain activity;
+sinus_activity = 2			# sinus activity;
+liver_activity = 2800.588409		# liver_activity;
+gall_bladder_activity = 0	# gall_bladder_activity;
+r_lung_activity = 1254.625912			# right_lung_activity;
+l_lung_activity = 1254.625912			# left_lung_activity;
+esophagus_activity = 2037.932443		# esophagus_activity;
+esophagus_cont_activity = 2037.932443	# esophagus_contents_activity
+laryngopharynx_activity = 2000		# laryngopharynx_activity
+larynx_activity = 2			# larynx_activity
+st_wall_activity = 916.0909472		# st_wall_activity;  (stomach wall)
+st_cnts_activity = 916.0909472		# st_cnts_activity;   (stomach contents)
+pancreas_activity = 3800.588409		# pancreas_activity;
+r_kidney_cortex_activity = 75	# right_kidney_cortex_activity;
+r_kidney_medulla_activity = 75	# right_kidney_medulla_activity;
+l_kidney_cortex_activity = 75	# left_kidney_cortex_activity;
+l_kidney_medulla_activity = 75	# left_kidney_medulla_activity;
+adrenal_activity = 2		# adrenal_activity;
+r_renal_pelvis_activity = 2	# right_renal_pelvis_activity;
+l_renal_pelvis_activity = 2	# left_renal_pelvis_activity;
+spleen_activity = 2085.502678		# spleen_activity;
+rib_activity = 2006.445244			# rib_activity;
+cortical_bone_activity = 2044.798398	# cortical_bone_activity;
+spine_activity = 2190.102163			# spine_activity;
+spinal_cord_activity = 2151.803664	# spinal_cord_activity;
+bone_marrow_activity = 2176.219582	# bone_marrow_activity;
+art_activity = 2452.062938			# artery_activity;
+vein_activity = 2452.062938			# vein_activity;
+bladder_activity = 2		# bladder_activity;
+prostate_activity = 30		# prostate_activity;
+asc_li_activity = 0			# ascending_large_intest_activity;
+trans_li_activity = 0		# transcending_large_intest_activity;
+desc_li_activity = 0		# desc_large_intest_activity;
+sm_intest_activity = 0		# small_intest_activity;
+rectum_activity = 0			# rectum_activity;
+sem_activity = 0			# sem_vess_activity;
+vas_def_activity = 0		# vas_def_activity;
+test_activity = 0			# testicular_activity;
+penis_activity = 0			# penis_activity
+epididymus_activity = 0		# epididymus_activity;
+ejac_duct_activity = 0		# ejaculatory_duct_activity;
+pericardium_activity = 2897.981144	# pericardium activity;
+cartilage_activity = 1163.322521		# cartilage activity;
+intest_air_activity = 0		# activity of intestine contents (air); 
+ureter_activity = 0		# ureter activity; 
+urethra_activity = 0		# urethra activity; 
+lymph_activity = 10000		# lymph normal activity; 
+lymph_abnormal_activity = 0	# lymph abnormal activity; 
+trach_bronch_activity = 0	# trachea_bronchi_activity;
+airway_activity = 1240		# airway tree activity
+uterus_activity = 0		# uterus_activity;
+vagina_activity = 0		# vagina_activity;
+right_ovary_activity = 0	# right_ovary_activity;
+left_ovary_activity = 0		# left_ovary_activity;
+fallopian_tubes_activity = 0	# fallopian tubes_activity;
+parathyroid_activity = 1200		# thyroid_activity;
+thyroid_activity = 1200		# thyroid_activity;
+thymus_activity = 1200			# thymus_activity;
+salivary_activity = 2		# salivary_activity;
+pituitary_activity = 2		# pituitary_activity;
+eye_activity = 2		# eye_activity;
+lens_activity = 2		# eye_lens_activity;
+lesn_activity = 2000		# activity for heart lesion, plaque, or spherical lesion
+
+Corpus_Callosum_act = 8		# activity of Corpus_Callosum
+Caudate_act = 16			# activity of Caudate
+Internal_capsule_act = 8	# activity of Internal_capsule
+Putamen_act = 16			# activity of Putamen
+Globus_pallidus_act = 16	# activity of Globus_pallidus
+Thalamus_act = 8			# activity of Thalamus
+Fornix_act = 8				# activity of Fornix
+Anterior_commissure_act = 8	# activity of Anterior_commissure
+Amygdala_act = 16			# activity of Amygdala
+Hippocampus_act = 16		# activity of Hippocampus
+Lateral_ventricle_act = 8	# activity of Lateral_ventricle
+Third_ventricle_act = 8		# activity of Third_ventricle
+Fourth_ventricle_act = 8	# activity of Fourth_ventricle
+Cerebral_aqueduct_act = 8	# activity of Cerebral_aqueduct
+Mamillary_bodies_act = 8	# activity of Mamillary_bodies
+Cerebral_peduncles_act = 8	# activity of Cerebral_peduncles
+Superior_colliculus_act = 8	# activity of Superior_colliculus
+Inferior_colliculus_act = 8	# activity of Inferior_colliculus
+Pineal_gland_act = 8		# activity of Pineal_gland
+Periacquaductal_grey_outer_act = 16	# activity of Periacquaductal_grey_outer
+Periacquaductal_grey_act = 16		# activity of Periacquaductal_grey_inner
+Pons_act = 8				# activity of Pons
+Superior_cerebellar_peduncle_act = 8	# activity of Superior_cerebellar_peduncle
+Middle_cerebellar_peduncle_act = 8	# activity of Middle_cerebellar_peduncle
+Substantia_nigra_act = 16		# activity of Substantia_nigra
+Medulla_act = 8					# activity of Medulla
+Medullary_pyramids_act = 8		# activity of Medullary_pyramids
+Inferior_olive_act = 8			# activity of Inferior_olive
+Tegmentum_of_midbrain_act = 8	# activity of Tegmentum_of_midbrain
+Midbrain_act = 8				# activity of Midbrain
+cerebellum_act = 8			# activity of cerebellum
+white_matter_act = 8		# activity of remaining white matter 
+grey_matter_act = 16		# activity of remaining grey matter 
+
+energy  = 511	# radionuclide energy in keV (range 1 - 40MeV, increments of 0.5 keV) ; for attn. map only
+atten_table_filename= atten_table.dat   # for attenuation data calculation
+
+#--------------------Regional Heart Motion Defect---------------------------
+motion_defect_flag = 0	# (0 = do not include, 1 = include) regional motion abnormality in the LV as defined by heart lesion parameters see NOTE 9
+#---------------------------------------------------------------------------
+
+#---------------------Heart lesion parameters------------------------------SEE NOTE 9
+ThetaCenter = 0.0		# theta center in deg. (between 0 and 360) 
+ThetaWidth = 100.0		# theta width in deg., total width (between 0 and 360 deg.)
+XCenterIndex = .5		# x center (0.0=base, 1.0=apex, other fractions=distances in between)
+XWidthIndex = 60		# x width, total in mm's
+Wall_fract = 1.0		# wall_fract, fraction of the outer wall transgressed by the lesion
+motion_scale = 0.0		# scales the motion of the defect region (1 = normal motion, < 1 = reduced motion), altered motion blends with normal 
+
+border_zone_long = 10		# longitudinal width (in terms of number of control points) of transition between abnormal and normal motion
+border_zone_radial = 5		# radial width (in terms of number of control points) of transition between abnormal and normal motion
+#--------------------------------------------------------------------------
+
+#---------------------Spherical lesion parameters--------------------------SEE NOTE 10
+x_location = 59		# x coordinate (pixels) to place lesion 50
+y_location = 97		# y coordinate (pixels) to place lesion 35
+z_location = 30			# z coordinate (pixels) to place lesion 40 
+lesn_diameter = 28.0		# Diameter of lesion (mm)
+tumor_motion_flag = 0		# Sets tumor motion (0 = default motion based on lungs, 1 = motion defined by user curve below)
+tumor_motion_filename = tumor_curve_2.dat		# Name of user defined motion curve for tumor
+#--------------------------------------------------------------------------
+
+#---------------------Heart plaque parameters------------------------------SEE NOTE 11 
+p_center_v = 0.2		# plaque center along the length of the artery (between 0 and 1)
+p_center_u = 0.5		# plaque center along the circumference of the artery (between 0 and 1)
+p_height = 1.0			# plaque thickness in mm.
+p_width = 2.0			# plaque width in mm.
+p_length = 5.0			# plaque length in mm.
+p_id = aorta			# vessel ID to place the plaque in 
+#--------------------------------------------------------------------------
+
+#---------------------Vector parameters------------------------------------SEE NOTE 12
+vec_factor = 2		# higher number will increase the precision of the vector output
+#--------------------------------------------------------------------------
+
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+#This is a general parameter file for the DYNAMIC XCAT phantom, version 2.0
+#--------------------------------------------------------------------------
+#THE PARAMETERS CAN BE IN ANY ORDER. THE PROGRAM WILL SORT THEM.
+#--------------------------------------------------------------------------
+#                             NOTES:
+#--------------------------------------------------------------------------
+#NOTE 0: The phantom program can be run in different modes as follows.  
+#  Mode 0: standard phantom generation mode that will generate phantoms of the
+#          body.
+#  Mode 1: heart lesion generator that will create phantoms of only the user
+#          defined heart lesion. Subtract these phantoms from those of mode 0
+#          to place the defect in the body.
+#  Mode 2: spherical lesion generator that will create phantoms of only the
+#          user defined lesion. Add these phantoms to those of mode 0 to place
+#          the lesions in the body.
+#  Mode 3: cardiac plaque generator that will create phantoms of only the
+#          user defined plaque. Add these phantoms to those of mode 0 to place
+#          the plaques in the body.
+#  Mode 4: vector generator that will output motion vectors as determined from 
+#          the phantom surfaces. The vectors will be output as text files.
+#  Mode 5: anatomy generator will save the phantom produced from the user-defined anatomy 
+#          parameters. The phantom is saved as two files, the organ file and the heart_base 
+#          file. The names of these files can then be specified in the parfile for later runs
+#          with the program not having to take the time to generate the anatomy again. In using 
+#	   a saved anatomy, be sure to set all scalings back to 1; otherwise, the anatomy will be 
+#          scaled again.       
+#
+#NOTE 1: The average phantom is the average ONLY OF THOSE FRAMES GENERATED. That is,
+#  if you specify that only 2 frames be generated, then the average phantom is
+#  just the average of those 2 frames.
+#  ***************************************************************************
+#  ** FOR A GOOD AVERAGE, generate at least 8-16 frames per 1 complete heart
+#  ** cycle and/or per 1 complete respiratory cycle.
+#  ***************************************************************************
+#
+#NOTE 2: Heart motion refers to heart BEATING or contraction, while resp.
+#  motion refers to organ motion due to breathing. Note that the entire heart is
+#  translated or rotated due to resp. motion, even if it is not contracting.
+#  ** IF motion_option=1 , THE HEART WILL MOVE (TRANSLATE) BUT NOT BEAT.****
+#
+#NOTE 3:   Users sets the length and starting phase of both the heart
+#          and respiratory cycles. NORMAL values for length of heart beat and
+#          respiratory are cycles are 1 sec. and 5 secs., respectively,
+#          BUT THESE CAN VARY AMONG PATIENTS and will increase if the patient
+#          is under stress.
+#
+#          An index value between 0 and 1 is used the specify the starting phase
+#          of the heart or resp cycles. IF NO MOTION IS SPECIFIED THEN THE STARTING
+#          PHASE IS USED AS THE SINGLE PHASE AT WHICH THE PHANTOM IS GENERATED.
+#          (see documentation for more details).
+#
+#NOTE 3A:  These parameters control the LV volume curve of the heart. The user can specify the LV
+#	   volume at 5 points in the cardiac cycle. Check the logfile to see what the default volumes 
+#          are.  The end-diastolic volume can only be reduced. The way to increase it would be to change
+#          the overall heart scale.  The end-systolic volume can be increased or reduced. The other volumes
+#          need to have values between the end-diastolic and end-systolic volumes.  The time durations for the
+#          different portions of the cardiac cycle must add up to a total of 1.
+#
+#          Changing these parameters will alter the heart_curve.  The altered curve and heart files can be output using
+#          mode = 5.
+#
+#NOTE 4:  These NORMAL values are for normal tidal breathing.
+#  ** Modeling a deep inhale may require higher values. **
+#
+#  The AP_expansion parameter controls the anteroposterior diameter of the ribcage, body,
+#  and lungs. The ribs rotate upward to expand the chest cavity by the amount indicated by the 
+#  AP_expansion parameter. The lungs and body move with the expanding ribs. There is maximum amount
+#  by which the AP diameter can expand, due to the size of the ribs (some expansions are impossible
+#  geometrically.) If the user specifies too great an expansion, the program will terminate with an
+#  error message. 
+#
+#  The diaphragm motion controls the motion of the liver, the left diaphragm, stomach, spleen and
+#  all organs downstream from them. 
+#
+#  The heart has its own parameters to control its motion. It can translate left or right (+/- values of hrt_motion_x respectively), 
+#  to the anterior/posterior (+/- values of hrt_motion_y respectively), or up/down (+/- values of hrt_motion_z respectively) 
+#  with the diaphragm motion. The heart can also rotate. The x-axis runs from the right side of the body to the left.  
+#  Changing the x-rot will tilt the heart up(+ values)/down (- values).  The y-axis runs from the front of the body to the back.  
+#  Changing the y-rot will tilt the heart from side to side.  The z-axis runs from the feet to the head.  
+#  The z-rot will spin the heart right or left.
+#
+#NOTE 5: The phantom program outputs statistics on these anatomical parameters in the logfile it generates.  The logfile is 
+#         named with the extension _log.  These statistics can be used to determine the amount of scaling desired. Be aware 
+#	  the phantom scaling parameters scale the entire phantom; therefore, any body, heart or breast scalings  will
+#         be additional to this base scaling.
+#
+#NOTE 6:  Location of air in the large intestine and rectum
+#          5 = air visible in the entire large intestine and rectum
+#          4 = air visible in ascending, transverse, descending, and sigmoid portions of the large intestine 
+#          3 = air visible in ascending, transverse, and descending portions of the large intestine
+#          2 = air visible in ascending and transverse portions of the large intestine
+#          1 = air visible in ascending portion of the large intestine only
+#          0 = no air visible (entire large intestine and rectum filled with contents)
+#          
+#
+#NOTE 7:
+#        - The phantom dimensions do not necessarily have to be cubic. The array_size parameter 
+#          determines the x and y dimensions of the images.  The number of slices in the z dimension 
+#          is determined by the start_slice and end_slice parameters.  The total number of slices is
+#          end_slice - start_slice + 1.
+#
+#NOTE 8:
+#        - rotation parameters determine
+#          initial orientation of beating (dynamic) heart LV long axis
+#        - d_zy_rotation : +y-axis rotates toward +z-axis (about x-axis) by beta
+#          d_xz_rotation : +z-axis rotates toward +x-axis (about y-axis) by phi
+#          d_yx_rotation : +x-axis rotates toward +y-axis (about z-axis) by psi
+#
+#        - Based on patient data, the mean and SD heart orientations are:
+#                zy_rot = -110 degrees (no patient data for this rotation)
+#                xz_rot = 23 +- 10 deg.
+#                yx_rot = -52 +- 11 deg.
+#
+#	 - Phantom will output total angles for the heart orientation in the logfile
+#
+#NOTE 9: Creates lesion (defect) for the LEFT VENTRICLE ONLY.
+#
+#--------------------------------
+#  theta_center: location of lesion center in circumferential dimension
+#
+#  theta center =    0.0  => anterior wall
+#  theta center =  +90.0  => lateral   "
+#  theta center = +180.0  => inferior  "
+#  theta center = +270.0  => septal    "
+#--------------------------------
+#  theta_width : lesion width in circumferential dimension
+#
+#  TOTAL width of defect in degrees. So for example a width of 90 deg.
+#  means that the width is 45 deg. on either side of theta center.
+#--------------------------------
+#  x center :   lesion center in long-axis dimension
+#
+#  x center = 0    -> base of LV
+#  x center = 1.0  -> apex of LV
+#--------------------------------
+#  x width:  lesion width in long-axis dimension
+#
+#  total width. Defect extend half the total width on either side of the
+#  x_center.
+#
+#  NOTE: if the specified width extends beyond the boundaries of the LV
+#        then the defect is cut off and the effective width is less than the
+#        specified width. So for example...
+#
+#--------------------------------
+#  Wall_fract : fraction of the LV wall that the lesion transgresses
+#  Wall_fract = 0.0 => transgresses none of the wall
+#  Wall_fract = 0.5 => transgresses the inner half of the wall
+#  Wall_fract = 1.0 => trangresses the entire wall
+#--------------------------------
+#
+#
+#NOTE 10: Creates a spherical lesion in the XCAT phantom. Depending on where the lesion is placed, it will move with
+#         the respiratory motion. Location of the lesion is specified in pixel values. Initial location of the lesion
+#         needs to be with respect to end-expiration. 
+#
+#
+#
+#NOTE 11: Creates a plaque in the coronary vessel tree that will move with the cardiac/respiratory motion
+#
+#---------------------------------------------------------------------------
+#  plaque_center: location of plaque along the length of the specified artery
+#    center = 0    -> base of artery
+#    center = 1.0  -> apex of artery
+#
+#-------------------------------------------
+#  plaque_thickness : plaque thickness in mm.
+#
+#-------------------------------------------
+#  plaque_width :   plaque width in mm.
+#
+#-------------------------------------------
+#  plaque_length :  plaque length in mm.
+#
+#------------------------------------------------------
+#  plaque_id  :  vessel to place the plaque in
+#
+#        aorta 
+#        rca1
+#        rca2
+#        lad1
+#        lad2
+#        lad3
+#        lcx
+#------------------------------------------------------
+#
+#
+#NOTE12:  Using mode = 4, vectors are output for each voxel of frame 1 to the current frame. The vectors show the motion
+#         from the 1st frame to frame N. The vectors are output as text files with the format of 
+#         output_name_vec_frame1_frameN.txt.
+#         The output vectors are a combination of known sampled points from the phantom objects and vectors interpolated
+#         from these sampled points.  The known vectors are designated as such in the vector output.  You can increase
+#         the number of known points (and accuracy of the vector output) by increasing the parameter vec_factor.

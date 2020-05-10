@@ -1,0 +1,81 @@
+## AUTHOR: Ludovica Brusaferri
+## AUTHOR: Elise Emond
+## Copyright (C) 2018-2019 University College London<br />
+## Licensed under the Apache License, Version 2.0 (the "License");
+
+## NO UI
+/vis/disable
+
+# MATERIAL DATABASE
+/gate/geometry/setMaterialDatabase GateMaterials.db
+
+# "WORLD" DIMENSION
+/gate/world/geometry/setXLength 600. cm
+/gate/world/geometry/setYLength 600. cm
+/gate/world/geometry/setZLength 600. cm
+
+# SCANNER GEOMETRY
+/control/execute geometry_mMR.mac
+
+## VOXELISED PHANTOM
+/control/execute phantomReg.mac
+
+## ACTORS
+
+# to get mu map (REQUIRES GATE > 8.2)
+/gate/actor/addActor MuMapActor getMuMap
+/gate/actor/getMuMap/attachTo VoxPhantom
+/gate/actor/getMuMap/save images/output/Phantom{SimuId}.hdr
+/gate/actor/getMuMap/setVoxelSize 4 4 4.0625  mm
+/gate/actor/getMuMap/setResolution 110 110 64
+/gate/actor/getMuMap/setEnergy 511 keV
+
+## PHYSICAL INTERACTIONS
+/control/execute physics.mac
+
+## CUTS
+/control/execute cuts.mac
+
+## INITIALISATION OF GATE
+/gate/run/initialize
+
+## DIGITISER
+/control/execute digitiser_mMR.mac
+
+## COINCIDENCE SORTER
+/control/execute csorter_mMR.mac
+
+## RADIOACTIVE SOURCE
+/control/execute source.mac
+
+## ROOT LM OUTPUT
+
+/gate/output/root/enable
+/gate/output/root/setFileName            {StoreRootFilesDirectory}/ROOT_OUTPUT_{SimuId}
+/gate/output/root/setRootSinglesAdderFlag   0
+/gate/output/root/setRootSinglesReadoutFlag 0
+/gate/output/root/setRootHitFlag            0
+/gate/output/root/setRootSinglesFlag        0
+/gate/output/root/setRootOpticalFlag        0
+/gate/output/root/setRootNtupleFlag         0
+/gate/output/root/setRootCoincidencesFlag   1
+
+
+## RANDOMS ENGINE AND SEED
+
+# JamesRandom Ranlux64 MersenneTwister
+/gate/random/setEngineName JamesRandom
+#/gate/random/setEngineSeed default
+/gate/random/setEngineSeed auto
+#/gate/random/setEngineSeed 123456789
+#/gate/random/setEngineSeed default
+#/gate/random/resetEngineFrom fileName
+#/gate/random/verbose 1
+
+## ACQUISITION TIME
+/gate/application/setTimeSlice    1 s
+/gate/application/setTimeStart   {startTime} s
+/gate/application/setTimeStop   {endTime} s
+
+## RUN
+/gate/application/startDAQ

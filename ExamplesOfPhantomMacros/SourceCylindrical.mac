@@ -1,0 +1,63 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## Copyright (C) 2018-2019 University College London
+## Licensed under the Apache License, Version 2.0
+
+/gate/source/addSource Source1
+/gate/source/Source1/setActivity 10000000 becquerel
+/gate/source/Source1/setType backtoback
+/gate/source/Source1/gps/particle gamma
+/gate/source/Source1/setForcedUnstableFlag false
+/gate/source/Source1/setForcedHalfLife 6586 s
+/gate/source/Source1/gps/energytype Mono
+/gate/source/Source1/gps/monoenergy 511. keV
+/gate/source/Source1/gps/type Volume
+/gate/source/Source1/gps/shape Cylinder
+/gate/source/Source1/gps/radius 15 cm
+/gate/source/Source1/gps/halfz 13. cm
+/gate/source/Source1/attachTo SphericalPhantom
+/gate/source/Source1/gps/angtype iso
+/gate/source/list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

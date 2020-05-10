@@ -1,0 +1,11 @@
+*.v     -text -diff
+*.s     -text -diff
+*.scn     -text -diff
+*.gz     -text -diff
+*.nii     -text -diff
+*.sh    eol=lf
+*.jpg   -text -diff
+*.png   -text -diff
+*.gif   -text -diff
+*.pdf   -text -diff
+*.eps   -text -diff
