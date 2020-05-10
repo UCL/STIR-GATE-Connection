@@ -18,7 +18,9 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 14:07:08 BST
 
-This directory contains the macro files used for the GATE simulation. The files that end with "_mMR" are specific to the Siemens mMR scanner. Change this files if you want to use another scanner.
+This directory contains the macro files used for the GATE simulation.
+
+Voxel-sizes etc are currently hard-wired. Sorry.
 
 
 Files
@@ -26,7 +28,7 @@ Files
 
 * activity.h33: header file for the activity image. Links to images/input/a_act_1.bin
 * attenuation.h33: header file for the attenuation image. Links to images/input/a_atn_1_mod.v. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 1000).
-* AttenuationConv.dat: this files contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
+* AttenuationConv.dat: this file contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
 * CheckGeometry: this script can be used to visualise scanner and activity images from GUI: Gate --qt CheckGeometry.mac
 * main_mMR_muMap_job.mac: main macro file.
 * phantomReg.mac: here the attenuation phantom is defined. This macro creates dmap.hdr and dmap.img, associated to the input image. When running array-jobs this can create conflics between parallel jobs as the files gets over-written. It's recommended to comment out "/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo dmap.hdr" once it's created. Check that the offset is set correctly. More comments in the macro
@@ -37,7 +39,8 @@ Files
 
 Scripts
 =======
-* prepare_files.sh
+* prepare_files.sh: shell script that copies files from the mMR example directory (needs to be run first)
 * create_root_and_unlist.sh: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
-* job_gate_atten_time: main bash script. Here the root outputs are stored in the scratch. The directory can be changed to any other directory. Provide the absolute path.
+* job_gate_atten_time.sh: main bash script. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path.
+* run_gate_single_job.sh: simpler script if you just want to run one job
 
