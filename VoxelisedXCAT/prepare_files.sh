@@ -7,7 +7,7 @@
 
 SCANNERTYPE=$1
 
-if [[ $SCANNERTYPE == "GE" ]]; then
+if [[ $SCANNERTYPE == "D690" ]]; then
 	echo "Preparing D690 scanner files"
 	D690_DIR="../ExamplesOfScannersMacros/D690"
 	cp $D690_DIR/csorter_D690.mac csorter.mac
