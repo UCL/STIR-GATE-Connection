@@ -1,9 +1,15 @@
 #! /bin/sh
 
-## AUTHOR: Kris Thielemans
+## AUTHOR: Kris Thielemans & Robert Twyman
 ## Copyright (C) 2018-2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
+# This script will copy the relavant scanner csorter, digitiser, and geometry files 
+# into the Voxelised XCAT directory for simulation for a particular scanner.
+
+# The Required Args:
+# - $1: Either "D690" or "mMR" must be specified as scanner type as that is all that 
+#       is currently supported.
 
 SCANNERTYPE=$1
 
@@ -22,5 +28,5 @@ elif [[ $SCANNERTYPE == "mMR" ]]; then
 	cp $mMR_DIR/geometry_mMR.mac geometry.mac
 
 else
-	echo "Invalid script parse. Please indicate 'GE' or 'mMR'."
+	echo "Invalid script parse. Please indicate 'D690' or 'mMR'."
 fi
