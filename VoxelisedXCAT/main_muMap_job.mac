@@ -15,7 +15,7 @@
 /gate/world/geometry/setZLength 600. cm
 
 # SCANNER GEOMETRY
-/control/execute geometry_mMR.mac
+/control/execute geometry.mac
 
 ## VOXELISED PHANTOM
 /control/execute phantomReg.mac
@@ -40,10 +40,10 @@
 /gate/run/initialize
 
 ## DIGITISER
-/control/execute digitiser_mMR.mac
+/control/execute digitiser.mac
 
 ## COINCIDENCE SORTER
-/control/execute csorter_mMR.mac
+/control/execute csorter.mac
 
 ## RADIOACTIVE SOURCE
 /control/execute source.mac

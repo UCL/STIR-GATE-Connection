@@ -9,7 +9,7 @@ startTime=$2
 endTime=$3
 StoreRootFilesDirectory=$4
 
-Gate main_mMR_muMap_job.mac -a [SimuId,$SGE_TASK_ID][startTime,$startTime][endTime,$endTime][StoreRootFilesDirectory,$StoreRootFilesDirectory]
+Gate main_muMap_job.mac -a [SimuId,$SGE_TASK_ID][startTime,$startTime][endTime,$endTime][StoreRootFilesDirectory,$StoreRootFilesDirectory]
 
 cd root_output
 
