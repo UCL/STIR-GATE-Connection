@@ -20,7 +20,7 @@ limitations under the License.
 Created:  Mon 11 May 2020
 
 This directory contains some sub macro files used for the GATE simulation.
-
+Note: Any paths to files/directories link are relative to the current working directory.
 
 
 Files

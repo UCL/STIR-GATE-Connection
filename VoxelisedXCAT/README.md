@@ -18,7 +18,8 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 14:07:08 BST
 
-This directory contains the macro files used for the GATE simulation.
+This directory contains the main macro files used for the GATE simulations and example scripts.
+Note: Any paths to files/directories link are relative to the current working directory.
 
 Voxel-sizes etc are currently hard-wired. Sorry.
 
