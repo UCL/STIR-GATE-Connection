@@ -18,7 +18,7 @@
 /gate/VoxPhantom/geometry/setRangeToMaterialFile GATESubMacros/AttenuationConv.dat
 
 #comment out the following line once created
-/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo dmap.hdr
+/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo images/output/dmap.hdr
 /gate/VoxPhantom/geometry/distanceMap dmap.hdr
 
 # UNITS TO MATERIAL CONVERSION DESCRIPTOR (label or HU values)
