@@ -15,7 +15,7 @@
 # INSERT THE TRANSLATOR THAT WILL CONVERT THE IMAGE FROM DIGITAL VALUES TO
 # MATERIAL INFORMATION
 # RANGE TRANSLATOR (label values)
-/gate/VoxPhantom/geometry/setRangeToMaterialFile AttenuationConv.dat
+/gate/VoxPhantom/geometry/setRangeToMaterialFile GATESubMacros/AttenuationConv.dat
 
 #comment out the following line once created
 /gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo dmap.hdr
