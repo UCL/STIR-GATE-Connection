@@ -23,6 +23,14 @@ This directory contains the macro files used for the GATE simulation.
 Voxel-sizes etc are currently hard-wired. Sorry.
 
 
+Directories
+===========
+
+* images: Contains input and output images.
+* GATESubMacros: Contains a collection of GATE macros for simulation.
+* root_output: Contains templates for unlisting and is used as the output of the GATE simulation.
+
+
 Files
 =======
 

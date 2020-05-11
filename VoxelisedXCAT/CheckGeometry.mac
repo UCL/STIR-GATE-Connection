@@ -7,10 +7,10 @@
 /vis/enable
 
 ## VISUALISE
-/control/execute visualisation.mac
+/control/execute GATESubMacros/visualisation.mac
 
 # MATERIALS
-/gate/geometry/setMaterialDatabase GateMaterials.db
+/gate/geometry/setMaterialDatabase GATESubMacros/GateMaterials.db
 
 # "WORLD" DIMENSION
 /gate/world/geometry/setXLength       80. cm
@@ -18,19 +18,19 @@
 /gate/world/geometry/setZLength       31. cm
 
 # SCANNER GEOMETRY
-/control/execute geometry_mMR.mac
+/control/execute GATESubMacros/geometry.mac
 
 ## VOXELISED PHANTOM
-/control/execute phantomReg.mac 
+/control/execute GATESubMacros/phantomReg.mac 
 
 ## PHYSICS INTERACTIONS
-/control/execute physics.mac
+/control/execute GATESubMacros/physics.mac
 
 ## PHYSICS INITIALISE
 /gate/run/initialize
 
 ## SOURCE
-/control/execute source.mac
+/control/execute GATESubMacros/source.mac
 
 ## DISABLE OUTPUT
 /gate/output/allowNoOutput
