@@ -22,7 +22,7 @@ Directories
 
 * ExamplesOfScannersMacros: contains examples of macros for creating a scanner in GATE
 * ExamplesOfPhantomMacros: contains examples of macros for creating/importing source and attenuation phantoms
-* VoxelisedXCAT: example of GATE simulation from XCAT imagesscanner
+* VoxelisedXCAT: example of GATE simulation from XCAT images.
 
 
 Things to do

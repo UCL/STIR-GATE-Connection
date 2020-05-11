@@ -7,7 +7,7 @@
 /vis/disable
 
 # MATERIAL DATABASE
-/gate/geometry/setMaterialDatabase GateMaterials.db
+/gate/geometry/setMaterialDatabase GATESubMacros/GateMaterials.db
 
 # "WORLD" DIMENSION
 /gate/world/geometry/setXLength 600. cm
@@ -15,10 +15,10 @@
 /gate/world/geometry/setZLength 600. cm
 
 # SCANNER GEOMETRY
-/control/execute geometry.mac
+/control/execute GATESubMacros/geometry.mac
 
 ## VOXELISED PHANTOM
-/control/execute phantomReg.mac
+/control/execute GATESubMacros/phantomReg.mac
 
 ## ACTORS
 
@@ -31,22 +31,22 @@
 /gate/actor/getMuMap/setEnergy 511 keV
 
 ## PHYSICAL INTERACTIONS
-/control/execute physics.mac
+/control/execute GATESubMacros/physics.mac
 
 ## CUTS
-/control/execute cuts.mac
+/control/execute GATESubMacros/cuts.mac
 
 ## INITIALISATION OF GATE
 /gate/run/initialize
 
 ## DIGITISER
-/control/execute digitiser.mac
+/control/execute GATESubMacros/digitiser.mac
 
 ## COINCIDENCE SORTER
-/control/execute csorter.mac
+/control/execute GATESubMacros/csorter.mac
 
 ## RADIOACTIVE SOURCE
-/control/execute source.mac
+/control/execute GATESubMacros/source.mac
 
 ## ROOT LM OUTPUT
 
