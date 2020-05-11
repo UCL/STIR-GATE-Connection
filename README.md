@@ -18,11 +18,11 @@ limitations under the License.
 
 
 Directories
-=======
+===========
 
 * ExamplesOfScannersMacros: contains examples of macros for creating a scanner in GATE
 * ExamplesOfPhantomMacros: contains examples of macros for creating/importing source and attenuation phantoms
-* VoxelisedXCATmMR: example of GATE simulation from XCAT images witha a Siemens mMR scanner
+* VoxelisedXCAT: example of GATE simulation from XCAT imagesscanner
 
 
 Things to do
