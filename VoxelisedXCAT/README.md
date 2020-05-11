@@ -39,7 +39,7 @@ Files
 
 Scripts
 =======
-* prepare_files.sh: shell script that copies files from the mMR example directory (needs to be run first)
+* prepare_files.sh: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into VoxelisedXCAT directory.
 * create_root_and_unlist.sh: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
 * job_gate_atten_time.sh: main bash script. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path.
 * run_gate_single_job.sh: simpler script if you just want to run one job
