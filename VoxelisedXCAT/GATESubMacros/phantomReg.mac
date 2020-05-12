@@ -19,7 +19,7 @@
 
 #comment out the following line once created
 /gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo images/output/dmap.hdr
-/gate/VoxPhantom/geometry/distanceMap dmap.hdr
+/gate/VoxPhantom/geometry/distanceMap images/output/dmap.hdr
 
 # UNITS TO MATERIAL CONVERSION DESCRIPTOR (label or HU values)
 /gate/VoxPhantom/placement/setTranslation -2 -2 0. mm
