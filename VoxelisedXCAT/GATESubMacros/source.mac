@@ -9,7 +9,7 @@
 # INSERT THE TRANSLATOR THAT WILL CONVERT THE IMAGE FROM DIGITAL VALUES TO
 # ACTIVITY VALUES
 /gate/source/SourcePhantom/imageReader/translator/insert linear
-/gate/source/SourcePhantom/imageReader/linearTranslator/setScale  0.0001 Bq
+/gate/source/SourcePhantom/imageReader/linearTranslator/setScale  1 Bq
 # READ IMAGE
 /gate/source/SourcePhantom/imageReader/readFile activity.h33
 
