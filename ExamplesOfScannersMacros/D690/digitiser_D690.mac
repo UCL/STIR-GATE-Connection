@@ -2,6 +2,7 @@
 ## AUTHOR: Ludovica Brusaferri
 ## Copyright (C) 2018-2019 University College London
 ## Licensed under the Apache License, Version 2.0
+## digitiser for D690 Scanner
 
 /gate/digitizer/Singles/insert                        adder
 /gate/digitizer/Singles/insert                        readout

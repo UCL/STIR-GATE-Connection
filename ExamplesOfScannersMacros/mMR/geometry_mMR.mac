@@ -3,6 +3,7 @@
 ## AUTHOR: Vesna Cuplov
 ## Copyright (C) 2014-2019 University College London
 ## Licensed under the Apache License, Version 2.0
+## geometry for mMR Scanner
 
 #    ECAT
 # This is a version of the Siemens mMR but without gaps, i.e. 9 crystals per block in transaxial direction as opposed to 8
