@@ -18,6 +18,8 @@ sleep $((1 + RANDOM % 60))
 
 StartTime=$(($(($SGE_TASK_ID-1))))
 EndTime=$(($(($SGE_TASK_ID))))
+
+# Gate Setup 
 ActivityHeader="activity.h33"
 AttentuationHeader="attenuation.h33"
 
@@ -30,51 +32,4 @@ mkdir -p $StoreRootFilesDirectory
 fi
 
 ./create_root_and_unlist.sh $SGE_TASK_ID $StartTime $EndTime $StoreRootFilesDirectory $ActivityHeader $AttentuationHeader
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

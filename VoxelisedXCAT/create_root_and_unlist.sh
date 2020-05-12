@@ -9,12 +9,12 @@ StartTime=$2
 EndTime=$3
 StoreRootFilesDirectory=$4
 ActivityHeader=$5
-AttenuationHeader=$6
+AttentuationHeader=$6
 
 Gate main_muMap_job.mac -a \
 [SimuId,$SGE_TASK_ID][StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
-[ActivityHeader,$ActivityHeader][AttenuationHeader,$AttenuationHeader]
+[ActivityHeader,$ActivityHeader][AttentuationHeader,$AttentuationHeader]
 
 cd root_output
 
