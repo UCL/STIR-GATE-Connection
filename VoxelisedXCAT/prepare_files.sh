@@ -1,6 +1,7 @@
 #! /bin/sh
 
-## AUTHOR: Kris Thielemans & Robert Twyman
+## AUTHOR: Kris Thielemans 
+## AUTHOR: Robert Twyman
 ## Copyright (C) 2018-2020 University College London
 ## Licensed under the Apache License, Version 2.0
 

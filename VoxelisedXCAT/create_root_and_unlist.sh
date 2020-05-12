@@ -5,11 +5,11 @@
 ## Licensed under the Apache License, Version 2.0
 
 SGE_TASK_ID=$1
-startTime=$2
-endTime=$3
+StartTime=$2
+EndTime=$3
 StoreRootFilesDirectory=$4
 
-Gate main_muMap_job.mac -a [SimuId,$SGE_TASK_ID][startTime,$startTime][endTime,$endTime][StoreRootFilesDirectory,$StoreRootFilesDirectory]
+Gate main_muMap_job.mac -a [SimuId,$SGE_TASK_ID][StartTime,$StartTime][EndTime,$EndTime][StoreRootFilesDirectory,$StoreRootFilesDirectory]
 
 cd root_output
 

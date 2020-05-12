@@ -74,8 +74,8 @@
 
 ## ACQUISITION TIME
 /gate/application/setTimeSlice    1 s
-/gate/application/setTimeStart   {startTime} s
-/gate/application/setTimeStop   {endTime} s
+/gate/application/setTimeStart   {StartTime} s
+/gate/application/setTimeStop   {EndTime} s
 
 ## RUN
 /gate/application/startDAQ

@@ -10,7 +10,7 @@
 /gate/world/daughters/insert ImageRegionalizedVolume
 
 # READ IMAGE (.h33 for Interfile, .mhd for MetaImage, .hdr for Analyze)
-/gate/VoxPhantom/geometry/setImage attenuation.h33
+/gate/VoxPhantom/geometry/setImage {AttentuationHeader}
 
 # INSERT THE TRANSLATOR THAT WILL CONVERT THE IMAGE FROM DIGITAL VALUES TO
 # MATERIAL INFORMATION
