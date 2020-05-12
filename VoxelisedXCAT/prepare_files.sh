@@ -12,16 +12,16 @@
 # - $1: Either "D690" or "mMR" must be specified as scanner type as that is all that 
 #       is currently supported.
 
-SCANNERTYPE=$1
+ScannerType=$1
 
-if [ $SCANNERTYPE = "D690" ]; then
+if [ $ScannerType = "D690" ]; then
 	echo "Preparing D690 scanner files"
 	D690_DIR="../ExamplesOfScannersMacros/D690"
 	cp -vp $D690_DIR/csorter_D690.mac GateSubMacros/csorter.mac
 	cp -vp $D690_DIR/digitiser_D690.mac GateSubMacros/digitiser.mac
 	cp -vp $D690_DIR/geometry_D690.mac GateSubMacros/geometry.mac
 
-elif [ $SCANNERTYPE = "mMR" ]; then
+elif [ $ScannerType = "mMR" ]; then
 	echo "Preparing mMR scanner files"
 	mMR_DIR="../ExamplesOfScannersMacros/mMR"
 	cp -vp $mMR_DIR/csorter_mMR.mac GateSubMacros/csorter.mac
