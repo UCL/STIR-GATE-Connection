@@ -16,8 +16,10 @@
 
 sleep $((1 + RANDOM % 60))
 
-startTime=$(($(($SGE_TASK_ID-1))))
-endTime=$(($(($SGE_TASK_ID))))
+StartTime=$(($(($SGE_TASK_ID-1))))
+EndTime=$(($(($SGE_TASK_ID))))
+ActivityHeader="activity.h33"
+AttentuationHeader="attenuation.h33"
 
 #StoreRootFilesDirectory=$PWD
 StoreRootFilesDirectory=/scratch0/$USER/GATEJOB_$JOB_ID
@@ -27,7 +29,7 @@ mkdir -p $StoreRootFilesDirectory
 
 fi
 
-./create_root_and_unlist.sh $SGE_TASK_ID $startTime $endTime $StoreRootFilesDirectory
+./create_root_and_unlist.sh $SGE_TASK_ID $StartTime $EndTime $StoreRootFilesDirectory $ActivityHeader $AttentuationHeader
 
 
 
