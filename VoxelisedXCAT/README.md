@@ -38,13 +38,8 @@ Files
 * activity.h33: header file for the activity image. Links to images/input/a_act_1.bin
 * attenuation.h33: header file for the attenuation image. Links to images/input/a_atn_1_mod.v. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 1000).
 * AttenuationConv.dat: this file contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
-* CheckGeometry: this script can be used to visualise scanner and activity images from GUI: Gate --qt CheckGeometry.mac
-* main_mMR_muMap_job.mac: main macro file.
-* phantomReg.mac: here the attenuation phantom is defined. This macro creates dmap.hdr and dmap.img, associated to the input image. When running array-jobs this can create conflics between parallel jobs as the files gets over-written. It's recommended to comment out "/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo dmap.hdr" once it's created. Check that the offset is set correctly. More comments in the macro
-* source.mac: here the source phantom is defined. Check that the offset is set correctly. More comments in the macro
-* visualisation.mac: used in CheckGeometry.mac to visualise scanner and phantoms
-* physics.mac: contains the physics list
-* GateMaterials.db: contains material used to create the attenuation map
+* CheckGeometry: this script can be used to visualise scanner and activity images from GUI: Gate --qt CheckGeometry.mac (requires geant4 OpenGL {and maybe QT?})
+* main_muMap_job.mac: main macro file.
 
 Scripts
 =======
