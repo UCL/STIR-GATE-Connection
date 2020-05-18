@@ -38,12 +38,12 @@ Files
 * activity.h33: header file for the activity image. Links to images/input/a_act_1.bin
 * attenuation.h33: header file for the attenuation image. Links to images/input/a_atn_1_mod.v. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 1000).
 * AttenuationConv.dat: this file contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
-* CheckGeometry: this script can be used to visualise scanner and activity images from GUI: Gate --qt CheckGeometry.mac (requires geant4 OpenGL {and maybe QT?})
-* main_muMap_job.mac: main macro file.
+* CheckGeometry.mac: this script can be used to visualise scanner and activity images from GUI: 'Gate --qt CheckGeometry.mac' (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to CheckGeometry.sh. 
+* main_muMap_job.mac: main macro file for GATE simulation. Links files within SubMacros.
 
 Scripts
 =======
 * create_root_and_unlist.sh: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
 * job_gate_atten_time.sh: main bash script. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path.
 * run_gate_single_job.sh: simpler script if you just want to run one job
-
+* CheckGeometry.sh: Shell script to run CheckGeometry.mac - visualising the scanner. Handles some of the positional and translational arguments in SubMacros files.
