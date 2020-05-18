@@ -12,10 +12,12 @@ ActivityHeader=$5
 AttentuationHeader=$6
 
 ## Get the activity source position in x,y,z
-source_position_x=$( sh sub_scripts/get_source_position.sh $ActivityHeader x 2>/dev/null ) 
-source_position_y=$( sh sub_scripts/get_source_position.sh $ActivityHeader y 2>/dev/null ) 
-source_position_z=$( sh sub_scripts/get_source_position.sh $ActivityHeader z 2>/dev/null ) 
+source_position=$( sh sub_scripts/get_source_position.sh $ActivityHeader 2>/dev/null ) 
+source_position_x=`echo ${source_position} |awk '{print $1}'`
+source_position_y=`echo ${source_position} |awk '{print $2}'`
+source_position_z=`echo ${source_position} |awk '{print $3}'`
 
+## Run GATE
 Gate main_muMap_job.mac -a \
 [SimuId,$SGE_TASK_ID][StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
