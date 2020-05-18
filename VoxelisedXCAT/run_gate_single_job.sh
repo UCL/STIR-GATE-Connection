@@ -5,8 +5,8 @@
 SGE_TASK_ID=1;
 StartTime=$(($(($SGE_TASK_ID-1))))
 EndTime=$(($(($SGE_TASK_ID))))
-ActivityHeader="activity.h33"
-AttentuationHeader="attenuation.h33"
+ActivityFilename="activity.h33"
+AttenuationFilename="attenuation.h33"
 
 
 StoreRootFilesDirectory=$PWD
@@ -16,4 +16,4 @@ mkdir -p $StoreRootFilesDirectory
 
 fi
 
-./create_root_and_unlist.sh $SGE_TASK_ID $StartTime $EndTime $StoreRootFilesDirectory $ActivityHeader $AttentuationHeader
+./create_root_and_unlist.sh $SGE_TASK_ID $StartTime $EndTime $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename

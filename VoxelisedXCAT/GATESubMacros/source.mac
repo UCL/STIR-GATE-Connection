@@ -11,7 +11,7 @@
 /gate/source/SourcePhantom/imageReader/translator/insert linear
 /gate/source/SourcePhantom/imageReader/linearTranslator/setScale  1 Bq
 # READ IMAGE
-/gate/source/SourcePhantom/imageReader/readFile {ActivityHeader}
+/gate/source/SourcePhantom/imageReader/readFile {ActivityFilename}
 
 # POSITION OF THE SOURCE (its default position is in the 1st quarter, so #it has to be
 # shifted over half its dimensions in the negative direction on each axis)

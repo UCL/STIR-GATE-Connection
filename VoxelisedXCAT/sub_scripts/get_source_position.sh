@@ -1,22 +1,22 @@
 #! /bin/sh
 ## AUTHOR: Robert Twyman
 ## Script used to automatically gather GATE x,y,z source position from image intetfile header.
-## Script echo (returns) x y z varaibles. Needs to be unpacked.
-HeaderFilename=$1
+## Script echo (returns) x y z variables.
+ImageFilename=$1
 
 if [ $# -ne 1 ]; then
-  echo "Usage:"$0 "HeaderFilename" 1>&2
+  echo "Usage:"$0 "ImageFilename" 1>&2
   exit 1
 fi
 
 ## Get number of voxels for all dimensions
-NumberOfVoxels=`list_image_info $HeaderFilename| awk -F: '/Number of voxels/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2
+NumberOfVoxels=`list_image_info $ImageFilename| awk -F: '/Number of voxels/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2
 NumberOfVoxelsX=`echo ${NumberOfVoxels} |awk '{print $1}'`
 NumberOfVoxelsY=`echo ${NumberOfVoxels} |awk '{print $2}'`
 NumberOfVoxelsZ=`echo ${NumberOfVoxels} |awk '{print $3}'`
 
 ## Get voxel sizes for all dimensions
-VoxelSizes=`list_image_info $HeaderFilename| awk -F: '/Voxel-size in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2	
+VoxelSizes=`list_image_info $ImageFilename| awk -F: '/Voxel-size in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2	
 VoxelSizeX=`echo ${VoxelSizes} |awk '{print $1}'`
 VoxelSizeY=`echo ${VoxelSizes} |awk '{print $2}'`
 VoxelSizeZ=`echo ${VoxelSizes} |awk '{print $3}'`

@@ -8,8 +8,8 @@ SGE_TASK_ID=$1
 StartTime=$2
 EndTime=$3
 StoreRootFilesDirectory=$4
-ActivityHeader=$5
-AttentuationHeader=$6
+ActivityFilename=$5
+AttenuationFilename=$6
 
 ## Get the activity source position in x,y,z
 SourcePositions=$( sh sub_scripts/get_source_position.sh $ActivityHeader 2>/dev/null ) 
@@ -18,7 +18,7 @@ SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
 SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
 
 ## Get the attenuation map translation in x,y,z
-AttenuationTranslations=$( sh sub_scripts/get_attenuation_translation.sh $AttentuationHeader 2>/dev/null ) 
+AttenuationTranslations=$( sh sub_scripts/get_attenuation_translation.sh $AttenuationHeader 2>/dev/null ) 
 AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
 AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
@@ -29,7 +29,7 @@ Gate main_muMap_job.mac -a \
 [SimuId,$SGE_TASK_ID]\
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
-[ActivityHeader,$ActivityHeader][AttentuationHeader,$AttentuationHeader]\
+[ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
 [SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
 [AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
 
