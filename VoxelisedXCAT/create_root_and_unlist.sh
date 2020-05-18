@@ -5,11 +5,36 @@
 ## Licensed under the Apache License, Version 2.0
 
 SGE_TASK_ID=$1
-startTime=$2
-endTime=$3
+StartTime=$2
+EndTime=$3
 StoreRootFilesDirectory=$4
+ActivityFilename=$5
+AttenuationFilename=$6
 
-Gate main_muMap_job.mac -a [SimuId,$SGE_TASK_ID][startTime,$startTime][endTime,$endTime][StoreRootFilesDirectory,$StoreRootFilesDirectory]
+echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
+
+## Get the activity source position in x,y,z
+SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 
+SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
+SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
+SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
+
+## Get the attenuation map translation in x,y,z
+AttenuationTranslations=$( sub_scripts/get_attenuation_translation.sh $AttenuationFilename 2>/dev/null ) 
+AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
+AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
+AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
+
+
+## Run GATE
+Gate main_muMap_job.mac -a \
+[SimuId,$SGE_TASK_ID]\
+[StartTime,$StartTime][EndTime,$EndTime]\
+[StoreRootFilesDirectory,$StoreRootFilesDirectory]\
+[ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
+[SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+
 
 cd root_output
 
@@ -32,3 +57,5 @@ lm_to_projdata lm_to_projdata_${SGE_TASK_ID}.par
 rm ${StoreRootFilesDirectory}/ROOT_OUTPUT_${SGE_TASK_ID}.root
 rm lm_to_projdata_${SGE_TASK_ID}.par
 rm root_header_${SGE_TASK_ID}.hroot
+
+echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)

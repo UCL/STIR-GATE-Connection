@@ -3,8 +3,10 @@
 ## Licensed under the Apache License, Version 2.0
 
 SGE_TASK_ID=1;
-startTime=$(($(($SGE_TASK_ID-1))))
-endTime=$(($(($SGE_TASK_ID))))
+StartTime=$(($(($SGE_TASK_ID-1))))
+EndTime=$(($(($SGE_TASK_ID))))
+ActivityFilename="activity.h33"
+AttenuationFilename="attenuation.h33"
 
 
 StoreRootFilesDirectory=$PWD
@@ -14,52 +16,4 @@ mkdir -p $StoreRootFilesDirectory
 
 fi
 
-./create_root_and_unlist.sh $SGE_TASK_ID $startTime $endTime $StoreRootFilesDirectory
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+./create_root_and_unlist.sh $SGE_TASK_ID $StartTime $EndTime $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
