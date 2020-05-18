@@ -11,6 +11,8 @@ StoreRootFilesDirectory=$4
 ActivityFilename=$5
 AttenuationFilename=$6
 
+echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
+
 ## Get the activity source position in x,y,z
 SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 
 SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
@@ -55,3 +57,5 @@ lm_to_projdata lm_to_projdata_${SGE_TASK_ID}.par
 rm ${StoreRootFilesDirectory}/ROOT_OUTPUT_${SGE_TASK_ID}.root
 rm lm_to_projdata_${SGE_TASK_ID}.par
 rm root_header_${SGE_TASK_ID}.hroot
+
+echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)
