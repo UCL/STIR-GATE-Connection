@@ -22,7 +22,7 @@
 /gate/VoxPhantom/geometry/distanceMap images/output/dmap.hdr
 
 # UNITS TO MATERIAL CONVERSION DESCRIPTOR (label or HU values)
-/gate/VoxPhantom/placement/setTranslation -2 -2 0. mm
+/gate/VoxPhantom/placement/setTranslation {attenuation_translation_x} {attenuation_translation_y} {attenuation_translation_z} mm
 /gate/VoxPhantom/placement/setRotationAxis 1 0 0
 /gate/VoxPhantom/placement/setRotationAngle 0 deg
 /gate/VoxPhantom/vis/forceSolid

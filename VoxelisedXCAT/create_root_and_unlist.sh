@@ -17,13 +17,20 @@ source_position_x=`echo ${source_position} |awk '{print $1}'`
 source_position_y=`echo ${source_position} |awk '{print $2}'`
 source_position_z=`echo ${source_position} |awk '{print $3}'`
 
+## Get the attenuation map translation in x,y,z
+attenuation_translation=$( sh sub_scripts/get_attenuation_translation.sh $AttentuationHeader 2>/dev/null ) 
+attenuation_translation_x=`echo ${attenuation_translation} |awk '{print $1}'`
+attenuation_translation_y=`echo ${attenuation_translation} |awk '{print $2}'`
+attenuation_translation_z=`echo ${attenuation_translation} |awk '{print $3}'`
+
 ## Run GATE
 Gate main_muMap_job.mac -a \
-[SimuId,$SGE_TASK_ID][StartTime,$StartTime][EndTime,$EndTime]\
+[SimuId,$SGE_TASK_ID]\
+[StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [ActivityHeader,$ActivityHeader][AttentuationHeader,$AttentuationHeader]\
-[source_position_x,$source_position_x][source_position_y,$source_position_y][source_position_z,$source_position_z]
-
+[source_position_x,$source_position_x][source_position_y,$source_position_y][source_position_z,$source_position_z]\
+[attenuation_translation_x,$attenuation_translation_x][attenuation_translation_y,$attenuation_translation_y][attenuation_translation_z,$attenuation_translation_z]
 
 cd root_output
 
