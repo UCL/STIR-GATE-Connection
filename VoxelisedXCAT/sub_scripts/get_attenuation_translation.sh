@@ -2,15 +2,16 @@
 ## AUTHOR: Robert Twyman
 ## Script used to automatically gather GATE x,y,z attenuation translation for STIR images.
 ## Script echo (returns) x y z variables.
-AttenuationFilename=$1
+
+ImageFilename=$1
 
 if [ $# -ne 1 ]; then
-  echo "Usage:"$0 "AttenuationFilename" 1>&2
+  echo "Usage:"$0 "ImageFilename" 1>&2
   exit 1
 fi
 
 ## Get voxel size for x,y dimensions
-VoxelSizes=`list_image_info $AttenuationFilename| awk -F: '/Voxel-size in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2	
+VoxelSizes=`list_image_info $ImageFilename| awk -F: '/Voxel-size in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2	
 VoxelSizeX=`echo ${VoxelSizes} |awk '{print $1}'`
 VoxelSizeY=`echo ${VoxelSizes} |awk '{print $2}'`
 

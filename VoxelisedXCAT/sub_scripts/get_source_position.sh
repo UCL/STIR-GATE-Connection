@@ -2,6 +2,7 @@
 ## AUTHOR: Robert Twyman
 ## Script used to automatically gather GATE x,y,z source position from image intetfile header.
 ## Script echo (returns) x y z variables.
+
 ImageFilename=$1
 
 if [ $# -ne 1 ]; then
