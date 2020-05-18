@@ -22,8 +22,6 @@ Created:  Mon 30 Sep 2019 14:07:08 BST
 This directory contains the main macro files used for the GATE simulations and example scripts.
 Note: Any paths to files/directories link are relative to the current working directory.
 
-Voxel-sizes etc are currently hard-wired. Sorry.
-
 
 Directories
 ===========
@@ -31,6 +29,7 @@ Directories
 * images: Contains input and output images.
 * GATESubMacros: Contains a collection of GATE macros for simulation.
 * root_output: Contains templates for unlisting and is used as the output of the GATE simulation.
+* sub_scripts: Contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
 
 
 Files
@@ -44,7 +43,6 @@ Files
 
 Scripts
 =======
-* prepare_files.sh: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into VoxelisedXCAT directory.
 * create_root_and_unlist.sh: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
 * job_gate_atten_time.sh: main bash script. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path.
 * run_gate_single_job.sh: simpler script if you just want to run one job
