@@ -11,10 +11,17 @@ StoreRootFilesDirectory=$4
 ActivityHeader=$5
 AttentuationHeader=$6
 
+## Get the activity source position in x,y,z
+source_position_x=$( sh sub_scripts/get_source_position.sh $ActivityHeader x 2>/dev/null ) 
+source_position_y=$( sh sub_scripts/get_source_position.sh $ActivityHeader y 2>/dev/null ) 
+source_position_z=$( sh sub_scripts/get_source_position.sh $ActivityHeader z 2>/dev/null ) 
+
 Gate main_muMap_job.mac -a \
 [SimuId,$SGE_TASK_ID][StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
-[ActivityHeader,$ActivityHeader][AttentuationHeader,$AttentuationHeader]
+[ActivityHeader,$ActivityHeader][AttentuationHeader,$AttentuationHeader]\
+[source_position_x,$source_position_x][source_position_y,$source_position_y][source_position_z,$source_position_z]
+
 
 cd root_output
 
