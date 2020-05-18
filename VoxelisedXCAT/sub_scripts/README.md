@@ -21,5 +21,10 @@ This directory contains a collection of scripts that are key to automatically fi
 Scripts
 =======
 * prepare_files.sh: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into VoxelisedXCAT directory.
-* get_attenuation_translation.sh: shell script that reads a interfile header and returns x,y half voxel size shifts for the attenuation translation.
-* get_source_position.sh: shell script that reads a interfile header and returns the source position offset that centers the phantom in the GATE scanner.
+* get_attenuation_translation.sh: shell script that reads an image with STIR and returns shifts for the attenuation translation.
+* get_source_position.sh: shell script that reads an image with STIR and returns the source position offset for GATE
+
+*WARNING* the `get_*.sh` scripts put the centre of the STIR image at the GATE 0,0,0.  
+Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`.Shifting the centre of the GATE scanner is
+currently going to break things.
+of the scanner there will b
