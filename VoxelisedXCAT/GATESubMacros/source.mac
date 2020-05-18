@@ -13,18 +13,9 @@
 # READ IMAGE
 /gate/source/SourcePhantom/imageReader/readFile {ActivityFilename}
 
-# POSITION OF THE SOURCE (its default position is in the 1st quarter, so #it has to be
+# POSITION OF THE SOURCE (its default position is in the 1st quarter, so it has to be
 # shifted over half its dimensions in the negative direction on each axis)
-# These are given as arguements to the GATE main.
-# ODD Input Image Size: 
-#	-(voxel_size_x*image_size_x)/2 
-#	-(voxel_size_y*image_size_y)/2 
-#	-(voxel_size_z*image_size_z)/2
-# EVEN Input Image Size: 
-#	-(voxel_size_x*image_size_x)/2 - voxel_size_x/2 
-#	-(voxel_size_y*image_size_y)/2 - voxel_size_y/2 
-#	-(voxel_size_z*image_size_z)/2  ## (NOTE, this one different)
-
+# These values are computed by sub_scripts/get_source_position.sh
 /gate/source/SourcePhantom/setPosition {SourcePositionX} {SourcePositionY} {SourcePositionZ} mm
 
 # CHARACTERIZATION OF THE SOURCE (no difference with an analytical source)
