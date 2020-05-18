@@ -12,16 +12,17 @@ ActivityHeader=$5
 AttentuationHeader=$6
 
 ## Get the activity source position in x,y,z
-source_position=$( sh sub_scripts/get_source_position.sh $ActivityHeader 2>/dev/null ) 
-source_position_x=`echo ${source_position} |awk '{print $1}'`
-source_position_y=`echo ${source_position} |awk '{print $2}'`
-source_position_z=`echo ${source_position} |awk '{print $3}'`
+SourcePositions=$( sh sub_scripts/get_source_position.sh $ActivityHeader 2>/dev/null ) 
+SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
+SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
+SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
 
 ## Get the attenuation map translation in x,y,z
-attenuation_translation=$( sh sub_scripts/get_attenuation_translation.sh $AttentuationHeader 2>/dev/null ) 
-attenuation_translation_x=`echo ${attenuation_translation} |awk '{print $1}'`
-attenuation_translation_y=`echo ${attenuation_translation} |awk '{print $2}'`
-attenuation_translation_z=`echo ${attenuation_translation} |awk '{print $3}'`
+AttenuationTranslations=$( sh sub_scripts/get_attenuation_translation.sh $AttentuationHeader 2>/dev/null ) 
+AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
+AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
+AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
+
 
 ## Run GATE
 Gate main_muMap_job.mac -a \
@@ -29,8 +30,9 @@ Gate main_muMap_job.mac -a \
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [ActivityHeader,$ActivityHeader][AttentuationHeader,$AttentuationHeader]\
-[source_position_x,$source_position_x][source_position_y,$source_position_y][source_position_z,$source_position_z]\
-[attenuation_translation_x,$attenuation_translation_x][attenuation_translation_y,$attenuation_translation_y][attenuation_translation_z,$attenuation_translation_z]
+[SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+
 
 cd root_output
 

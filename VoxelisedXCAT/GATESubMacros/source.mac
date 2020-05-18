@@ -24,7 +24,7 @@
 #	-(voxel_size_y*image_size_y)/2 - voxel_size_y/2 
 #	-(voxel_size_z*image_size_z)/2  ## (NOTE, this one different)
 
-/gate/source/SourcePhantom/setPosition {source_position_x} {source_position_y} {source_position_z} mm
+/gate/source/SourcePhantom/setPosition {SourcePositionX} {SourcePositionY} {SourcePositionZ} mm
 
 # CHARACTERIZATION OF THE SOURCE (no difference with an analytical source)
 /gate/source/SourcePhantom/setType backtoback
