@@ -3,6 +3,7 @@
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
 Author: Kris Thielemans<br />
+Author: Robert Twyman<br />
 Copyright (C) 2018-2020 University College London<br />
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
