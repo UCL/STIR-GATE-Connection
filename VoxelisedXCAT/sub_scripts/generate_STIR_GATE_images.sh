@@ -4,7 +4,8 @@
 ## The script copies the .hv files as .h33 (for GATE) and populates 
 ## NumberOfSlices and SliceThickness in the file.
 
-
+## Go to the STIR image directory
+STIRGATEHome=$PWD
 cd images/input/generate_STIR_images
 
 ## Generate source and attenuation images
@@ -35,9 +36,10 @@ for Filename in my_uniform_cylinder my_atten_image_GATE; do
   ' $Filenameh33
 
   ## Copy the files to the main directory.
-  cp $Filenameh33 ../../../
-  cp $Filename".v" ../../../
+  echo $STIRGATEHome
+  cp $Filename".h33" $STIRGATEHome
+  cp $Filename".v" $STIRGATEHome
 
 done
 
-
+exit 1
