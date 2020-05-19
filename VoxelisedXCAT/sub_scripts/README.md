@@ -27,4 +27,3 @@ Scripts
 *WARNING* the `get_*.sh` scripts put the centre of the STIR image at the GATE 0,0,0.  
 Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`.Shifting the centre of the GATE scanner is
 currently going to break things.
-of the scanner there will b
