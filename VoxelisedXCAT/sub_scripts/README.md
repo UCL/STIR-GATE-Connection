@@ -23,7 +23,7 @@ Scripts
 * prepare_files.sh: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into VoxelisedXCAT directory.
 * get_attenuation_translation.sh: shell script that reads an image with STIR and returns shifts for the attenuation translation.
 * get_source_position.sh: shell script that reads an image with STIR and returns the source position offset for GATE
+* generate_STIR_GATE_images/sh: Generates STIR images from parameter files for GATE simulation.
 
 *WARNING* the `get_*.sh` scripts put the centre of the STIR image at the GATE 0,0,0.  
-Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`.Shifting the centre of the GATE scanner is
-currently going to break things.
+Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`. Shifting the centre of the GATE scanner is currently going to break things.
