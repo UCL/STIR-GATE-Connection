@@ -1,18 +1,17 @@
+#! /bin/sh
 ## AUTHOR: ROBERT TWYMAN
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## An example of how to use this STIR-GATE-Connection project.
 
-## Before running please setup activitiy and attenuation files. 
-## In the VoxelisedXCAT directory activitiy.h33 and attenuation.h33 
-## exists, which by default link to: 'images/input/a_act_1.bin' and 
-## 'images/input/a_att_1.bin'. 
+## This script runs sub_scripts/generate_STIR_GATE_images.sh 
+## to generate images from a parameter file using STIR.
+## Additional modifications are made to the interfile header 
+## for GATE compatability.
 
-## This script runs images/input/generate_STIR_images/generate_STIR_images.sh 
-## to generate images using STIR before GATE simulation performed. The script 
-## computes SourcePosition and AttenuationTranslation from the images using 
-## sub_scripts/get_source_position.sh and sub_scripts/get_attenuation_translation.sh.
+## Script runs 
+
 
 echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 
@@ -25,10 +24,11 @@ ActivityPar=generate_uniform_cylinder.par
 AttenuationPar=generate_atten_cylinder.par
 
 SourceFilenames=$( sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null ) 
+## Get activity and attenuation filenames
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
-## Activity and Attenuation header filenames (Optional: Use your own files)
+## OPTIONAL: Insert Activity and Attenuation header filenames HERE
 # ActivityFilename="activity.h33"
 # AttenuationFilename="attenuation.h33"
 
@@ -36,39 +36,24 @@ AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 ## GATE Arguments and files
 ##### ==============================================================
 
-## Optional editable fields required by GATE macro scripts
-SGE_TASK_ID=1
-StartTime=1
-EndTime=1.1
-StoreRootFilesDirectory=root_output
-ScannerType="D690"
+## OPTIONAL: Editable fields required by GATE macro scripts
+GATEMainMacro="main_muMap_job.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
+SGE_TASK_ID=1  ## Job index for parallel GATE simulations
+StartTime=1  ## Start time in GATE time
+EndTime=1.1  ## End time in GATE time
+StoreRootFilesDirectory=root_output  ## Save location of root data
+ScannerType="D690"  # Scanner type from Examples.
 
-## Get the scanner files into main directory.
+
+## Get the scanner files into GATESubMacros directory.
 sh sub_scripts/prepare_scanner_files.sh $ScannerType
-
-## Get the activity source position in x,y,z
-SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 
-SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
-SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
-SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
-
-## Get the attenuation map translation in x,y,z
-AttenuationTranslations=$( sub_scripts/get_attenuation_translation.sh $AttenuationFilename 2>/dev/null ) 
-AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
-AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
-AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
 
 ##### ==============================================================
 ## Run GATE
 ##### ==============================================================
 
-Gate main_muMap_job.mac -a \
-[SimuId,$SGE_TASK_ID]\
-[StartTime,$StartTime][EndTime,$EndTime]\
-[StoreRootFilesDirectory,$StoreRootFilesDirectory]\
-[ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
-[SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
-[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+sh run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
 
 
 ##### ==============================================================
