@@ -20,8 +20,8 @@ echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 ##### ==============================================================
 
 ## Generate example STIR activity and attenuation images and copy to main dir.
-ActivityPar=generate_uniform_cylinder.par
-AttenuationPar=generate_atten_cylinder.par
+ActivityPar=images/input/generate_uniform_cylinder.par
+AttenuationPar=images/input/generate_atten_cylinder.par
 
 SourceFilenames=$( sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null ) 
 ## Get activity and attenuation filenames

@@ -18,25 +18,30 @@ if [ $# -ne 2 ]; then
   exit 0
 fi
 
-ActivityPar=$1
-AttenuationPar=$2
-STIRGATEHome=$PWD
-cd $STIRGATEHome/images/input/generate_STIR_images 
+ActivityPar=$1  ## Activity parameter file
+AttenuationPar=$2  ## Attenuation parameter file
+STIRGATEHome=$PWD  
+# cd $STIRGATEHome/images/input
 
 ## Read ActivityPar and AttenuationPar for volume filenames
 ActivityFilename=`awk -F:= '/output filename/ { print $2 }' $ActivityPar`
 AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $AttenuationPar`
 AttenuationFilenameGATE=$AttenuationFilename"_GATE"
 
+## Generate images
+generate_image $ActivityPar
+generate_image $AttenuationPar
+
+
 ## Modify the scale of the attenuation file for GATE (requires int values).
-../modifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
+images/input/modifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
 
 ## Process my_uniform_cylinder.hv my_atten_image_GATE.hv into .h33 files
 ## and add "!number of slices :=" and "slice thickness (pixels) :=" fields.
 for Filename in $ActivityFilename $AttenuationFilenameGATE; do
   sh $STIRGATEHome/sub_scripts/STIR2GATE_interfile.sh $Filename".h33" $Filename".hv" 
-  cp $Filename".h33" $STIRGATEHome
-  cp $Filename".v" $STIRGATEHome
+  # cp $Filename".h33" $STIRGATEHome
+  # cp $Filename".v" $STIRGATEHome
 done
 
 echo $ActivityFilename".h33" $AttenuationFilenameGATE".h33"
