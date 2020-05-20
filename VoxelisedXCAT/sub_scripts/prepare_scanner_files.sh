@@ -12,6 +12,11 @@
 # - $1: Either "D690" or "mMR" must be specified as scanner type as that is all that 
 #       is currently supported.
 
+if [ $# -ne 1 ]; then
+  echo "Usage:"$0 "ScannerType" 1>&2
+  exit 0
+fi
+
 ScannerType=$1
 
 if [ $ScannerType = "D690" ]; then

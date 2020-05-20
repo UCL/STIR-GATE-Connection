@@ -8,45 +8,49 @@
 ## - Copies .h33 and .v files to STIRGATEHome directory. This step is done
 ##   for GATE to read images.
 
-## Go to the STIR image directory
 
-echo "============== GENERATING STIR DATA FOR GATE =============="
+if [ $# -ne 2 ]; then
+  echo "Usage:"$0 "ActivityPar AttenuationPar" 1>&2
+  exit 0
+fi
+
+ActivityPar=$1
+AttenuationPar=$2
 STIRGATEHome=$PWD
-cd images/input/generate_STIR_images
+cd $STIRGATEHome/images/input/generate_STIR_images 
 
-## Generate source and attenuation images
-echo Generating Activity and Attenuation
-generate_image generate_uniform_cylinder.par
-generate_image generate_atten_cylinder.par
+## Generate source and attenuation images - get Filenames too
+ActivityFilename=`generate_image $ActivityPar |awk -F: '/Saving image to: / { print $2 }'`
+AttenuationFilename=`generate_image $AttenuationPar |awk -F: '/Saving image to: / { print $2 }'`
+AttenuationFilenameGATE=$AttenuationFilename"_GATE"
 
 ## Modify the scale of the attenuation file for GATE (requires int values).
-sh ../modifyAttenuationImageForGate.sh my_atten_image.hv my_atten_image_GATE
+sh ../modifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
 
 ## Process my_uniform_cylinder.hv my_atten_image_GATE.hv into .h33 files
 ## and add "!number of slices :=" and "slice thickness (pixels) :=" fields.
-for Filename in my_uniform_cylinder my_atten_image_GATE; do
-  Filenameh33=$Filename".h33"
-  cp $Filename".hv" $Filenameh33
-  echo "Adding Number of Slices and Slice Thickness to: $Filenameh33"
+for Filename in $ActivityFilename $AttenuationFilenameGATE; do
+  cp $Filename".hv" $Filename".h33"
 
   ## Get the number of slices = Number of voxels in z
-  NumberOfSlices=`list_image_info $Filenameh33 | awk -F: '/Number of voxels / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
+  NumberOfSlices=`list_image_info $Filename".h33" | awk -F: '/Number of voxels / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
   ## Get slice thickness in z
-  SliceThickness=`list_image_info $Filenameh33 | awk -F: '/Voxel-size in mm / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
+  SliceThickness=`list_image_info $Filename".h33" | awk -F: '/Voxel-size in mm / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
   ## Get the line number to insert the text into
-  LineNum=$( grep -n "first pixel offset (mm) \\[[1]]*]" $Filenameh33 | cut -d : -f 1 )
+  LineNum=$( grep -n "first pixel offset (mm) \\[[1]]*]" $Filename".h33" | cut -d : -f 1 )
 
   # Add $NumberOfSlices and $SliceThickness at $LineNum
   sed -i '' $LineNum'i\
   !number of slices := '$NumberOfSlices'\
   slice thickness (pixels) := '$SliceThickness'
-  ' $Filenameh33
+  ' $Filename".h33"
 
   ## Copy the files to the main directory.
-  echo $STIRGATEHome
   cp $Filename".h33" $STIRGATEHome
   cp $Filename".v" $STIRGATEHome
 
 done
+
+echo $ActivityFilename".h33" $AttenuationFilenameGATE".h33"
 
 exit 1
