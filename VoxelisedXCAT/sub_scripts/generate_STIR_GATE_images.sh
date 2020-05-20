@@ -40,7 +40,7 @@ for Filename in $ActivityFilename $AttenuationFilenameGATE; do
   ## Get slice thickness in z
   SliceThickness=`list_image_info $Filename".h33" | awk -F: '/Voxel-size in mm / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
   ## Get the line number to insert the text into
-  LineNum=$( grep -n "first pixel offset (mm) \\[[1]]*]" $Filename".h33" | cut -d : -f 1 )
+  LineNum=$( grep -n "!END OF INTERFILE" $Filename".h33" | cut -d : -f 1 )
 
   # Add $NumberOfSlices and $SliceThickness at $LineNum
   sed -i '' $LineNum'i\
