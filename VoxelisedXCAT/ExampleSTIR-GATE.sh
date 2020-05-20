@@ -20,12 +20,12 @@ echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 ## Activity and attenuation files
 ##### ==============================================================
 
-## Generate STIR activity and attenuation images and copy to main dir.
+## Generate example STIR activity and attenuation images and copy to main dir.
 sh sub_scripts/generate_STIR_GATE_images.sh
 ActivityFilename="my_uniform_cylinder.h33"
 AttenuationFilename="my_atten_image_GATE.h33"
 
-## Activity and Attenuation header filenames (Optional to hardcode)
+## Activity and Attenuation header filenames (Optional: Use your own files)
 # ActivityFilename="activity.h33"
 # AttenuationFilename="attenuation.h33"
 
@@ -59,7 +59,6 @@ AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
 ## Run GATE
 ##### ==============================================================
 
-## Run GATE
 Gate main_muMap_job.mac -a \
 [SimuId,$SGE_TASK_ID]\
 [StartTime,$StartTime][EndTime,$EndTime]\

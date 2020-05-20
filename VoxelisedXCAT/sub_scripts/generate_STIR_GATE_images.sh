@@ -1,10 +1,16 @@
 #! /bin/sh
 ## AUTHOR: Robert Twyman
-## Script used to generate activity and attenuation images in STIR. 
-## The script copies the .hv files as .h33 (for GATE) and populates 
-## NumberOfSlices and SliceThickness in the file.
+## - Script used to generate activity and attenuation images in STIR 
+##   from parameter files.
+## - A modification is made to the scale of the attenuation file for GATE.
+## - The script copies the .hv files as .h33 (for GATE) and populates 
+##   NumberOfSlices and SliceThickness in the file.
+## - Copies .h33 and .v files to STIRGATEHome directory. This step is done
+##   for GATE to read images.
 
 ## Go to the STIR image directory
+
+echo "============== GENERATING STIR DATA FOR GATE =============="
 STIRGATEHome=$PWD
 cd images/input/generate_STIR_images
 
@@ -12,11 +18,12 @@ cd images/input/generate_STIR_images
 echo Generating Activity and Attenuation
 generate_image generate_uniform_cylinder.par
 generate_image generate_atten_cylinder.par
+
+## Modify the scale of the attenuation file for GATE (requires int values).
 sh ../modifyAttenuationImageForGate.sh my_atten_image.hv my_atten_image_GATE
 
-## Copy my_uniform_cylinder.hv to my_uniform_cylinder.h33 for GATE
-
-## 
+## Process my_uniform_cylinder.hv my_atten_image_GATE.hv into .h33 files
+## and add "!number of slices :=" and "slice thickness (pixels) :=" fields.
 for Filename in my_uniform_cylinder my_atten_image_GATE; do
   Filenameh33=$Filename".h33"
   cp $Filename".hv" $Filenameh33
