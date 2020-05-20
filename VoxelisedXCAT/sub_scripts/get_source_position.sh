@@ -24,3 +24,5 @@ SourcePositionZ=$(echo "$FirstEdgeZ $LastEdgeZ" | awk '{print -($2-$1)/2}')
 
 ## Used for return.
 echo $SourcePositionX $SourcePositionY $SourcePositionZ
+
+exit 0

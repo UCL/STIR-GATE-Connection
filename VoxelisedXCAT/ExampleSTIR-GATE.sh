@@ -1,5 +1,5 @@
 ## AUTHOR: ROBERT TWYMAN
-## Copyright (C) 2019 University College London
+## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## An example of how to use this STIR-GATE-Connection project.
@@ -21,10 +21,10 @@ echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 ##### ==============================================================
 
 ## Generate example STIR activity and attenuation images and copy to main dir.
-AcitivityPar=generate_uniform_cylinder.par
+ActivityPar=generate_uniform_cylinder.par
 AttenuationPar=generate_atten_cylinder.par
 
-SourceFilenames=$( sub_scripts/generate_STIR_GATE_images.sh $AcitivityPar $AttenuationPar 2>/dev/null ) 
+SourceFilenames=$( sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null ) 
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
@@ -77,3 +77,6 @@ Gate main_muMap_job.mac -a \
 ## ... todo.
 
 echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)
+
+exit 0
+

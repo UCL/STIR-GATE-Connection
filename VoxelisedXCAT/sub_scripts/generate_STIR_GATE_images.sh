@@ -1,5 +1,8 @@
 #! /bin/sh
 ## AUTHOR: Robert Twyman
+## Copyright (C) 2020 University College London
+## Licensed under the Apache License, Version 2.0
+
 ## - Script used to generate activity and attenuation images in STIR 
 ##   from parameter files.
 ## - A modification is made to the scale of the attenuation file for GATE.
@@ -25,7 +28,7 @@ AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $AttenuationPar`
 AttenuationFilenameGATE=$AttenuationFilename"_GATE"
 
 ## Modify the scale of the attenuation file for GATE (requires int values).
-sh ../modifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
+../modifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
 
 ## Process my_uniform_cylinder.hv my_atten_image_GATE.hv into .h33 files
 ## and add "!number of slices :=" and "slice thickness (pixels) :=" fields.
@@ -53,4 +56,4 @@ done
 
 echo $ActivityFilename".h33" $AttenuationFilenameGATE".h33"
 
-exit 1
+exit 0

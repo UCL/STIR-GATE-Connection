@@ -14,7 +14,7 @@
 
 if [ $# -ne 1 ]; then
   echo "Usage:"$0 "ScannerType" 1>&2
-  exit 0
+  exit 1
 fi
 
 ScannerType=$1
@@ -37,4 +37,4 @@ else
 	echo "Invalid scanner name parsed. Please indicate 'D690' or 'mMR'."
 fi
 
-exit 1
+exit 0
