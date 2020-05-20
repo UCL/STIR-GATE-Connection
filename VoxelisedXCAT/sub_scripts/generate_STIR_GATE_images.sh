@@ -19,9 +19,9 @@ AttenuationPar=$2
 STIRGATEHome=$PWD
 cd $STIRGATEHome/images/input/generate_STIR_images 
 
-## Generate source and attenuation images - get Filenames too
-ActivityFilename=`generate_image $ActivityPar |awk -F: '/Saving image to: / { print $2 }'`
-AttenuationFilename=`generate_image $AttenuationPar |awk -F: '/Saving image to: / { print $2 }'`
+## Read ActivityPar and AttenuationPar for volume filenames
+ActivityFilename=`awk -F:= '/output filename/ { print $2 }' $ActivityPar`
+AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $AttenuationPar`
 AttenuationFilenameGATE=$AttenuationFilename"_GATE"
 
 ## Modify the scale of the attenuation file for GATE (requires int values).

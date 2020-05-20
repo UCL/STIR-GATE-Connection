@@ -25,7 +25,6 @@ AcitivityPar=generate_uniform_cylinder.par
 AttenuationPar=generate_atten_cylinder.par
 
 SourceFilenames=$( sub_scripts/generate_STIR_GATE_images.sh $AcitivityPar $AttenuationPar 2>/dev/null ) 
-
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
