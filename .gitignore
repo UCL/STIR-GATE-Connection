@@ -85,3 +85,4 @@ install_manifest.txt
 .cache
 *.idea
 *.user
+*.root

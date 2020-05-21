@@ -27,3 +27,5 @@ TranslationZ=0.  ## Z translation should be zero.
 
 ## Used for return.
 echo $TranslationX $TranslationY $TranslationZ
+
+exit 0
