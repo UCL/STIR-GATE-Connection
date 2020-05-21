@@ -16,14 +16,14 @@ limitations under the License.
 
 Created:  Mon 18 May 2020 16:00 BST
 
-This directory contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
+This directory contains a collection of scripts that are key to automatically finding and computing variables for GATE simulations.
 
 Scripts
 =======
-* prepare_files.sh: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into VoxelisedXCAT directory.
-* get_attenuation_translation.sh: shell script that reads an image with STIR and returns shifts for the attenuation translation.
-* get_source_position.sh: shell script that reads an image with STIR and returns the source position offset for GATE
-* generate_STIR_GATE_images/sh: Generates STIR images from parameter files for GATE simulation. *WARNING* this script will move both activity and attenuation files to the main GATE directory, the attenuation file voxel values have been heavily scaled and should not be used in STIR. Use the original attenuation file in 'images/input/generate_STIR_images/' directory.
-
+* `generate_STIR_GATE_images/sh`: Generates STIR images from parameter files for GATE simulation. The attenuation file voxel values are heavily scaled and should not be used in STIR. Use the original attenuation file.
+* `get_attenuation_translation.sh`: shell script that reads an image with STIR and returns shifts for the attenuation translation.
+* `get_source_position.sh`: shell script that reads an image with STIR and returns the source position offset for GATE
+* `prepare_files.sh`: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into VoxelisedXCAT directory.
+* `STIR2GATE_interfile.sh`: shell script that converts STIR generated interfile headers (.hv) into GATE compatible headers (.h33) files and adds the parameters "!number of slices" and "slice thickness (pixels)".
 *WARNING* the `get_*.sh` scripts put the centre of the STIR image at the GATE 0,0,0.  
 Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`. Shifting the centre of the GATE scanner is currently going to break things.

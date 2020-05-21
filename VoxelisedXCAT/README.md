@@ -26,24 +26,24 @@ Note: Any paths to files/directories link are relative to the current working di
 Directories
 ===========
 
-* images: Contains input and output images.
-* GATESubMacros: Contains a collection of GATE macros for simulation.
-* root_output: Contains templates for unlisting and is used as the output of the GATE simulation.
-* sub_scripts: Contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
+* `images/`: contains input and output images.
+* `GATESubMacros/`: contains a collection of GATE macros for simulation.
+* `root_output/`: contains templates for unlisting and is used as the output of the GATE simulation.
+* `sub_scripts/`: contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
 
 
 Files
 =======
 
-* activity.h33: header file for the activity image. Links to images/input/a_act_1.bin
-* attenuation.h33: header file for the attenuation image. Links to images/input/a_atn_1_mod.v. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 1000).
-* AttenuationConv.dat: this file contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
-* CheckGeometry.mac: this script can be used to visualise scanner and activity images from GUI: 'Gate --qt CheckGeometry.mac' (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to CheckGeometry.sh. 
-* main_muMap_job.mac: main macro file for GATE simulation. Links files within SubMacros.
+* `activity.h33`: an example XCAT header file for the activity image. Links to `images/input/a_act_1.bin`.
+* `attenuation.h33`: an example XCAT header file for the attenuation image. Links to `images/input/a_atn_1_mod.v`. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 10000).
+* `CheckGeometry.mac`: this script can be used to visualise scanner and activity images from GUI: `Gate --qt CheckGeometry.mac` (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to `CheckGeometry.sh`. 
+* `main_muMap_job.mac`: main macro file for GATE simulation. Links macro files within `GATESubMacros/`.
 
 Scripts
 =======
-* create_root_and_unlist.sh: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
-* job_gate_atten_time.sh: main bash script. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path.
-* run_gate_single_job.sh: simpler script if you just want to run one job
-* CheckGeometry.sh: Shell script to run CheckGeometry.mac - visualising the scanner. Handles some of the positional and translational arguments in SubMacros files.
+* `CheckGeometry.sh`: shell script to run `CheckGeometry.mac` - visualising the scanner. Handles some of the positional and translational arguments in SubMacros files.
+* `create_root_and_unlist.sh`: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
+* `ExampleSTIR-GATE.sh`: example script to demonstrate how to use this STIR-GATE-Connection project. Generates data using STIR, converts it into a GATE compatible format, before running the GATE simulation.
+* `job_gate_atten_time.sh`: example of how to use GATE on a cluster with parallel jobs. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path in the script.
+* `run_gate_single_job.sh`: example of how to use GATE on a cluster with one job. 

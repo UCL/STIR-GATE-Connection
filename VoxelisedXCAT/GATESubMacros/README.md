@@ -26,9 +26,10 @@ Note: Any paths to files/directories link are relative to the current working di
 Files
 =======
 
-* AttenuationConv.dat: this file contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
-* cuts.mac: sets cut in region for phantom and detector crystal
-* GateMaterials.db: contains material used to create the attenuation map
-* phantomReg.mac: here the attenuation phantom is defined. This macro creates dmap.hdr and dmap.img, associated to the input image. When running array-jobs this can create conflics between parallel jobs as the files gets over-written. It's recommended to comment out "/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo dmap.hdr" once it's created. Check that the offset is set correctly. More comments in the macro
-* physics.mac: contains the physics list
-* source.mac: here the source phantom is defined. Check that the offset is set correctly. More comments in the macro
+* `AttenuationConv.dat`: this file contain the thresholds relative to the input attenuation image for assigning attenuation values to each tissue class
+* `cuts.mac`: sets cut in region for phantom and detector crystal
+* `GateMaterials.db`: contains material used to create the attenuation map
+* `phantomReg.mac`: here the attenuation phantom is defined. This macro creates dmap.hdr and dmap.img, associated to the input image. When running array-jobs this can create conflics between parallel jobs as the files gets over-written. It's recommended to comment out "/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo dmap.hdr" once it's created. Check that the offset is set correctly. More comments in the macro
+* `physics.mac`: contains the physics list
+* `source.mac`: here the source phantom is defined. Check that the offset is set correctly. More comments in the macro
+* `visualisation.mac`: sets GATE visualisation settings.
