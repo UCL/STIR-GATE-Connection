@@ -1,5 +1,5 @@
 #! /bin/sh
-## AUTHOR: ROBERT TWYMAN
+## AUTHOR: Robert Twyman
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
@@ -8,12 +8,10 @@
 ## This script runs sub_scripts/generate_STIR_GATE_images.sh 
 ## to generate images from a parameter file using STIR.
 ## Additional modifications are made to the interfile header 
-## for GATE compatability.
-
-## Script runs 
+## for GATE compatibility.
 
 
-echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
+echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 
 ##### ==============================================================
 ## Activity and attenuation files
@@ -23,7 +21,7 @@ echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 ActivityPar=images/input/generate_uniform_cylinder.par
 AttenuationPar=images/input/generate_atten_cylinder.par
 
-SourceFilenames=$( sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null ) 
+SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
 ## Get activity and attenuation filenames
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
@@ -61,7 +59,7 @@ sh run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
 ##### ==============================================================
 ## ... todo.
 
-echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)
+echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 
 exit 0
 

@@ -7,32 +7,31 @@
 ## Shell script to run CheckGeometry.mac - visualising the scanner. Handles some of the positional and translational
 ## arguments in SubMacros files.
 
+if [ $# -ne 2 ]; then
+  echo "Error in $0 with number of arguments"
+  echo "Usage: $0 ActivityFilename AttenuationFilename" 1>&2
+  echo "This script is used to visualise the scanner geometry in GATE."
+  exit 1
+fi
+
+GATEMainMacro="CheckGeometry.mac"
 ActivityFilename=$1
 AttenuationFilename=$2
+ScannerType="D690"
+
+
+## For "CheckGeometry.mac" these arguments have no effect, used to satisfy "run_GATE.sh" arguments
+StoreRootFilesDirectory=NA  # There is no file output from GATE
+SGE_TASK_ID=NA  # No parallel processing required as no output
+StartTime=NA  # Hardcoded in "CheckGeometry.mac"
+EndTime=NA  # Hardcoded in "CheckGeometry.mac"
 
 echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 
 ## Get the scanner files into main directory.
-sh sub_scripts/prepare_scanner_files.sh D690
+sh sub_scripts/prepare_scanner_files.sh $ScannerType
 
-## Get the activity source position in x,y,z
-SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 
-SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
-SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
-SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
+sh run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
 
-## Get the attenuation map translation in x,y,z
-AttenuationTranslations=$( sub_scripts/get_attenuation_translation.sh $AttenuationFilename 2>/dev/null ) 
-AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
-AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
-AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
-
-
-## Run Gate with --qt for visualise
-Gate --qt CheckGeometry.mac -a \
-[ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
-[SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
-[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
-
-
-echo "Script finishied: " $(date +%d.%m.%y-%H:%M:%S)
+echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)

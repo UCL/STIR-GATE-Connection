@@ -37,6 +37,7 @@ AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
 AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
 
+## Run GATE with arguments
 Gate $GATEMainMacro -a \
 [SimuId,$SimuId]\
 [StartTime,$StartTime][EndTime,$EndTime]\
