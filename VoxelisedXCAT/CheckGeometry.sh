@@ -1,7 +1,7 @@
 #$ -S /bin/bash
 
 ## AUTHOR: Robert Twyman
-## Copyright (C) 2018-2019 University College London
+## Copyright (C) 2018-2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## Shell script to run CheckGeometry.mac - visualising the scanner. Handles some of the positional and translational

@@ -1,5 +1,6 @@
 ## AUTHOR: Ludovica Brusaferri
-## Copyright (C) 2018-2019 University College London
+## AUTHOR: Robert TWyman
+## Copyright (C) 2018-2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
 SGE_TASK_ID=1;

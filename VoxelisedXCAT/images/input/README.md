@@ -2,7 +2,8 @@
 
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
-Copyright (C) 2018-2019 University College London<br />
+Author: Robert Twyman
+Copyright (C) 2018-2020 University College London<br />
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
