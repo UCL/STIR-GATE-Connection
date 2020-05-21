@@ -19,3 +19,5 @@ fi
 
 ./create_root_and_unlist.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
+
+exit 0

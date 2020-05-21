@@ -29,9 +29,10 @@ EndTime=NA  # Hardcoded in "CheckGeometry.mac"
 echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 
 ## Get the scanner files into main directory.
-sh sub_scripts/prepare_scanner_files.sh $ScannerType
+sub_scripts/prepare_scanner_files.sh $ScannerType
 
-sh run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
 
 echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)
+exit 0

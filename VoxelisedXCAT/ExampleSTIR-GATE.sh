@@ -44,13 +44,13 @@ ScannerType="D690"  # Scanner type from Examples.
 
 
 ## Get the scanner files into GATESubMacros directory.
-sh sub_scripts/prepare_scanner_files.sh $ScannerType
+sub_scripts/prepare_scanner_files.sh $ScannerType
 
 ##### ==============================================================
 ## Run GATE
 ##### ==============================================================
 
-sh run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
 
 
