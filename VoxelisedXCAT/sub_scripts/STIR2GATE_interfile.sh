@@ -18,20 +18,19 @@ fi
 GATEFilename=$1
 STIRFilename=$2
 
-## Make copy for input
-cp $STIRFilename $GATEFilename
 
 ## Get the number of slices = Number of voxels in z
-NumberOfSlices=`list_image_info $GATEFilename | awk -F: '/Number of voxels / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
+NumberOfSlices=`list_image_info $STIRFilename | awk -F: '/Number of voxels / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
 ## Get slice thickness in z
-SliceThickness=`list_image_info $GATEFilename | awk -F: '/Voxel-size in mm / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
+SliceThickness=`list_image_info $STIRFilename | awk -F: '/Voxel-size in mm / {print $2}'|tr -d '{}'|awk -F, '{print $1}'` 1>&2
 ## Get the line number to insert the text into
-LineNum=`grep -n "!END OF INTERFILE" $GATEFilename | cut -d : -f 1`
+LineNum=`grep -n "!END OF INTERFILE" $STIRFilename | cut -d : -f 1`
 
 # Add $NumberOfSlices and $SliceThickness at $LineNum
-sed -i '' $LineNum'i\
+# sed here adds the two line and then echos(saves) into the file $GATEFilename 
+sed $LineNum'i\
 !number of slices := '$NumberOfSlices'\
 slice thickness (pixels) := '$SliceThickness'
-' $GATEFilename
+' $STIRFilename > $GATEFilename
 
 exit 0
