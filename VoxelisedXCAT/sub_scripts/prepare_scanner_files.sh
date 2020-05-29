@@ -22,16 +22,16 @@ ScannerType=$1
 if [ $ScannerType = "D690" ]; then
 	echo "Preparing D690 scanner files"
 	D690_DIR="../ExamplesOfScannersMacros/D690"
-	cp -vp $D690_DIR/csorter_D690.mac GateSubMacros/csorter.mac
-	cp -vp $D690_DIR/digitiser_D690.mac GateSubMacros/digitiser.mac
-	cp -vp $D690_DIR/geometry_D690.mac GateSubMacros/geometry.mac
+	cp -vp $D690_DIR/csorter_D690.mac GATESubMacros/csorter.mac
+	cp -vp $D690_DIR/digitiser_D690.mac GATESubMacros/digitiser.mac
+	cp -vp $D690_DIR/geometry_D690.mac GATESubMacros/geometry.mac
 
 elif [ $ScannerType = "mMR" ]; then
 	echo "Preparing mMR scanner files"
 	mMR_DIR="../ExamplesOfScannersMacros/mMR"
-	cp -vp $mMR_DIR/csorter_mMR.mac GateSubMacros/csorter.mac
-	cp -vp $mMR_DIR/digitiser_mMR.mac GateSubMacros/digitiser.mac
-	cp -vp $mMR_DIR/geometry_mMR.mac GateSubMacros/geometry.mac
+	cp -vp $mMR_DIR/csorter_mMR.mac GATESubMacros/csorter.mac
+	cp -vp $mMR_DIR/digitiser_mMR.mac GATESubMacros/digitiser.mac
+	cp -vp $mMR_DIR/geometry_mMR.mac GATESubMacros/geometry.mac
 
 else
 	echo "Invalid scanner name parsed. Please indicate 'D690' or 'mMR'."
