@@ -21,7 +21,6 @@
 /gate/digitizer/Singles/timeResolution/setTimeResolution 2.92969 ns
 
 /gate/digitizer/Singles/insert thresholder
-#/gate/digitizer/Singles/thresholder/setThreshold 430. keV
-/gate/digitizer/Singles/thresholder/setThreshold 100. keV
+/gate/digitizer/Singles/thresholder/setThreshold 430. keV  # Not Verified
 /gate/digitizer/Singles/insert upholder
 /gate/digitizer/Singles/upholder/setUphold 610. keV
