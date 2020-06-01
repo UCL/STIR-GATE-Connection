@@ -1,11 +1,12 @@
 lm_to_projdata Parameters:=
 
-  input file := root_header_TIMEPLACEHOLDER.hroot
-  output filename prefix := Unlisted/UNLISTINGDIRECTORY/XCAT_TIMEPLACEHOLDER
+  input file := root_header_SGE_TASK_ID.hroot
+  output filename prefix := Unlisted/UNLISTINGDIRECTORY/sinogram_SGE_TASK_ID
 
   ; parameters that determine the sizes etc of the output
+       ; template_scanner.hs is delivered by `sub_scripts/prepare_scanner_files.sh`
+       template_projdata := Templates/STIR_scanner.hs
 
-       template_projdata := Templates/template_sino.hs
     ; the next can be used to use a smaller number of segments than given 
     ; in the template
     maximum absolute segment number to process := -1
