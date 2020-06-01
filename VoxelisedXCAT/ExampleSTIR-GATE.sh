@@ -37,6 +37,8 @@ StoreRootFilesDirectory=root_output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples.
 
 
+## Get the scanner files into GATESubMacros directory.
+sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 

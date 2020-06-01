@@ -12,12 +12,21 @@
 # - $1: Either "D690" or "mMR" must be specified as scanner type as that is all that 
 #       is currently supported.
 
-if [ $# -ne 1 ]; then
-  echo "Usage:"$0 "ScannerType" 1>&2
+if [ $# -ne 2 ]; then
+  echo "Usage:"$0 "ScannerType StoreRootFilesDirectory" 1>&2
   exit 1
 fi
 
 ScannerType=$1
+StoreRootFilesDirectory=$2
+
+if [ ! -d $StoreRootFilesDirectory ]; then  # Does the output directory exist?
+	mkdir -p $StoreRootFilesDirectory
+fi
+
+if [ ! -d $StoreRootFilesDirectory/Templates ]; then  # Does the template directory exist?
+	mkdir -p $StoreRootFilesDirectory/Templates
+fi
 
 if [ $ScannerType = "D690" ]; then
 	echo "Preparing D690 scanner files"
@@ -25,6 +34,8 @@ if [ $ScannerType = "D690" ]; then
 	cp -vp $D690_DIR/csorter_D690.mac GATESubMacros/csorter.mac
 	cp -vp $D690_DIR/digitiser_D690.mac GATESubMacros/digitiser.mac
 	cp -vp $D690_DIR/geometry_D690.mac GATESubMacros/geometry.mac
+	cp -vp $D690_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
+	cp -vp $D690_DIR/STIR_scanner.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
 
 elif [ $ScannerType = "mMR" ]; then
 	echo "Preparing mMR scanner files"
@@ -32,6 +43,8 @@ elif [ $ScannerType = "mMR" ]; then
 	cp -vp $mMR_DIR/csorter_mMR.mac GATESubMacros/csorter.mac
 	cp -vp $mMR_DIR/digitiser_mMR.mac GATESubMacros/digitiser.mac
 	cp -vp $mMR_DIR/geometry_mMR.mac GATESubMacros/geometry.mac
+	cp -vp $mMR_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
+	cp -vp $mMR_DIR/STIR_scanner.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
 
 else
 	echo "Invalid scanner name parsed. Please indicate 'D690' or 'mMR'."
