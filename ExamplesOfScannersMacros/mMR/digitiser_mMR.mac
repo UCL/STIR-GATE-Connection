@@ -5,6 +5,7 @@
 ## Licensed under the Apache License, Version 2.0
 ## digitiser for mMR Scanner
 
+## For details regarding readout, see: https://opengate.readthedocs.io/en/latest/digitizer_and_detector_modeling.html#readout
 /gate/digitizer/Singles/insert                        adder
 /gate/digitizer/Singles/insert                        readout
 /gate/digitizer/Singles/readout/setDepth              1

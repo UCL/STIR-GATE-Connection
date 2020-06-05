@@ -9,7 +9,6 @@ Distance between rings (cm)              := 0.40625
 Default bin size (cm)                    := 0.208626
 View offset (degrees)                    := 0
 Maximum number of non-arc-corrected bins := 344
-Default number of arc-corrected bins     := 344
 
 GATE scanner type := GATE_ECAT_PET
 GATE_ECAT_PET Parameters :=
