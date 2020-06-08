@@ -1,6 +1,6 @@
 ROOT header := 
 
-originating system := User_defined_scanner
+originating system := GE Discovery 690
 Number of rings                          := 24
 Number of detectors per ring             := 576
 Inner ring diameter (cm)                 := 81.02
@@ -20,13 +20,13 @@ name of input TChain := Coincidences
 ; As the GATE repeaters. 
 ; If you skip a level in GATE's hierarchy, 
 ; use 1.
-number of Rsectors := 64
+number of Rsectors := 32
 number of modules_X := 1 
 number of modules_Y := 1
-number of modules_Z := 4
+number of modules_Z := 1
 number of submodules_X := 1
-number of submodules_Y := 1
-number of submodules_Z := 1
+number of submodules_Y := 2
+number of submodules_Z := 4
 number of crystals_X := 1
 number of crystals_Y := 9
 number of crystals_Z := 6
@@ -40,7 +40,7 @@ number of crystals_Z := 6
 ;
 ; In STIR terminology this will be used to define the number of crystals
 ; per singles unit. 
-Singles readout depth := 1
+Singles readout depth := 4
 
 ;
 ; If set the scattered events will be skipped

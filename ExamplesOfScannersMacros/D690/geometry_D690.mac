@@ -1,9 +1,17 @@
 ## AUTHOR: Elise Emond
 ## AUTHOR: Ludovica Brusaferri
+## AUTHOR: Robert Twyman
 ## Copyright (C) 2018-2020 University College London
 ## Licensed under the Apache License, Version 2.0
-## geometry for D690 Scanner
-## This geometry has been altered, increasing crystal sizes to remove any gaps between detectors to provide a better match between GATE and STIR.
+## Geometry for D690 Scanner
+
+
+
+#    WORLD
+
+/gate/world/vis/setVisible                     true
+
+
 
 #	CYLINDRICAL
 
@@ -16,94 +24,122 @@
 /gate/cylindricalPET/setMaterial              Air
 /gate/cylindricalPET/vis/forceWireframe
 /gate/cylindricalPET/vis/setColor             white
+/gate/cylindricalPET/vis/setVisible           false
 
 
 
-#	RSECTOR
+#	RSECTOR 
 
 /gate/cylindricalPET/daughters/name           rsector
 /gate/cylindricalPET/daughters/insert         box
 /gate/rsector/placement/setTranslation           41.76 0.0 0.0 cm
-/gate/rsector/geometry/setXLength                25  mm
-/gate/rsector/geometry/setYLength                39.96 mm
+/gate/rsector/geometry/setXLength                30  mm
+/gate/rsector/geometry/setYLength                76.7 mm
 /gate/rsector/geometry/setZLength                156.96 mm
 /gate/rsector/setMaterial                        Air
-/gate/rsector/vis/setVisible                     0
+/gate/rsector/vis/setVisible                     false
 
-#       END-SHIELDING
+
+
+#  END-SHIELDING
 
 /gate/rsector/daughters/name endshielding
 /gate/rsector/daughters/insert box
 /gate/endshielding/placement/setTranslation 0.0 0.0 0.0 cm
-/gate/endshielding/geometry/setXLength 25 mm
-/gate/endshielding/geometry/setYLength 39.96 mm
+/gate/endshielding/geometry/setXLength 30 mm
+/gate/endshielding/geometry/setYLength 76.7 mm
 /gate/endshielding/geometry/setZLength 1.0 mm
 /gate/endshielding/setMaterial Lead
 /gate/endshielding/repeaters/insert cubicArray
 /gate/endshielding/cubicArray/setRepeatNumberX 1
 /gate/endshielding/cubicArray/setRepeatNumberY 1
 /gate/endshielding/cubicArray/setRepeatNumberZ 2
-/gate/endshielding/cubicArray/setRepeatVector 0.0 0.0 15.706 cm
-/gate/endshielding/vis/setColor white
+/gate/endshielding/cubicArray/setRepeatVector 0.0 0.0 15.4 cm
+/gate/endshielding/vis/setColor blue
+/gate/endshielding/vis/setVisible true
 
-#	MODULE
+
+
+#	MODULE (Bucket)
 
 /gate/rsector/daughters/name                     module
 /gate/rsector/daughters/insert                   box
 /gate/module/placement/setTranslation          0 0.0 0.0 cm
-/gate/module/geometry/setXLength               25 mm
-/gate/module/geometry/setYLength               39.96 mm
-/gate/module/geometry/setZLength               39.24 mm
+/gate/module/geometry/setXLength               30 mm
+/gate/module/geometry/setYLength               76.7 mm
+/gate/module/geometry/setZLength               153.4 mm
 /gate/module/setMaterial                       Air
 /gate/module/vis/setColor                      green
-#/gate/module/vis/setVisible                    0
+/gate/module/vis/setVisible                    true
 
 
 
-#	C R Y S T A L
+#	SUBMODULE (Block)
 
-/gate/module/daughters/name                    crystal
-/gate/module/daughters/insert                  box
+/gate/module/daughters/name                     submodule
+/gate/module/daughters/insert                   box
+/gate/submodule/placement/setTranslation          0 0.0 0.0 cm
+/gate/submodule/geometry/setXLength               30 mm
+/gate/submodule/geometry/setYLength               38.35 mm
+/gate/submodule/geometry/setZLength               38.35 mm
+/gate/submodule/setMaterial                       Air
+/gate/submodule/vis/setColor                      magenta
+/gate/submodule/vis/setVisible                    true
+
+
+
+#	C R Y S T A L (Crystal)
+
+/gate/submodule/daughters/name                    crystal
+/gate/submodule/daughters/insert                  box
 /gate/crystal/placement/setTranslation        0.0 0.0 0.0 cm
-/gate/crystal/geometry/setXLength             25 mm
+/gate/crystal/geometry/setXLength             30 mm
 # Radian Crystal size (radXtalSize)
-/gate/crystal/geometry/setYLength             4.44 mm
-/gate/crystal/geometry/setZLength             6.54 mm       # Filled the gaps between the crystals for convenience
+/gate/crystal/geometry/setYLength             4.26 mm 
+/gate/crystal/geometry/setZLength             6.39 mm
 /gate/crystal/setMaterial                     LYSO
-/gate/crystal/vis/setColor                        red
+/gate/crystal/vis/setColor                    red
+/gate/crystal/vis/setVisible 			   	  true
 
 
 
 #	R E P E A T    C R Y S T A L
 
+# Construct a block from crystals
 /gate/crystal/repeaters/insert                cubicArray
 /gate/crystal/cubicArray/setRepeatNumberX     1
 /gate/crystal/cubicArray/setRepeatNumberY     9 
 /gate/crystal/cubicArray/setRepeatNumberZ     6	
-/gate/crystal/cubicArray/setRepeatVector      0.0 4.44 6.54 mm
+/gate/crystal/cubicArray/setRepeatVector      0.0 4.26 6.39 mm
 
 
+
+#	R E P E A T    SUBMODULE
+
+# Construct a bucket from blocks (Needs fixing)
+/gate/submodule/repeaters/insert                  cubicArray
+/gate/submodule/cubicArray/setRepeatNumberX       1
+/gate/submodule/cubicArray/setRepeatNumberY       2
+/gate/submodule/cubicArray/setRepeatNumberZ       4
+/gate/submodule/cubicArray/setRepeatVector        0.0 38.35 38.35 mm
 
 
 
 #	R E P E A T    MODULE
 
+# Construct a "Plane" from buckets
 /gate/module/repeaters/insert                  cubicArray
 /gate/module/cubicArray/setRepeatNumberX       1
 /gate/module/cubicArray/setRepeatNumberY       1
-/gate/module/cubicArray/setRepeatNumberZ       4
-/gate/module/cubicArray/setRepeatVector        0.0 0.0 39.24 mm
-
-
+/gate/module/cubicArray/setRepeatNumberZ       1
+/gate/module/cubicArray/setRepeatVector        0.0 0.0 0.0 mm
 
 
 
 #	R E P E A T    RSECTOR
 
 /gate/rsector/repeaters/insert                   ring
-/gate/rsector/ring/setRepeatNumber               64
-
-
+/gate/rsector/ring/setRepeatNumber            	32
 
 
 
@@ -122,4 +158,3 @@
 
 
 /gate/systems/cylindricalPET/describe
-

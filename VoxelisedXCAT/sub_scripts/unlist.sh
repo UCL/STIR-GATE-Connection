@@ -3,14 +3,11 @@
 StoreRootFilesDirectory=$1
 RootFilename=$2
 SGE_TASK_ID=$3
-# ScannerType="mMR"
 
 if [ $# -ne 3 ]; then
   echo "Usage:"$0 "StoreRootFilesDirectory RootFilename SGE_TASK_ID" 1>&2
   exit 1
 fi
-
-# sh sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 
 cd $StoreRootFilesDirectory
 
