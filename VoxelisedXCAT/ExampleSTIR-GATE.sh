@@ -34,11 +34,11 @@ SGE_TASK_ID=1  ## Job index for parallel GATE simulations
 StartTime=1  ## Start time in GATE time
 EndTime=1.1  ## End time in GATE time
 StoreRootFilesDirectory=root_output  ## Save location of root data
-ScannerType="D690"  # Scanner type from Examples.
+ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
 
 ## Get the scanner files into GATESubMacros directory.
-sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
+./sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 
@@ -54,7 +54,9 @@ sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 ##### ==============================================================
 ## Unlist GATE data
 ##### ==============================================================
-## ... todo.
+
+./sub_scripts/unlist.sh $StoreRootFilesDirectory ROOT_OUTPUT $SGE_TASK_ID
+
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 

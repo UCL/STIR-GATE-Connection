@@ -8,8 +8,12 @@
 
 
 
+
 #    WORLD
 
+/gate/world/geometry/setXLength 100. cm
+/gate/world/geometry/setYLength 100. cm
+/gate/world/geometry/setZLength 50. cm
 /gate/world/vis/setVisible                     true
 
 
@@ -100,7 +104,9 @@
 /gate/crystal/geometry/setZLength             6.3 mm
 /gate/crystal/setMaterial                     LYSO
 /gate/crystal/vis/setColor                    red
-/gate/crystal/vis/setVisible 			   	  true
+/gate/crystal/vis/setVisible 			   	  false
+/gate/crystal/vis/forceSolid
+
 
 
 
@@ -146,9 +152,10 @@
 
 #	A T T A C H    S Y S T E M 
 
-/gate/systems/cylindricalPET/rsector/attach   rsector
-/gate/systems/cylindricalPET/module/attach    module
-/gate/systems/cylindricalPET/crystal/attach   crystal
+/gate/systems/cylindricalPET/rsector/attach   	rsector
+/gate/systems/cylindricalPET/module/attach    	module
+/gate/systems/cylindricalPET/submodule/attach  	submodule
+/gate/systems/cylindricalPET/crystal/attach   	crystal
 
 
 

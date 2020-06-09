@@ -5,6 +5,16 @@
 ## Licensed under the Apache License, Version 2.0
 ## geometry for mMR Scanner
 
+
+
+
+#    WORLD
+/gate/world/geometry/setXLength 80. cm
+/gate/world/geometry/setYLength 80. cm
+/gate/world/geometry/setZLength 50. cm
+/gate/world/vis/setVisible                     true
+
+
 #    ECAT
 # This is a version of the Siemens mMR but without gaps, i.e. 9 crystals per block in transaxial direction as opposed to 8
 
@@ -41,7 +51,7 @@
 /gate/crystal/geometry/setYLength     4.0625 mm
 /gate/crystal/geometry/setZLength     4.0625 mm
 /gate/crystal/setMaterial             LSO
-/gate/crystal/vis/setVisible          1
+/gate/crystal/vis/setVisible          false
 /gate/crystal/vis/setColor            blue
 /gate/crystal/vis/forceSolid
 
