@@ -8,17 +8,15 @@
 
 # The Required Args:
 # - $1: Root files directory
-# - $2: Root filename prefix
-# - $3: Task_ID
+# - $2: Task_ID
 StoreRootFilesDirectory=$1
-RootFilename=$2
-SGE_TASK_ID=$3
+SGE_TASK_ID=$2
 
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
 if [ $# -ne 3 ]; then
-  echo "Usage:"$0 "StoreRootFilesDirectory RootFilename SGE_TASK_ID" 1>&2
+  echo "Usage:"$0 "StoreRootFilesDirectory SGE_TASK_ID" 1>&2
   exit 1
 fi
 
