@@ -15,7 +15,7 @@ SGE_TASK_ID=$2
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 2 ]; then
   echo "Usage:"$0 "StoreRootFilesDirectory SGE_TASK_ID" 1>&2
   exit 1
 fi
