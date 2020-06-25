@@ -21,8 +21,10 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ActivityPar=images/input/generate_uniform_cylinder.par
 AttenuationPar=images/input/generate_atten_cylinder.par
 
-ActivityFilename="my_uniform_cylinder.h33"
-AttenuationFilename="my_atten_image_GATE.h33"
+SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
+## Get activity and attenuation filenames from $SourceFilenames
+ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
+AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
 ##### ==============================================================
 ## GATE Arguments and files
@@ -31,8 +33,8 @@ AttenuationFilename="my_atten_image_GATE.h33"
 ## OPTIONAL: Editable fields required by GATE macro scripts
 GATEMainMacro="main_muMap_job.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
 SGE_TASK_ID=1  ## Job index for parallel GATE simulations
-StartTime=1  ## Start time in GATE time
-EndTime=1.1  ## End time in GATE time
+StartTime=0  ## Start time in GATE time
+EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=root_output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
