@@ -69,7 +69,7 @@
 #/gate/random/verbose 1
 
 ## ACQUISITION TIME
-/gate/application/setTimeSlice    1 s
+/gate/application/setTimeSlice    0.1 s
 /gate/application/setTimeStart   {StartTime} s
 /gate/application/setTimeStop   {EndTime} s
 

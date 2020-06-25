@@ -63,4 +63,3 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 
 exit 0
-

@@ -26,12 +26,12 @@ StartTime=$6
 EndTime=$7
 
 ## Optional QT visualisation, required seperate GATE setup
-if [ $8 -eq 1 ]; then 
+QT=0
+if [ $# == 8 ] && [ $8 == "1" ]
+then 
+	echo "Gate --qt is ON"
 	QT=1 
-else 
-	QT=0 
 fi
-
 
 ## Get the activity source position in x,y,z
 SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 

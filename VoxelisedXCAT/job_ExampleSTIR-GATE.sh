@@ -1,6 +1,5 @@
 #$ -S /bin/bash
-#$ -l h_vmem=1G
-#$ -l tmem=1G
+#$ -l mem=1G
 #$ -l tscratch=10G
 #$ -l h_rt=10:00:00
 #$ -cwd
