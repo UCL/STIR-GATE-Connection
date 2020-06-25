@@ -1,3 +1,8 @@
+#! /bin/sh
+## AUTHOR: Robert Twyman
+## Copyright (C) 2020 University College London
+## Licensed under the Apache License, Version 2.0
+
 # This script should be run before any reconstruction.
 
 # This script will:
