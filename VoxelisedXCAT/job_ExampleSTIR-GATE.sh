@@ -1,6 +1,6 @@
 #$ -S /bin/bash
 #$ -l mem=1G
-#$ -l tscratch=10G
+#$ -l tmpfs=1G
 #$ -l h_rt=10:00:00
 #$ -cwd
 #$ -j y
