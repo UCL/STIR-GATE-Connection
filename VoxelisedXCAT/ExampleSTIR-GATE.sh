@@ -12,7 +12,7 @@
 
 
 ## Job index for parallel GATE simulations
-if [ $# != 2 ]
+if [ $# != 1 ]
 then
 	echo "ExampleSTIR-GATE Usage: SGE_TASK_ID"
 	exit 1
