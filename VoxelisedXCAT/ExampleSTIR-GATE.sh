@@ -11,6 +11,17 @@
 ## for GATE compatibility.
 
 
+## Job index for parallel GATE simulations
+if [ $# != 2 ]
+then
+	echo "ExampleSTIR-GATE Usage: SGE_TASK_ID"
+	exit 1
+else
+	SGE_TASK_ID=$1
+	echo "SGE_TASK_ID = $SGE_TASK_ID"
+fi
+
+
 echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 
 ##### ==============================================================
@@ -32,7 +43,6 @@ AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
 GATEMainMacro="main_muMap_job.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
-SGE_TASK_ID=1  ## Job index for parallel GATE simulations
 StartTime=0  ## Start time in GATE time
 EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=root_output  ## Save location of root data
