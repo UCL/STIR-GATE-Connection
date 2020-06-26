@@ -2,9 +2,8 @@
 #$ -l h_vmem=1G
 #$ -l tmem=1G
 #$ -l tscratch=1G
-#$ -l h_rt=10:00:00
+#$ -l h_rt=2:00:00
 #$ -t 1-2:1
-#-tc 100
 #$ -cwd
 #$ -j y
 #$ -N GateSim
