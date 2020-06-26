@@ -21,14 +21,8 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ActivityPar=images/input/generate_uniform_cylinder.par
 AttenuationPar=images/input/generate_atten_cylinder.par
 
-SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
-## Get activity and attenuation filenames
-ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
-AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
-
-## OPTIONAL: Insert Activity and Attenuation header filenames HERE
-# ActivityFilename="activity.h33"
-# AttenuationFilename="attenuation.h33"
+ActivityFilename="my_uniform_cylinder.h33"
+AttenuationFilename="my_atten_image_GATE.h33"
 
 ##### ==============================================================
 ## GATE Arguments and files
@@ -43,8 +37,9 @@ StoreRootFilesDirectory=root_output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples.
 
 
-## Get the scanner files into GATESubMacros directory.
-sub_scripts/prepare_scanner_files.sh $ScannerType
+
+./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
+
 
 ##### ==============================================================
 ## Run GATE
