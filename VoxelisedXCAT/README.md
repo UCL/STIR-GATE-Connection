@@ -38,12 +38,15 @@ Files
 * `activity.h33`: an example XCAT header file for the activity image. Links to `images/input/a_act_1.bin`.
 * `attenuation.h33`: an example XCAT header file for the attenuation image. Links to `images/input/a_atn_1_mod.v`. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 10000).
 * `CheckGeometry.mac`: this script can be used to visualise scanner and activity images from GUI: `Gate --qt CheckGeometry.mac` (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to `CheckGeometry.sh`. 
-* `main_muMap_job.mac`: main macro file for GATE simulation. Links macro files within `GATESubMacros/`.
+* `main_muMap_job.mac`: main macro file for GATE simulation. Utilises macro files within `GATESubMacros/`.
+
 
 Scripts
 =======
 * `CheckGeometry.sh`: shell script to run `CheckGeometry.mac` - visualising the scanner. Handles some of the positional and translational arguments in SubMacros files.
 * `create_root_and_unlist.sh`: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
-* `ExampleSTIR-GATE.sh`: example script to demonstrate how to use this STIR-GATE-Connection project. Generates data using STIR, converts it into a GATE compatible format, before running the GATE simulation.
+* `ExampleSTIR-GATE.sh`: example script to demonstrate how to use this STIR-GATE-Connection project. Runs `SetupSimilation.sh`, and runs an example GATE simulation. 
 * `job_gate_atten_time.sh`: example of how to use GATE on a cluster with parallel jobs. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path in the script.
 * `run_gate_single_job.sh`: example of how to use GATE on a cluster with one job. 
+* `SetupSimulation.sh`: Copies all relevent scanner files, if two `*.par` files are given, will atempt to `generate_STIR_GATE_images.sh`, and finally runs a Gate simulation to `SetupDmap.mac`.
+
