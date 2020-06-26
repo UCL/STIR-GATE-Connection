@@ -11,7 +11,7 @@
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
-echo "SGE_TASK_ID = " $SGE_TASK_ID
+echo "TASK_ID = " $SGE_TASK_ID
 
 ./ExampleSTIR-GATE.sh $SGE_TASK_ID
 

@@ -13,7 +13,7 @@ Maximum number of non-arc-corrected bins := 381
 GATE scanner type := GATE_Cylindrical_PET
 GATE_Cylindrical_PET Parameters :=
 
-name of data file := ROOT_OUTPUT_SGE_TASK_ID.root
+name of data file := ROOT_OUTPUT_TASK_ID.root
 
 name of input TChain := Coincidences
 

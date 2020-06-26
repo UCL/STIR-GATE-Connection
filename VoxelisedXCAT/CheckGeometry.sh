@@ -23,7 +23,7 @@ QT=1  # Tell run_GATE.sh to use QT visualisation
 
 ## For "CheckGeometry.mac" these arguments have no effect, used to satisfy "run_GATE.sh" arguments
 StoreRootFilesDirectory=root_output  # There is no file output from GATE
-SGE_TASK_ID=1  # No parallel processing required as no output
+TASK_ID=1  # No parallel processing required as no output
 StartTime=0  # Hardcoded in "CheckGeometry.mac"
 EndTime=1  # Hardcoded in "CheckGeometry.mac"
 
@@ -33,7 +33,7 @@ echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 
 ./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
-			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime $QT
+			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime $QT
 
 echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)
 exit 0

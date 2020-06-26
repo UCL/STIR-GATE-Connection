@@ -14,11 +14,11 @@
 ## Job index for parallel GATE simulations
 if [ $# != 1 ]
 then
-	echo "ExampleSTIR-GATE Usage: SGE_TASK_ID"
+	echo "ExampleSTIR-GATE Usage: TASK_ID"
 	exit 1
 else
-	SGE_TASK_ID=$1
-	echo "SGE_TASK_ID = $SGE_TASK_ID"
+	TASK_ID=$1
+	echo "TASK_ID = $TASK_ID"
 fi
 
 
@@ -60,14 +60,14 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ##### ==============================================================
 
 ./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
-			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
+			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
 
 
 ##### ==============================================================
 ## Unlist GATE data
 ##### ==============================================================
 
-./sub_scripts/unlist.sh $StoreRootFilesDirectory $SGE_TASK_ID
+./sub_scripts/unlist.sh $StoreRootFilesDirectory $TASK_ID
 
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
