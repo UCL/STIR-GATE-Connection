@@ -18,7 +18,7 @@
 /control/execute GATESubMacros/geometry.mac
 
 ## VOXELISED PHANTOM
-/control/execute GATESubMacros/phantomReg.mac
+/control/execute GATESubMacros/PhantomAttenuation.mac
 
 ## ACTORS
 
