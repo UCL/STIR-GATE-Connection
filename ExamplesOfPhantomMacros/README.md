@@ -17,4 +17,4 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 14:07:08 BST
 
-This directory contains examples of macro files
+This directory contains examples of macro and testing STIR parameter files files
