@@ -1,9 +1,19 @@
-## AUTHOR: Elise Emond
-## AUTHOR: Ludovica Brusaferri
 ## AUTHOR: Robert Twyman
-## Copyright (C) 2018-2020 University College London
-## Licensed under the Apache License, Version 2.0
+## Copyright (C) 2020 University College London
+## Licensed under the Apache License, Version 2.0 (the "License");
 
+
+## NO UI
+/vis/disable
+
+# MATERIAL DATABASE
+/gate/geometry/setMaterialDatabase GATESubMacros/GateMaterials.db
+
+
+# WORLD and SCANNER GEOMETRY
+/control/execute GATESubMacros/geometry.mac
+
+## VOXELISED PHANTOM
 # VOXELIZED PHANTOM BASED ON THE XCAT PHANTOM
 /gate/world/daughters/name VoxPhantom
 
@@ -18,16 +28,13 @@
 # RANGE TRANSLATOR (label values)
 /gate/VoxPhantom/geometry/setRangeToMaterialFile GATESubMacros/AttenuationConv.dat
 
-#comment out the following line once created
+# Save dmap.hdr (need the later `/gate/run/initialize` to actually save)
 /gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo images/output/dmap.hdr
 /gate/VoxPhantom/geometry/distanceMap images/output/dmap.hdr
 
-# UNITS TO MATERIAL CONVERSION DESCRIPTOR (label or HU values)
-# These are given as arguements to the GATE main.
-/gate/VoxPhantom/placement/setTranslation {AttenuationTranslationX} {AttenuationTranslationY} {AttenuationTranslationZ} mm
-/gate/VoxPhantom/placement/setRotationAxis 1 0 0
-/gate/VoxPhantom/placement/setRotationAngle 0 deg
-/gate/VoxPhantom/vis/forceSolid
-/gate/VoxPhantom/vis/setColor green
-/gate/VoxPhantom/attachPhantomSD
 
+## PHYSICAL INTERACTIONS
+/control/execute GATESubMacros/physics.mac
+
+## INITIALISATION OF GATE (saves dmap.hdr)
+/gate/run/initialize

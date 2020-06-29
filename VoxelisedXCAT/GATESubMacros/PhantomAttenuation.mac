@@ -1,0 +1,32 @@
+## AUTHOR: Elise Emond
+## AUTHOR: Ludovica Brusaferri
+## AUTHOR: Robert Twyman
+## Copyright (C) 2018-2020 University College London
+## Licensed under the Apache License, Version 2.0
+
+# VOXELIZED PHANTOM BASED ON THE XCAT PHANTOM
+/gate/world/daughters/name VoxPhantom
+
+# INSERT THE NAVIGATION ALGORITHM THE MOST APPROPRIATE TO YOUR SIMULATION
+/gate/world/daughters/insert ImageRegionalizedVolume
+
+# READ IMAGE (.h33 for Interfile, .mhd for MetaImage, .hdr for Analyze)
+/gate/VoxPhantom/geometry/setImage {AttenuationFilename}
+
+# INSERT THE TRANSLATOR THAT WILL CONVERT THE IMAGE FROM DIGITAL VALUES TO
+# MATERIAL INFORMATION
+# RANGE TRANSLATOR (label values)
+/gate/VoxPhantom/geometry/setRangeToMaterialFile GATESubMacros/AttenuationConv.dat
+
+# Load distance map (dmap)
+/gate/VoxPhantom/geometry/distanceMap images/output/dmap.hdr
+
+# UNITS TO MATERIAL CONVERSION DESCRIPTOR (label or HU values)
+# These are given as arguements to the GATE main.
+/gate/VoxPhantom/placement/setTranslation {AttenuationTranslationX} {AttenuationTranslationY} {AttenuationTranslationZ} mm
+/gate/VoxPhantom/placement/setRotationAxis 1 0 0
+/gate/VoxPhantom/placement/setRotationAngle 0 deg
+/gate/VoxPhantom/vis/forceSolid
+/gate/VoxPhantom/vis/setColor green
+/gate/VoxPhantom/attachPhantomSD
+
