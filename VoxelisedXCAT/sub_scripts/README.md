@@ -28,3 +28,8 @@ Scripts
 *WARNING* the `get_*.sh` scripts put the centre of the STIR image at the GATE 0,0,0.  
 Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`. Shifting the centre of the GATE scanner is currently going to break things.
 * `unlist.sh`: script used to unlist a `*.root` file. Creates a `*.hroot` with the correct filename and energy information and paramerter file for STIR's `lm_to_projdata` functionality. 
+
+Comments
+=======
+* Concatenating root files: Use the ROOT provided tool `hadd` (`hadd --help` for more information).
+* Combining interfile sinograms: Use `stir_math`.
