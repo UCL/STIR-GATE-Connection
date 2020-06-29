@@ -1,0 +1,25 @@
+generate_image Parameters :=
+output filename:=activity
+
+X output image size (in pixels):=110
+Y output image size (in pixels):=110
+Z output image size (in pixels):=64
+X voxel size (in mm):= 4
+Y voxel size (in mm):= 4
+Z voxel size (in mm):= 4.0625
+
+  Z number of samples to take per voxel := 1
+  Y number of samples to take per voxel := 1
+  X number of samples to take per voxel := 1
+
+shape type:= ellipsoid
+Ellipsoid Parameters:=
+   radius-x (in mm):=4
+   radius-y (in mm):=4
+   radius-z (in mm):=3
+   origin (in mm):={122,0,110}
+   END:=
+value :=10000
+
+END:=
+
