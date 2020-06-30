@@ -30,7 +30,7 @@ fi
 
 if [ $ScannerType = "D690" ]; then
 	echo "Preparing D690 scanner files"
-	D690_DIR="../ExamplesOfScannersMacros/D690"
+	D690_DIR="../ExampleScanners/D690"
 	cp -vp $D690_DIR/csorter_D690.mac GATESubMacros/csorter.mac
 	cp -vp $D690_DIR/digitiser_D690.mac GATESubMacros/digitiser.mac
 	cp -vp $D690_DIR/geometry_D690.mac GATESubMacros/geometry.mac
@@ -39,7 +39,7 @@ if [ $ScannerType = "D690" ]; then
 
 elif [ $ScannerType = "mMR" ]; then
 	echo "Preparing mMR scanner files"
-	mMR_DIR="../ExamplesOfScannersMacros/mMR"
+	mMR_DIR="../ExampleScanners/mMR"
 	cp -vp $mMR_DIR/csorter_mMR.mac GATESubMacros/csorter.mac
 	cp -vp $mMR_DIR/digitiser_mMR.mac GATESubMacros/digitiser.mac
 	cp -vp $mMR_DIR/geometry_mMR.mac GATESubMacros/geometry.mac
