@@ -45,6 +45,12 @@ AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
 AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
 
+## Get the attenuation map voxel sizes in x,y,z
+AttenuationVoxelSize=$( sub_scripts/get_attenuation_voxel_size.sh $AttenuationFilename 2>/dev/null ) 
+AttenuationVoxelSizeX=`echo ${AttenuationVoxelSize} |awk '{print $1}'`
+AttenuationVoxelSizeY=`echo ${AttenuationVoxelSize} |awk '{print $2}'`
+AttenuationVoxelSizeZ=`echo ${AttenuationVoxelSize} |awk '{print $3}'`
+
 ## Run GATE with arguments
 if [ $QT -eq 1 ]; then
 
@@ -55,7 +61,8 @@ if [ $QT -eq 1 ]; then
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
 [SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
-[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]\
+[AttenuationVoxelSizeX,$AttenuationVoxelSizeX][AttenuationVoxelSizeY,$AttenuationVoxelSizeY][AttenuationVoxelSizeZ,$AttenuationVoxelSizeZ]
 
 else
 
@@ -66,6 +73,7 @@ else
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
 [SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
-[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]\
+[AttenuationVoxelSizeX,$AttenuationVoxelSizeX][AttenuationVoxelSizeY,$AttenuationVoxelSizeY][AttenuationVoxelSizeZ,$AttenuationVoxelSizeZ]
 
 fi
