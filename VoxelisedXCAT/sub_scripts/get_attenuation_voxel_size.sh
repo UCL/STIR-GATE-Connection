@@ -1,6 +1,6 @@
 #! /bin/sh
 ## AUTHOR: Robert Twyman
-## Script used to automatically gather GATE x,y,z attenuation translation for STIR images.
+## Script used to automatically gather GATE x,y,z attenuation voxel size from STIR images.
 ## Script echo (returns) x y z variables.
 
 ImageFilename=$1
