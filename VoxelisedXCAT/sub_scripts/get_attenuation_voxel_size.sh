@@ -11,8 +11,8 @@ if [ $# -ne 1 ]; then
 fi
 
 ## Get first and last edge positions
-x=`list_image_info $ImageFilename| awk -F: '/Voxel-size in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2
+AttenuationVoxelSizes=`list_image_info $ImageFilename| awk -F: '/Voxel-size in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2
 
-echo $x
+echo $AttenuationVoxelSizes
 
 exit 0
