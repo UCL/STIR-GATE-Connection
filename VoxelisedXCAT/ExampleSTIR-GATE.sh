@@ -11,6 +11,17 @@
 ## for GATE compatibility.
 
 
+## Job index for parallel GATE simulations
+if [ $# != 1 ]
+then
+	echo "ExampleSTIR-GATE Usage: TASK_ID"
+	exit 1
+else
+	TASK_ID=$1
+	echo "TASK_ID = $TASK_ID"
+fi
+
+
 echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 
 ##### ==============================================================
@@ -18,11 +29,13 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ##### ==============================================================
 
 ## Generate example STIR activity and attenuation images and copy to main dir.
-ActivityPar=images/input/generate_uniform_cylinder.par
-AttenuationPar=images/input/generate_atten_cylinder.par
+ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleVoxel.par
+AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
-ActivityFilename="my_uniform_cylinder.h33"
-AttenuationFilename="my_atten_image_GATE.h33"
+SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
+## Get activity and attenuation filenames from $SourceFilenames
+ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
+AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
 ##### ==============================================================
 ## GATE Arguments and files
@@ -30,14 +43,13 @@ AttenuationFilename="my_atten_image_GATE.h33"
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
 GATEMainMacro="main_muMap_job.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
-SGE_TASK_ID=1  ## Job index for parallel GATE simulations
-StartTime=1  ## Start time in GATE time
-EndTime=1.1  ## End time in GATE time
+StartTime=0  ## Start time in GATE time
+EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=root_output  ## Save location of root data
-ScannerType="D690"  # Scanner type from Examples.
+ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
 
-
+## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 
 
@@ -46,15 +58,16 @@ ScannerType="D690"  # Scanner type from Examples.
 ##### ==============================================================
 
 ./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
-			$StoreRootFilesDirectory $SGE_TASK_ID $StartTime $EndTime
+			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
 
 
 ##### ==============================================================
 ## Unlist GATE data
 ##### ==============================================================
-## ... todo.
+
+./sub_scripts/unlist.sh $StoreRootFilesDirectory $TASK_ID
+
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 
 exit 0
-

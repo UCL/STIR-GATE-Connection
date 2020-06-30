@@ -10,12 +10,13 @@
 ## and sub_scripts/get_attenuation_translation.sh.
 
 
-if [ $# -ne 7 ]; then
-  echo "Error in $0 with number of arguments"
-  echo "Usage: $0 GATEMainMacro ActivityFilename AttenuationFilename SimuId StartTime EndTime" 1>&2
+if [ $# -lt 7 ]; then
+  echo "Error in $0 with number of arguments."
+  echo "Usage: $0 GATEMainMacro ActivityFilename AttenuationFilename SimuId StartTime EndTime [QT]" 1>&2
   exit 1
 fi
 
+# Parameters for GATE
 GATEMainMacro=$1
 ActivityFilename=$2
 AttenuationFilename=$3
@@ -24,6 +25,13 @@ SimuId=$5
 StartTime=$6
 EndTime=$7
 
+## Optional QT visualisation, required seperate GATE setup
+QT=0
+if [ $# == 8 ] && [ $8 == "1" ]
+then 
+	echo "Gate --qt is ON"
+	QT=1 
+fi
 
 ## Get the activity source position in x,y,z
 SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 
@@ -38,10 +46,26 @@ AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
 
 ## Run GATE with arguments
-Gate $GATEMainMacro -a \
+if [ $QT -eq 1 ]; then
+
+	echo "Running Gate with visualisation."
+	Gate --qt $GATEMainMacro -a \
 [SimuId,$SimuId]\
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
 [SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
 [AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+
+else
+
+	echo "Running Gate."
+	Gate $GATEMainMacro -a \
+[SimuId,$SimuId]\
+[StartTime,$StartTime][EndTime,$EndTime]\
+[StoreRootFilesDirectory,$StoreRootFilesDirectory]\
+[ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
+[SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+
+fi

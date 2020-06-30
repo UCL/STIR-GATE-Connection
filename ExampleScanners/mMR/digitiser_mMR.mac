@@ -5,6 +5,7 @@
 ## Licensed under the Apache License, Version 2.0
 ## digitiser for mMR Scanner
 
+## For details regarding readout, see: https://opengate.readthedocs.io/en/latest/digitizer_and_detector_modeling.html#readout
 /gate/digitizer/Singles/insert                        adder
 /gate/digitizer/Singles/insert                        readout
 /gate/digitizer/Singles/readout/setDepth              1
@@ -21,7 +22,6 @@
 /gate/digitizer/Singles/timeResolution/setTimeResolution 2.92969 ns
 
 /gate/digitizer/Singles/insert thresholder
-#/gate/digitizer/Singles/thresholder/setThreshold 430. keV
-/gate/digitizer/Singles/thresholder/setThreshold 100. keV
+/gate/digitizer/Singles/thresholder/setThreshold 430. keV  # Not Verified
 /gate/digitizer/Singles/insert upholder
 /gate/digitizer/Singles/upholder/setUphold 610. keV

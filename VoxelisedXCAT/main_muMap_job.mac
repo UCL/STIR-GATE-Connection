@@ -9,12 +9,8 @@
 # MATERIAL DATABASE
 /gate/geometry/setMaterialDatabase GATESubMacros/GateMaterials.db
 
-# "WORLD" DIMENSION
-/gate/world/geometry/setXLength 600. cm
-/gate/world/geometry/setYLength 600. cm
-/gate/world/geometry/setZLength 600. cm
 
-# SCANNER GEOMETRY
+# WORLD and SCANNER GEOMETRY
 /control/execute GATESubMacros/geometry.mac
 
 ## VOXELISED PHANTOM
@@ -73,7 +69,7 @@
 #/gate/random/verbose 1
 
 ## ACQUISITION TIME
-/gate/application/setTimeSlice    1 s
+/gate/application/setTimeSlice    0.1 s
 /gate/application/setTimeStart   {StartTime} s
 /gate/application/setTimeStop   {EndTime} s
 

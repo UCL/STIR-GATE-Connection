@@ -26,7 +26,7 @@
 /gate/VoxPhantom/placement/setTranslation {AttenuationTranslationX} {AttenuationTranslationY} {AttenuationTranslationZ} mm
 /gate/VoxPhantom/placement/setRotationAxis 1 0 0
 /gate/VoxPhantom/placement/setRotationAngle 0 deg
-/gate/VoxPhantom/vis/forceSolid
+/gate/VoxPhantom/vis/forceWireframe
 /gate/VoxPhantom/vis/setColor green
 /gate/VoxPhantom/attachPhantomSD
 

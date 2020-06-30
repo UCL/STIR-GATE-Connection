@@ -1,8 +1,18 @@
 ## AUTHOR: Elise Emond
 ## AUTHOR: Ludovica Brusaferri
-## Copyright (C) 2018-2019 University College London
+## Copyright (C) 2018-2020 University College London
 ## Licensed under the Apache License, Version 2.0
 ## geometry for D690 Scanner
+## This geometry has been altered, increasing crystal sizes to remove any gaps between detectors to provide a better match between GATE and STIR.
+
+
+#    WORLD
+
+/gate/world/geometry/setXLength 100. cm
+/gate/world/geometry/setYLength 100. cm
+/gate/world/geometry/setZLength 50. cm
+/gate/world/vis/setVisible                     true
+
 
 #	CYLINDRICAL
 
@@ -65,8 +75,9 @@
 /gate/module/daughters/insert                  box
 /gate/crystal/placement/setTranslation        0.0 0.0 0.0 cm
 /gate/crystal/geometry/setXLength             25 mm
+# Radian Crystal size (radXtalSize)
 /gate/crystal/geometry/setYLength             4.44 mm
-/gate/crystal/geometry/setZLength             6.54 mm           # Filled the gaps between the crystals for convenience
+/gate/crystal/geometry/setZLength             6.54 mm       # Filled the gaps between the crystals for convenience
 /gate/crystal/setMaterial                     LYSO
 /gate/crystal/vis/setColor                        red
 
@@ -76,8 +87,8 @@
 
 /gate/crystal/repeaters/insert                cubicArray
 /gate/crystal/cubicArray/setRepeatNumberX     1
-/gate/crystal/cubicArray/setRepeatNumberY     9
-/gate/crystal/cubicArray/setRepeatNumberZ     6
+/gate/crystal/cubicArray/setRepeatNumberY     9 
+/gate/crystal/cubicArray/setRepeatNumberZ     6	
 /gate/crystal/cubicArray/setRepeatVector      0.0 4.44 6.54 mm
 
 

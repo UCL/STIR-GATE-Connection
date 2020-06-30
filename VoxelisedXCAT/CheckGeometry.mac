@@ -12,12 +12,7 @@
 # MATERIALS
 /gate/geometry/setMaterialDatabase GATESubMacros/GateMaterials.db
 
-# "WORLD" DIMENSION
-/gate/world/geometry/setXLength       80. cm
-/gate/world/geometry/setYLength       80. cm
-/gate/world/geometry/setZLength       31. cm
-
-# SCANNER GEOMETRY
+# WORLD and SCANNER GEOMETRY
 /control/execute GATESubMacros/geometry.mac
 
 ## VOXELISED PHANTOM

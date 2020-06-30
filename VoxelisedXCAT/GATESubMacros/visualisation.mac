@@ -3,10 +3,9 @@
 ## Copyright (C) 2018-2019 University College London
 ## Licensed under the Apache License, Version 2.0
 
-/vis/open                           OGL
+/vis/open                           OGLI
 /vis/viewer/set/viewpointThetaPhi   60 60
-/vis/viewer/zoom                    10.0
-#/vis/viewer/zoom                    200.0
+/vis/viewer/zoom                    1.0
 /vis/drawVolume
 /vis/scene/add/trajectories 
 /vis/scene/endOfEventAction         accumulate 100000

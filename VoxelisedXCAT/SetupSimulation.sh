@@ -27,7 +27,7 @@ ATTENUATION=$4
 
 
 ## Get the scanner files into GATESubMacros directory.
-./sub_scripts/prepare_scanner_files.sh $ScannerType
+./sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 
 
 # Check extension of ACTIVITY and ATTENUATION

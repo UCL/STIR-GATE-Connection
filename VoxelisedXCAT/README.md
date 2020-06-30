@@ -44,8 +44,6 @@ Files
 Scripts
 =======
 * `CheckGeometry.sh`: shell script to run `CheckGeometry.mac` - visualising the scanner. Handles some of the positional and translational arguments in SubMacros files.
-* `create_root_and_unlist.sh`: bash script called from the main. The output root files is removed after the unlisting. comment out that line if you want to keep it.
-* `ExampleSTIR-GATE.sh`: example script to demonstrate how to use this STIR-GATE-Connection project. Runs `SetupSimilation.sh`, and runs an example GATE simulation. 
-* `job_gate_atten_time.sh`: example of how to use GATE on a cluster with parallel jobs. Currently the root outputs are stored in the scratch folder. The directory can be changed to any other directory. Provide the absolute path in the script.
-* `run_gate_single_job.sh`: example of how to use GATE on a cluster with one job. 
+* `ExampleSTIR-GATE.sh`: example script to demonstrate how to use this STIR-GATE-Connection project. Generates data using STIR, converts it into a GATE compatible format, before running the GATE simulation.
+* `job_CS_example.sh` and `job_Myriad_example.sh.sh`: example UCL CS/Myriad cluster job script to run two parallel GATE simulations in an array job and unlist each root file into seperate sinograms. These two platforms differ in job submission flag keys.
 * `SetupSimulation.sh`: Copies all relevent scanner files, if two `*.par` files are given, will atempt to `generate_STIR_GATE_images.sh`, and finally runs a GATE simulation to `SetupDmap.mac`.

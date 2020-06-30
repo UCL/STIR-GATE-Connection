@@ -2,11 +2,13 @@
 ## AUTHOR: Ludovica Brusaferri
 ## Copyright (C) 2018-2019 University College London
 ## Licensed under the Apache License, Version 2.0
-## digitiser for D690 Scanner
+## digitiser for GE Discovery 690 Scanner
+## Bettinardi, V., et. al., (2011). Physical Performance of the new hybrid PETCT Discovery-690. Medical Physics, 38(10), 5394–5411. https://doi.org/10.1118/1.3635220
 
+## For details regarding readout, see: https://opengate.readthedocs.io/en/latest/digitizer_and_detector_modeling.html#readout
 /gate/digitizer/Singles/insert                        adder
 /gate/digitizer/Singles/insert                        readout
-/gate/digitizer/Singles/readout/setDepth              1
+/gate/digitizer/Singles/readout/setDepth              4
 
 
 
@@ -17,9 +19,9 @@
 
 
 /gate/digitizer/Singles/insert                        thresholder
-/gate/digitizer/Singles/thresholder/setThreshold      425. keV     #checked
+/gate/digitizer/Singles/thresholder/setThreshold      425. keV
 /gate/digitizer/Singles/insert                        upholder
-/gate/digitizer/Singles/upholder/setUphold            650. keV     #checked
+/gate/digitizer/Singles/upholder/setUphold            650. keV
 
 
 /gate/digitizer/Singles/insert timeResolution 
