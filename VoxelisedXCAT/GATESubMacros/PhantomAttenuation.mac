@@ -30,3 +30,12 @@
 /gate/VoxPhantom/vis/setColor green
 /gate/VoxPhantom/attachPhantomSD
 
+
+## ACTORS
+# to get mu map (REQUIRES GATE > 8.2)
+/gate/actor/addActor MuMapActor getMuMap
+/gate/actor/getMuMap/attachTo VoxPhantom
+/gate/actor/getMuMap/save images/output/Phantom{SimuId}.hdr
+/gate/actor/getMuMap/setVoxelSize 4 4 4.0625  mm
+/gate/actor/getMuMap/setResolution 110 110 64
+/gate/actor/getMuMap/setEnergy 511 keV
