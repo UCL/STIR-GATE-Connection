@@ -49,9 +49,7 @@ StoreRootFilesDirectory=root_output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
 
-## Get the scanner files into GATESubMacros directory.
-./sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
-
+## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 
 
