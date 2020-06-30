@@ -32,7 +32,7 @@
 /control/execute GATESubMacros/csorter.mac
 
 ## RADIOACTIVE SOURCE
-/control/execute GATESubMacros/source.mac
+/control/execute GATESubMacros/PhantomActivity.mac
 
 ## ROOT LM OUTPUT
 
