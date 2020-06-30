@@ -29,8 +29,8 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ##### ==============================================================
 
 ## Generate example STIR activity and attenuation images and copy to main dir.
-ActivityPar=images/input/generate_uniform_cylinder.par
-AttenuationPar=images/input/generate_atten_cylinder.par
+ActivityPar=../ExamplesOfPhantomMacros/STIRparFiles/SourceSingleVoxel.par
+AttenuationPar=../ExamplesOfPhantomMacros/STIRparFiles/EmptyAttenuation.par
 
 SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
 ## Get activity and attenuation filenames from $SourceFilenames
