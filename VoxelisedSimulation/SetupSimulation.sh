@@ -37,7 +37,7 @@ then
 	ACTIVITYPAR=$ACTIVITY
 	ATTENUATIONPAR=$ATTENUATION
 	echo "Generating voxelised phantom"
-	SourceFilenames=`SubScripts/generate_STIR_GATE_images.sh $ACTIVITYPAR $ATTENUATIONPAR 2>/dev/null`
+	SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ACTIVITYPAR $ATTENUATIONPAR 2>/dev/null`
 	## Get activity and attenuation filenames from $SourceFilenames and replace
 	ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 	AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`

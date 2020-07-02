@@ -5,7 +5,7 @@
 
 ## An example of how to use this STIR-GATE-Connection project.
 
-## This script runs `SubScripts/generate_STIR_GATE_images.sh`
+## This script runs `SubScripts/GenerateSTIRGATEImages.sh`
 ## to generate images from a parameter file using STIR.
 ## Additional modifications are made to the interfile header 
 ## for GATE compatibility.
@@ -32,7 +32,7 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleVoxel.par
 AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
-SourceFilenames=`SubScripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
+SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ActivityPar $AttenuationPar 2>/dev/null`
 ## Get activity and attenuation filenames from $SourceFilenames
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`

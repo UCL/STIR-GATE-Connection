@@ -20,10 +20,10 @@ This directory contains a collection of scripts that are key to automatically fi
 
 Scripts
 =======
-* `generate_STIR_GATE_images/sh`: Generates STIR images from parameter files for GATE simulation. The attenuation file voxel values are heavily scaled and should not be used in STIR. Use the original attenuation file.
-* `get_attenuation_translation.sh`: shell script that reads an image with STIR and returns shifts for the attenuation translation.
-* `get_source_position.sh`: shell script that reads an image with STIR and returns the source position offset for GATE
-* `prepare_files.sh`: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into `VoxelisedSimulation/`.
+* `GenerateSTIRGATEImages.sh`: Generates STIR images from parameter files for GATE simulation. The attenuation file voxel values are heavily scaled and should not be used in STIR. Use the original attenuation file.
+* `GetAttenuationTranslation.sh`: shell script that reads an image with STIR and returns shifts for the attenuation translation.
+* `GetSourcePosition.sh`: shell script that reads an image with STIR and returns the source position offset for GATE
+* `PrepareScannerFiles.sh`: shell script that copies scanner files from the specified scanner example directory. This script is required to be run first to copy the correct data into `VoxelisedSimulation/`.
 * `STIR2GATE_interfile.sh`: shell script that converts STIR generated interfile headers (.hv) into GATE compatible headers (.h33) files and adds the parameters "!number of slices" and "slice thickness (pixels)".
 *WARNING* the `get_*.sh` scripts put the centre of the STIR image at the GATE 0,0,0.  
 Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners`. Shifting the centre of the GATE scanner is currently going to break things.
