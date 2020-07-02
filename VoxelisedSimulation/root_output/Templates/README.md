@@ -17,6 +17,4 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 22:02:10 BST
 
-This directory contains templates for listomode parameter file, root header and template sinogram
-
-
+This directory contains the template `lm_to_projdata_template.par`. `SubScripts/PrepareScannerFiles.sh` will copy in the `root_header_template.hroot` and `STIR_scanner.hs` from `ExampleScanners/`.

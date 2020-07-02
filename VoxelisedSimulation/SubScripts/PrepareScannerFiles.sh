@@ -35,7 +35,7 @@ if [ $ScannerType = "D690" ]; then
 	cp -vp $D690_DIR/digitiser_D690.mac GATESubMacros/digitiser.mac
 	cp -vp $D690_DIR/geometry_D690.mac GATESubMacros/geometry.mac
 	cp -vp $D690_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
-	cp -vp $D690_DIR/STIR_scanner_D690_full_segment.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
+	cp -vp $D690_DIR/STIRScanner_D690_full_segment.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
 
 elif [ $ScannerType = "mMR" ]; then
 	echo "Preparing mMR scanner files"
