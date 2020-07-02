@@ -54,10 +54,10 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
 
 ##### ==============================================================
-## Run GATE
+## RunGATE
 ##### ==============================================================
 
-./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+./RunGATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
 
 
