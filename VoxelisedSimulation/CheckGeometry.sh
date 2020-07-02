@@ -22,7 +22,7 @@ QT=1  # Tell RunGATE.sh to use QT visualisation
 
 
 ## For "CheckGeometry.mac" these arguments have no effect, used to satisfy "RunGATE.sh" arguments
-StoreRootFilesDirectory=root_output  # There is no file output from GATE
+StoreRootFilesDirectory=Output  # There is no file output from GATE
 TASK_ID=1  # No parallel processing required as no output
 StartTime=0  # Hardcoded in "CheckGeometry.mac"
 EndTime=1  # Hardcoded in "CheckGeometry.mac"
