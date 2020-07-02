@@ -37,5 +37,5 @@
 /gate/actor/getMuMap/attachTo VoxPhantom
 /gate/actor/getMuMap/save images/output/Phantom{SimuId}.hdr
 /gate/actor/getMuMap/setVoxelSize {AttenuationVoxelSizeX} {AttenuationVoxelSizeY} {AttenuationVoxelSizeZ}  mm
-/gate/actor/getMuMap/setResolution 110 110 64
+/gate/actor/getMuMap/setResolution {NumberOfVoxelsX} {NumberOfVoxelsY} {NumberOfVoxelsZ}
 /gate/actor/getMuMap/setEnergy 511 keV
