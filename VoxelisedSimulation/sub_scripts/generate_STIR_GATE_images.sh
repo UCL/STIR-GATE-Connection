@@ -34,7 +34,7 @@ generate_image $AttenuationPar
 
 
 ## Modify the scale of the attenuation file for GATE (requires int values).
-images/input/modifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
+sub_scripts/ModifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
 
 ## Process my_uniform_cylinder.hv my_atten_image_GATE.hv into .h33 files
 ## and add "!number of slices :=" and "slice thickness (pixels) :=" fields.
