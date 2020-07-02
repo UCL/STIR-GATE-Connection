@@ -5,9 +5,9 @@
 ## Licensed under the Apache License, Version 2.0
 
 ## Script to run GATE a similation given various arguments. 
-## The script computes SourcePosition and AttenuationTranslation 
-## from the images using sub_scripts/get_source_position.sh
-## and sub_scripts/get_attenuation_translation.sh.
+## The script calls scripts to compute SourcePosition, 
+## AttenuationTranslation, AtteniationVoxelSize, 
+## and NumberOfVoxels (attenuation file).
 
 
 if [ $# -lt 7 ]; then
