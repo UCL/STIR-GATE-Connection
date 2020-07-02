@@ -1,5 +1,12 @@
 # !/bin/bash
 
+## AUTHOR: Robert Twyman
+## Copyright (C) 2020 University College London
+## Licensed under the Apache License, Version 2.0
+
+## Voxelised attenuation images are required to be of type int (for segmentation). 
+## This script takes an interfile image as input and multiplied all values for GATE. 
+
 export input=$1
 export output=$2
 

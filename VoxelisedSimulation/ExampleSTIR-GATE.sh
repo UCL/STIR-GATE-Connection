@@ -5,7 +5,7 @@
 
 ## An example of how to use this STIR-GATE-Connection project.
 
-## This script runs sub_scripts/generate_STIR_GATE_images.sh 
+## This script runs `SubScripts/GenerateSTIRGATEImages.sh`
 ## to generate images from a parameter file using STIR.
 ## Additional modifications are made to the interfile header 
 ## for GATE compatibility.
@@ -32,7 +32,7 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleVoxel.par
 AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
-SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ActivityPar $AttenuationPar 2>/dev/null`
+SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ActivityPar $AttenuationPar 2>/dev/null`
 ## Get activity and attenuation filenames from $SourceFilenames
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
@@ -42,10 +42,10 @@ AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 ##### ==============================================================
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
-GATEMainMacro="main_muMap_job.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
+GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
 StartTime=0  ## Start time in GATE time
 EndTime=1  ## End time in GATE time
-StoreRootFilesDirectory=root_output  ## Save location of root data
+StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
 
@@ -54,10 +54,10 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 
 
 ##### ==============================================================
-## Run GATE
+## RunGATE
 ##### ==============================================================
 
-./run_GATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+./RunGATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
 
 
@@ -65,7 +65,7 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ## Unlist GATE data
 ##### ==============================================================
 
-./sub_scripts/unlist.sh $StoreRootFilesDirectory $TASK_ID
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $TASK_ID
 
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`

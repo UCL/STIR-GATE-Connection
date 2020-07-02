@@ -22,5 +22,5 @@ This directory is used to store the root output files.
 Directories
 =======
 
-* Templates: here you can find templates for listomode parameter file, root header and template sinogram
-* Unlisted: here we store the output from the unlisting
+* `Templates/`: Template for listomode parameter file. Other templates for unlisting will be added here.
+* `Unlisted/`: The output from the unlisting will go here.

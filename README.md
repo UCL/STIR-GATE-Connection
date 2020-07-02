@@ -19,21 +19,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
+About
+===========
+The purpose of this project is to provide a simple method to: 
+- create a voxelised phantom from a parameter file or image using STIR functionality
+- setup and run Gate in cluster array jobs
+- combine and unlist root files for reconstruction using STIR
+
+
 Directories
 ===========
 
-* ExamplesOfScannersMacros: contains examples of macros for creating a scanner in GATE
-* ExamplesOfPhantomMacros: contains examples of macros for creating/importing source and attenuation phantoms
-* VoxelisedXCAT: example of GATE simulation from XCAT images.
+* `ExamplesOfScannersMacros/`: Contains examples of macros for creating a scanner in GATE.
+* `ExamplesOfPhantomMacros/`: Contains examples of macros and STIR parameter files for creating/importing source and attenuation phantoms.
+* `VoxelisedSimulation/`: Main GATE simulation directory.
 
-
-Things to do
-=============
-* change the mMR template to the "real" one (8x8 crystals, not 8x9) (needs STIR mods)
-* find XCAT dimensions from the XCAT file as opposed to hard-wiring
-* find GATE image specifications from Interfile headers
-* find GATE sinogram specifications from STIR Interfile header or vice versa
-* can even find durations and energy windows from Interfile headers
 
 Acknowledgements
 ================

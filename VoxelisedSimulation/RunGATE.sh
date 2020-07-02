@@ -34,14 +34,14 @@ then
 fi
 
 ## Get the activity source position in x,y,z
-SourcePositions=$( sub_scripts/get_source_position.sh $ActivityFilename 2>/dev/null ) 
+SourcePositions=$( SubScripts/GetSourcePosition.sh $ActivityFilename 2>/dev/null ) 
 SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
 SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
 SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
 
 
 ## Get the attenuation map translation in x,y,z
-AttenuationTranslations=$( sub_scripts/get_attenuation_translation.sh $AttenuationFilename 2>/dev/null ) 
+AttenuationTranslations=$( SubScripts/GetAttenuationTranslation.sh $AttenuationFilename 2>/dev/null ) 
 AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
 AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
