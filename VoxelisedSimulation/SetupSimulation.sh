@@ -6,7 +6,7 @@
 # This script should be run before any reconstruction.
 
 # This script will:
-#	- Copy files from correct scanner geometry (runs sub_scripts/prepare_scanner.sh)
+#	- Copy files from correct scanner geometry (runs SubScripts/prepare_scanner.sh)
 #	- OPTIONAL: If ACTIVITY and ATTENUATION have "par" extension, use STIR to generate voxelised phantom
 #	- Opens Gate and creates DMAP for phantom (this should only be run once per phantom.)
 
@@ -27,7 +27,7 @@ ATTENUATION=$4
 
 
 ## Get the scanner files into GATESubMacros directory.
-./sub_scripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
+./SubScripts/prepare_scanner_files.sh $ScannerType $StoreRootFilesDirectory
 
 
 # Check extension of ACTIVITY and ATTENUATION
@@ -37,7 +37,7 @@ then
 	ACTIVITYPAR=$ACTIVITY
 	ATTENUATIONPAR=$ATTENUATION
 	echo "Generating voxelised phantom"
-	SourceFilenames=`sub_scripts/generate_STIR_GATE_images.sh $ACTIVITYPAR $ATTENUATIONPAR 2>/dev/null`
+	SourceFilenames=`SubScripts/generate_STIR_GATE_images.sh $ACTIVITYPAR $ATTENUATIONPAR 2>/dev/null`
 	## Get activity and attenuation filenames from $SourceFilenames and replace
 	ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 	AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`

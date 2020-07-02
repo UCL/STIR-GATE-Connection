@@ -34,12 +34,12 @@ generate_image $AttenuationPar
 
 
 ## Modify the scale of the attenuation file for GATE (requires int values).
-sub_scripts/ModifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
+SubScripts/ModifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
 
 ## Process my_uniform_cylinder.hv my_atten_image_GATE.hv into .h33 files
 ## and add "!number of slices :=" and "slice thickness (pixels) :=" fields.
 for Filename in $ActivityFilename $AttenuationFilenameGATE; do
-  sh $STIRGATEHome/sub_scripts/STIR2GATE_interfile.sh $Filename".h33" $Filename".hv" 
+  sh $STIRGATEHome/SubScripts/STIR2GATE_interfile.sh $Filename".h33" $Filename".hv" 
   # cp $Filename".h33" $STIRGATEHome
   # cp $Filename".v" $STIRGATEHome
 done

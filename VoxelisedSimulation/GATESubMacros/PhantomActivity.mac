@@ -16,7 +16,7 @@
 
 # POSITION OF THE SOURCE (its default position is in the 1st quarter, so it has to be
 # shifted over half its dimensions in the negative direction on each axis)
-# These values are computed by sub_scripts/get_source_position.sh
+# These values are computed by `SubScripts/get_source_position.sh`
 /gate/source/SourcePhantom/setPosition {SourcePositionX} {SourcePositionY} {SourcePositionZ} mm
 
 # CHARACTERIZATION OF THE SOURCE (no difference with an analytical source)

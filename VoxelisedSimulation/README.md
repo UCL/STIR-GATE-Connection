@@ -29,7 +29,7 @@ Directories
 * `images/`: contains input and output images.
 * `GATESubMacros/`: contains a collection of GATE macros for simulation.
 * `root_output/`: contains templates for unlisting and is used as the output of the GATE simulation.
-* `sub_scripts/`: contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
+* `SubScripts/`: contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
 
 
 Files
