@@ -35,8 +35,6 @@ Directories
 Files
 =======
 
-* `activity.h33`: an example XCAT header file for the activity image. Links to `images/input/a_act_1.bin`.
-* `attenuation.h33`: an example XCAT header file for the attenuation image. Links to `images/input/a_atn_1_mod.v`. This attenuation image needs to be the one converted in "int" (i.e. multiplied by 10000).
 * `CheckGeometry.mac`: this script can be used to visualise scanner and activity images from GUI: `Gate --qt CheckGeometry.mac` (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to `CheckGeometry.sh`. 
 * `main_muMap_job.mac`: main macro file for GATE simulation. Utilises macro files within `GATESubMacros/`.
 
