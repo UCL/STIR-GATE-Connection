@@ -17,10 +17,10 @@
 /control/execute GATESubMacros/PhantomAttenuation.mac
 
 ## PHYSICAL INTERACTIONS
-/control/execute GATESubMacros/Physics.mac
+/control/execute GATESubMacros/physics.mac
 
 ## CUTS
-/control/execute GATESubMacros/Cuts.mac
+/control/execute GATESubMacros/cuts.mac
 
 ## INITIALISATION OF GATE
 /gate/run/initialize

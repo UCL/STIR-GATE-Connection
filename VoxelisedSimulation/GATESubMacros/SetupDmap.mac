@@ -34,7 +34,7 @@
 
 
 ## PHYSICAL INTERACTIONS
-/control/execute GATESubMacros/Physics.mac
+/control/execute GATESubMacros/physics.mac
 
 ## INITIALISATION OF GATE (saves dmap.hdr)
 /gate/run/initialize
