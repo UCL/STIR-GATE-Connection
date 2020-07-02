@@ -1,10 +1,10 @@
 # STIR-GATE-Connection
 
+Author: Robert Twyman <br />
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
 Author: Vesna Cuplov <br />
 Author: Kris Thielemans <br />
-Author: Robert Twyman <br />
 Copyright (C) 2014-2020 University College London<br />
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -34,3 +34,9 @@ Things to do
 * find GATE image specifications from Interfile headers
 * find GATE sinogram specifications from STIR Interfile header or vice versa
 * can even find durations and energy windows from Interfile headers
+
+Acknowledgements
+================
+Additional help with testing an early stage of the macros:
+- Catherine Scott (UCL/UCLH)
+- Ana Margarida Motta (Universidade de Lisboa)

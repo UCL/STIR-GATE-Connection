@@ -1,0 +1,14 @@
+{
+  "title": "STIR GATE Connection",
+  "keywords": [
+      "image-reconstruction", "pet", "Monte-Carlo-simulation", "medical-imaging"],
+  "related_identifiers": [
+    {"identifier": "10.1088/0031-9155/57/4/867", "relation": "documents"}],
+  "communities": [{"identifier": "synerbi"}],
+  "creators": [
+      {"name": "Twyman, Robert", "affiliation":"University College London"},
+      {"name": "Brusaferri, Ludovica", "affiliation":"University College London"},
+      {"name": "Emond, Elise", "affiliation":"University College London"},
+      {"name": "Cuplov, Vesna", "affiliation":"University College London"},
+    {"name": "Thielemans, Kris", "orcid": "0000-0002-5514-199X", "affiliation": "University College London"}]
+}
