@@ -4,7 +4,8 @@
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
-# This file will make a altered copy of "lm_to_projdata_template.par" and "root_header_template.par" before unlisting a root file into an interfile.
+# This file will make a altered copy of "lm_to_projdata_template.par" and 
+# "root_header_template.par" before unlisting a root file into an interfile.
 
 # The Required Args:
 # - $1: Root files directory

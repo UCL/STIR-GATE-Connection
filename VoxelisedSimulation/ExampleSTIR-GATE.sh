@@ -65,7 +65,7 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ## Unlist GATE data
 ##### ==============================================================
 
-./SubScripts/unlist.sh $StoreRootFilesDirectory $TASK_ID
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $TASK_ID
 
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
