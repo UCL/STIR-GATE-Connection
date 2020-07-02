@@ -22,9 +22,9 @@ limitations under the License.
 Directories
 ===========
 
-* ExamplesOfScannersMacros: contains examples of macros for creating a scanner in GATE
-* ExamplesOfPhantomMacros: contains examples of macros for creating/importing source and attenuation phantoms
-* VoxelisedXCAT: example of GATE simulation from XCAT images.
+* `ExamplesOfScannersMacros/`: Contains examples of macros for creating a scanner in GATE.
+* `ExamplesOfPhantomMacros/`: Contains examples of macros and STIR parameter files for creating/importing source and attenuation phantoms.
+* `VoxelisedSimulation/`: Main GATE simulation directory.
 
 
 Things to do
