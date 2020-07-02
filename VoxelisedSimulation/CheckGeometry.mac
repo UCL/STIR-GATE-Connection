@@ -19,7 +19,7 @@
 /control/execute GATESubMacros/PhantomAttenuation.mac 
 
 ## PHYSICS INTERACTIONS
-/control/execute GATESubMacros/physics.mac
+/control/execute GATESubMacros/Physics.mac
 
 ## PHYSICS INITIALISE
 /gate/run/initialize
