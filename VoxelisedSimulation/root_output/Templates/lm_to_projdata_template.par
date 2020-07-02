@@ -4,7 +4,7 @@ lm_to_projdata Parameters:=
   output filename prefix := Unlisted/UNLISTINGDIRECTORY/sinogram_TASK_ID
 
   ; parameters that determine the sizes etc of the output
-       ; template_scanner.hs is delivered by `SubScripts/prepare_scanner_files.sh`
+       ; template_scanner.hs is delivered by `SubScripts/PrepareScannerFiles.sh`
        template_projdata := Templates/STIR_scanner.hs
 
     ; the next can be used to use a smaller number of segments than given 
