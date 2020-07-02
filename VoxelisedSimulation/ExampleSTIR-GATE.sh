@@ -42,7 +42,7 @@ AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 ##### ==============================================================
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
-GATEMainMacro="main_muMap_job.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
+GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
 StartTime=0  ## Start time in GATE time
 EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=root_output  ## Save location of root data

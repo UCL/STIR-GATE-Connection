@@ -36,7 +36,7 @@ Files
 =======
 
 * `CheckGeometry.mac`: this script can be used to visualise scanner and activity images from GUI: `Gate --qt CheckGeometry.mac` (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to `CheckGeometry.sh`. 
-* `main_muMap_job.mac`: main macro file for GATE simulation. Utilises macro files within `GATESubMacros/`.
+* `MainGATE.mac`: main macro file for GATE simulation. Utilises macro files within `GATESubMacros/`.
 
 
 Scripts
