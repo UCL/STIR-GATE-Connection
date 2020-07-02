@@ -25,7 +25,7 @@
 /gate/run/initialize
 
 ## SOURCE
-/control/execute GATESubMacros/source.mac
+/control/execute GATESubMacros/PhantomActivity.mac
 
 ## DISABLE OUTPUT
 /gate/output/allowNoOutput

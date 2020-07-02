@@ -5,9 +5,9 @@
 ## Licensed under the Apache License, Version 2.0
 
 ## Script to run GATE a similation given various arguments. 
-## The script computes SourcePosition and AttenuationTranslation 
-## from the images using sub_scripts/get_source_position.sh
-## and sub_scripts/get_attenuation_translation.sh.
+## The script calls scripts to compute SourcePosition, 
+## AttenuationTranslation, AtteniationVoxelSize, 
+## and NumberOfVoxels (attenuation file).
 
 
 if [ $# -lt 7 ]; then
@@ -39,11 +39,27 @@ SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
 SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
 SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
 
+
 ## Get the attenuation map translation in x,y,z
 AttenuationTranslations=$( sub_scripts/get_attenuation_translation.sh $AttenuationFilename 2>/dev/null ) 
 AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
 AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
+
+
+## Get the voxel size in x,y,z (stir_print_voxel_sizes.sh is found: $STIRINSTALLPATH/bin/stir_print_voxel_sizes.sh)
+AttenuationVoxelSize=$( stir_print_voxel_sizes.sh $AttenuationFilename 2>/dev/null ) 
+## stir_print_voxel_sizes returns z,y,x, these are revesered here
+AttenuationVoxelSizeX=`echo ${AttenuationVoxelSize} |awk '{print $3}'`
+AttenuationVoxelSizeY=`echo ${AttenuationVoxelSize} |awk '{print $2}'`
+AttenuationVoxelSizeZ=`echo ${AttenuationVoxelSize} |awk '{print $1}'`
+
+
+## Get the number of voxels in x,y,z (get_num_voxels.sh is found: $STIRINSTALLPATH/bin/get_num_voxels.sh)
+NumberOfVoxels=$( get_num_voxels.sh $AttenuationFilename 2>/dev/null ) 
+NumberOfVoxelsX=`echo ${NumberOfVoxels} |awk '{print $1}'`
+NumberOfVoxelsY=`echo ${NumberOfVoxels} |awk '{print $2}'`
+NumberOfVoxelsZ=`echo ${NumberOfVoxels} |awk '{print $3}'`
 
 ## Run GATE with arguments
 if [ $QT -eq 1 ]; then
@@ -53,9 +69,11 @@ if [ $QT -eq 1 ]; then
 [SimuId,$SimuId]\
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
+[NumberOfVoxelsX,$NumberOfVoxelsX][NumberOfVoxelsY,$NumberOfVoxelsY][NumberOfVoxelsZ,$NumberOfVoxelsZ]\
 [ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
 [SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
-[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]\
+[AttenuationVoxelSizeX,$AttenuationVoxelSizeX][AttenuationVoxelSizeY,$AttenuationVoxelSizeY][AttenuationVoxelSizeZ,$AttenuationVoxelSizeZ]
 
 else
 
@@ -64,8 +82,10 @@ else
 [SimuId,$SimuId]\
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
+[NumberOfVoxelsX,$NumberOfVoxelsX][NumberOfVoxelsY,$NumberOfVoxelsY][NumberOfVoxelsZ,$NumberOfVoxelsZ]\
 [ActivityFilename,$ActivityFilename][AttenuationFilename,$AttenuationFilename]\
 [SourcePositionX,$SourcePositionX][SourcePositionY,$SourcePositionY][SourcePositionZ,$SourcePositionZ]\
-[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]
+[AttenuationTranslationX,$AttenuationTranslationX][AttenuationTranslationY,$AttenuationTranslationY][AttenuationTranslationZ,$AttenuationTranslationZ]\
+[AttenuationVoxelSizeX,$AttenuationVoxelSizeX][AttenuationVoxelSizeY,$AttenuationVoxelSizeY][AttenuationVoxelSizeZ,$AttenuationVoxelSizeZ]
 
 fi
