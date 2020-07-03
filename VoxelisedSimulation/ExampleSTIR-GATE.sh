@@ -47,7 +47,7 @@ StartTime=0  ## Start time in GATE time
 EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
-
+ROOT_FILENAME=Sim_$TASK_ID
 
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
@@ -57,7 +57,7 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ## RunGATE
 ##### ==============================================================
 
-./RunGATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+./RunGATE.sh $GATEMainMacro $ROOT_FILENAME $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
 
 
@@ -65,7 +65,7 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ## Unlist GATE data
 ##### ==============================================================
 
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $TASK_ID
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME
 
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
