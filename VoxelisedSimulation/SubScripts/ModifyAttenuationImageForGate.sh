@@ -7,8 +7,8 @@
 ## Voxelised attenuation images are required to be of type int (for segmentation). 
 ## This script takes an interfile image as input and multiplied all values for GATE. 
 
-export input=$1
-export output=$2
+input=$1
+output=$2
 
 if [ $# -ne 2 ]; then
   echo "Error in $0 with number of arguments"

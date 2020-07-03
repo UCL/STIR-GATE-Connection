@@ -54,7 +54,10 @@ ROOT_FILENAME=Sim_$TASK_ID
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
 # ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
-
+if [ $? -ne 0 ] ;then
+	echo "Error in SetupSimulation.sh"
+	exit 1
+fi
 
 ##### ==============================================================
 ## RunGATE
@@ -62,14 +65,20 @@ ROOT_FILENAME=Sim_$TASK_ID
 
 ./RunGATE.sh $GATEMainMacro $ROOT_FILENAME $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
-
+if [ $? -ne 0 ]; then
+	echo "Error in RunGATE.sh"
+	exit 1
+fi
 
 ##### ==============================================================
 ## Unlist GATE data
 ##### ==============================================================
 
 ./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME
-
+if [ $? -ne 0 ]; then
+	echo "Error in ./SubScripts/UnlistRoot.sh"
+	exit 1
+fi
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 

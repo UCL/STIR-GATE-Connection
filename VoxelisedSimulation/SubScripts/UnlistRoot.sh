@@ -43,3 +43,4 @@ rm *.bak
 
 lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
 
+exit 0

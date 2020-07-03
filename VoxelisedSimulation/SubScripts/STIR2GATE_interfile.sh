@@ -12,11 +12,23 @@ if [ $# -ne 2 ]; then
   echo "Usage:"$0 "GATEOutputFilename STIRInputFilename" 1>&2
   echo " - GATEOutputFilename: should have '.h33' suffix."
   echo " - STIRInputFilename: should have '.hv' suffix"
-  exit 0
+  exit 1
 fi
 
 GATEFilename=$1
 STIRFilename=$2
+
+if [ "${GATEFilename##*.}" != "h33"  ]; then
+	echo "Error in STIR2GATE_interfile, the GATEFilename does not end in '*.h33'"
+	echo "GATEFilename = $GATEFilename"
+	exit 1
+fi
+
+if [ "${STIRFilename##*.}" != "hv"  ]; then
+	echo "Error in STIR2GATE_interfile, the STIRFilename does not end in '*.h33'"
+	echo "STIRFilename = $STIRFilename"
+	exit 1
+fi
 
 
 ## Get the number of slices = Number of voxels in z

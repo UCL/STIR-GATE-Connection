@@ -28,7 +28,10 @@ ATTENUATION=$4
 
 ## Get the scanner files into GATESubMacros directory.
 ./SubScripts/PrepareScannerFiles.sh $ScannerType $StoreRootFilesDirectory
-
+if [ $? -ne 0 ]; then
+	echo "Error in SubScripts/PrepareScannerFiles.sh"
+	exit 1
+fi
 
 # Check extension of ACTIVITY and ATTENUATION
 if [ "${ACTIVITY##*.}" == "par"  ] && [ "${ATTENUATION##*.}" == "par"  ]
@@ -47,11 +50,11 @@ else
 	AttenuationFilename=$ATTENUATION
 fi
 
-# Check AttenuationFilename has extension "h33"
-if [ "${AttenuationFilename##*.}" != "h33"  ]
+# Check ActivityFilename and AttenuationFilename has extension "h33"
+if [ "${ActivityFilename##*.}" != "h33"  ] || [ "${AttenuationFilename##*.}" != "h33"  ]
 then
-	echo "SetupSimulation: AttenuationFilename does not have suffix *.h33"
-	echo $AttenuationFilename
+	echo "SetupSimulation: ActivityFilename and/or AttenuationFilename does not have suffix '*.h33'"
+	echo $ActivityFilename $AttenuationFilename
 	exit 1
 fi
 
@@ -59,3 +62,5 @@ fi
 Gate GATESubMacros/SetupDmap.mac -a [AttenuationFilename,$AttenuationFilename]
 
 echo "SetupSimulation Complete"
+
+exit 0

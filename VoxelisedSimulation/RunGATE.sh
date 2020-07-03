@@ -9,8 +9,7 @@
 ## AttenuationTranslation, AtteniationVoxelSize, 
 ## and NumberOfVoxels (attenuation file).
 
-echo $#
-if [ $# -lt 8 ]; then
+if [ $# != 8 ] && [ $# !=9 ]; then
   echo "Error in $0 with number of arguments."
   echo "Usage: $0 GATEMainMacro ROOT_FILENAME ActivityFilename AttenuationFilename SimuId StartTime EndTime [QT]" 1>&2
   exit 1
