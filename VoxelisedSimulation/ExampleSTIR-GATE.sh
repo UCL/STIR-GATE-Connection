@@ -29,7 +29,7 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ##### ==============================================================
 
 ## Generate example STIR activity and attenuation images and copy to main dir.
-ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleVoxel.par
+ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleCentralVoxel.par
 AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
 SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ActivityPar $AttenuationPar 2>/dev/null`
