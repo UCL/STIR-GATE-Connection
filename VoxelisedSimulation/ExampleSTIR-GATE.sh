@@ -32,6 +32,8 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleCentralVoxel.par
 AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
+## This could be done in SetupSimulation.sh but we need the $ActivityFilename and 
+## $AttenuationFilename for this example
 SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ActivityPar $AttenuationPar 2>/dev/null`
 ## Get activity and attenuation filenames from $SourceFilenames
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
@@ -50,7 +52,8 @@ ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ROOT_FILENAME=Sim_$TASK_ID
 
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
-./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
+./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
+# ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 
 
 ##### ==============================================================
