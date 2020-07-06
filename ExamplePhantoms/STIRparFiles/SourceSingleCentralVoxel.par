@@ -6,7 +6,7 @@ Y output image size (in pixels):=110
 Z output image size (in pixels):=65
 X voxel size (in mm):= 4
 Y voxel size (in mm):= 4
-Z voxel size (in mm):= 4.0625
+Z voxel size (in mm):= 4
 
   Z number of samples to take per voxel := 1
   Y number of samples to take per voxel := 1
@@ -17,7 +17,7 @@ Ellipsoid Parameters:=
    radius-x (in mm):=2
    radius-y (in mm):=2
    radius-z (in mm):=2
-   origin (in mm):={130,0,0}
+   origin (in mm):={128,0,0}  ;(z,y,x)
    END:=
 value :=10000
 

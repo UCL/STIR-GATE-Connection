@@ -28,6 +28,7 @@ if [ ! -d $StoreRootFilesDirectory/Templates ]; then  # Does the template direct
 	mkdir -p $StoreRootFilesDirectory/Templates
 fi
 
+
 if [ $ScannerType = "D690" ]; then
 	echo "Preparing D690 scanner files"
 	D690_DIR="../ExampleScanners/D690"
@@ -48,6 +49,7 @@ elif [ $ScannerType = "mMR" ]; then
 
 else
 	echo "Invalid scanner name parsed. Please indicate 'D690' or 'mMR'."
+	exit 1
 fi
 
 exit 0

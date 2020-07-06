@@ -32,8 +32,10 @@ echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 ## Copy the relevent the scanner files from ExampleScanners into position for simulation.
 ./SubScripts/PrepareScannerFiles.sh $ScannerType $StoreRootFilesDirectory
 
-./RunGATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+## The root_filename is not a variable here but a dummy given to RunGATE
+./RunGATE.sh $GATEMainMacro root_filename $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime $QT
 
 echo "Script finished: " $(date +%d.%m.%y-%H:%M:%S)
+
 exit 0

@@ -15,7 +15,7 @@
 if [ $# -ne 2 ]; then
   echo "Usage:"$0 "ActivityPar AttenuationPar" 1>&2
   echo "Returns Activity and Attenuation filenames."
-  exit 0
+  exit 1
 fi
 
 ActivityPar=$1  ## Activity parameter file

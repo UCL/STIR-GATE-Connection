@@ -9,25 +9,25 @@
 ## AttenuationTranslation, AtteniationVoxelSize, 
 ## and NumberOfVoxels (attenuation file).
 
-
-if [ $# -lt 7 ]; then
+if [ $# != 8 ] && [ $# !=9 ]; then
   echo "Error in $0 with number of arguments."
-  echo "Usage: $0 GATEMainMacro ActivityFilename AttenuationFilename SimuId StartTime EndTime [QT]" 1>&2
+  echo "Usage: $0 GATEMainMacro ROOT_FILENAME ActivityFilename AttenuationFilename SimuId StartTime EndTime [QT]" 1>&2
   exit 1
 fi
 
 # Parameters for GATE
 GATEMainMacro=$1
-ActivityFilename=$2
-AttenuationFilename=$3
-StoreRootFilesDirectory=$4
-SimuId=$5
-StartTime=$6
-EndTime=$7
+ROOT_FILENAME=$2
+ActivityFilename=$3
+AttenuationFilename=$4
+StoreRootFilesDirectory=$5
+TASK_ID=$6
+StartTime=$7
+EndTime=$8
 
 ## Optional QT visualisation, required seperate GATE setup
 QT=0
-if [ $# == 8 ] && [ $8 == "1" ]
+if [ $# == 9 ] && [ $9 == "1" ]
 then 
 	echo "Gate --qt is ON"
 	QT=1 
@@ -66,7 +66,7 @@ if [ $QT -eq 1 ]; then
 
 	echo "Running Gate with visualisation."
 	Gate --qt $GATEMainMacro -a \
-[SimuId,$SimuId]\
+[SimuId,$TASK_ID][ROOT_FILENAME,$ROOT_FILENAME]\
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [NumberOfVoxelsX,$NumberOfVoxelsX][NumberOfVoxelsY,$NumberOfVoxelsY][NumberOfVoxelsZ,$NumberOfVoxelsZ]\
@@ -79,7 +79,7 @@ else
 
 	echo "Running Gate."
 	Gate $GATEMainMacro -a \
-[SimuId,$SimuId]\
+[SimuId,$TASK_ID][ROOT_FILENAME,$ROOT_FILENAME]\
 [StartTime,$StartTime][EndTime,$EndTime]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [NumberOfVoxelsX,$NumberOfVoxelsX][NumberOfVoxelsY,$NumberOfVoxelsY][NumberOfVoxelsZ,$NumberOfVoxelsZ]\

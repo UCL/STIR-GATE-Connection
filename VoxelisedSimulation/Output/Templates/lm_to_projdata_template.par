@@ -1,7 +1,7 @@
 lm_to_projdata Parameters:=
 
-  input file := root_header_TASK_ID.hroot
-  output filename prefix := Unlisted/UNLISTINGDIRECTORY/sinogram_TASK_ID
+  input file := ROOT_FILENAME.hroot
+  output filename prefix := Unlisted/UNLISTINGDIRECTORY/sinogram_ROOT_FILENAME
 
   ; parameters that determine the sizes etc of the output
        ; template_scanner.hs is delivered by `SubScripts/PrepareScannerFiles.sh`

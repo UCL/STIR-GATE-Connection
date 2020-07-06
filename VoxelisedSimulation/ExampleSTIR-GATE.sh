@@ -32,6 +32,8 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleCentralVoxel.par
 AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
+## This could be done in SetupSimulation.sh but we need the $ActivityFilename and 
+## $AttenuationFilename for this example
 SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ActivityPar $AttenuationPar 2>/dev/null`
 ## Get activity and attenuation filenames from $SourceFilenames
 ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
@@ -47,26 +49,36 @@ StartTime=0  ## Start time in GATE time
 EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
-
+ROOT_FILENAME=Sim_$TASK_ID
 
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
-./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
-
+./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
+# ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
+if [ $? -ne 0 ] ;then
+	echo "Error in SetupSimulation.sh"
+	exit 1
+fi
 
 ##### ==============================================================
 ## RunGATE
 ##### ==============================================================
 
-./RunGATE.sh $GATEMainMacro $ActivityFilename $AttenuationFilename\
+./RunGATE.sh $GATEMainMacro $ROOT_FILENAME $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
-
+if [ $? -ne 0 ]; then
+	echo "Error in RunGATE.sh"
+	exit 1
+fi
 
 ##### ==============================================================
 ## Unlist GATE data
 ##### ==============================================================
 
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $TASK_ID
-
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME
+if [ $? -ne 0 ]; then
+	echo "Error in ./SubScripts/UnlistRoot.sh"
+	exit 1
+fi
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 
