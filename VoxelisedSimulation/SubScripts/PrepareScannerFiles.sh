@@ -45,8 +45,16 @@ elif [ $ScannerType = "mMR" ]; then
 	cp -vp $mMR_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
 	cp -vp $mMR_DIR/STIR_scanner.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
 
+elif [ $ScannerType = "mCT" ]; then
+	echo "Preparing mCT scanner files"
+	mCT_DIR="../ExampleScanners/mCT"
+	cp -vp $mCT_DIR/digitiser_mCT.mac GATESubMacros/digitiser.mac
+	cp -vp $mCT_DIR/geometry_mCT.mac GATESubMacros/geometry.mac
+	# cp -vp $mCT_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
+	# cp -vp $mCT_DIR/STIR_scanner.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
+
 else
-	echo "Invalid scanner name parsed. Please indicate 'D690' or 'mMR'."
+	echo "Invalid scanner name parsed. Please indicate 'D690', 'mMR', mCT."
 	exit 1
 fi
 
