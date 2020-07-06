@@ -28,9 +28,6 @@
 ## DIGITISER
 /control/execute GATESubMacros/digitiser.mac
 
-## COINCIDENCE SORTER
-/control/execute GATESubMacros/csorter.mac
-
 ## RADIOACTIVE SOURCE
 /control/execute GATESubMacros/PhantomActivity.mac
 

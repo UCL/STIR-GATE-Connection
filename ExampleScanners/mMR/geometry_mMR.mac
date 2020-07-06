@@ -65,6 +65,9 @@
 /gate/crystal/cubicArray/setRepeatVector 0.0 4.0625 4.0625 mm
 
 
+#    R E P E A T    B L O C K
+
+
 /gate/block/repeaters/insert       linear
 /gate/block/linear/setRepeatNumber 8
 /gate/block/linear/setRepeatVector 0.0 0.0 32.5 mm

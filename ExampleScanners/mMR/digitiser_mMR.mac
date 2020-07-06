@@ -5,23 +5,45 @@
 ## Licensed under the Apache License, Version 2.0
 ## digitiser for mMR Scanner
 
+
+##	S I N G L E S
+
 ## For details regarding readout, see: https://opengate.readthedocs.io/en/latest/digitizer_and_detector_modeling.html#readout
 /gate/digitizer/Singles/insert                        adder
 /gate/digitizer/Singles/insert                        readout
 /gate/digitizer/Singles/readout/setDepth              1
 
-
+## CRYSTAL BLURRING
 /gate/digitizer/Singles/insert crystalblurring
 /gate/digitizer/Singles/crystalblurring/setCrystalResolutionMin 0.130
 /gate/digitizer/Singles/crystalblurring/setCrystalResolutionMax 0.145
 /gate/digitizer/Singles/crystalblurring/setCrystalQE 0.9
 /gate/digitizer/Singles/crystalblurring/setCrystalEnergyOfReference 511. keV
 
-
+## TIME RESOLUTUON
 /gate/digitizer/Singles/insert timeResolution
 /gate/digitizer/Singles/timeResolution/setTimeResolution 2.92969 ns
 
+## THRESHOLDER
 /gate/digitizer/Singles/insert thresholder
 /gate/digitizer/Singles/thresholder/setThreshold 430. keV  # Not Verified
 /gate/digitizer/Singles/insert upholder
 /gate/digitizer/Singles/upholder/setUphold 610. keV
+
+## DEADTIME
+/gate/digitizer/Singles/insert deadtime
+/gate/digitizer/Singles/deadtime/setDeadTime 432. ns
+/gate/digitizer/Singles/deadtime/setMode paralysable
+/gate/digitizer/Singles/deadtime/chooseDTVolume block
+
+
+## C O I N C I D E N C E S
+
+/gate/digitizer/Coincidences/setWindow 5.85938 ns
+/gate/digitizer/Coincidences/setOffset 0. ns
+/gate/digitizer/Coincidences/MultiplesPolicy takeWinnerOfGoods
+/gate/digitizer/Coincidences/minSectorDifference 8
+/gate/digitizer/Coincidences/describe
+
+
+
