@@ -7,15 +7,26 @@
 #$ -j y
 #$ -N GateSim
 
-## AUTHOR: Robert TWyman
+## AUTHOR: Robert Twyman
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
+
 SGE_TASK_ID=1
 echo "TASK_ID = " $SGE_TASK_ID
 TASK_ID=$SGE_TASK_ID
 
+
+# Here we assume that we have setup
 ActivityFilename=activity.h33
 AttenuationFilename=attenuation_GATE.h33
+
+if [ ! -f "$ActivityFilename" ]; then
+    echo "ActivityFilena = $ActivityFilename does not exist."
+fi
+
+if [ ! -f "$AttenuationFilename" ]; then
+    echo "ActivityFilename = $AttenuationFilename does not exist."
+fi
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
 GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
