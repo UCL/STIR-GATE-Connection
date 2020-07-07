@@ -1,13 +1,22 @@
-# GEOMETRY DEFINITION
-#
+## AUTHOR: Robert Twyman
+## AUTHOR: George Needham
+
+## Copyright (C) 2020 University College London
+## Copyright (C) 2020 University of Manchester
+## Licensed under the Apache License, Version 2.0
+
 # Jakoby, B. W., Bercier, Y., Conti, M., Casey, M. E., Bendriem, B., & Townsend, D. W. (2011). Physical and clinical performance of the mCT time-of-flight PET/CT scanner. Physics in Medicine and Biology, 56(8), 2375–2389. https://doi.org/10.1088/0031-9155/56/8/004
+
+## Geometry for mCT Scanner
+
+#    WORLD
 
 /gate/world/geometry/setXLength  200. cm 
 /gate/world/geometry/setYLength  200. cm
 /gate/world/geometry/setZLength  100. cm
 
 
-# DEFINE PET ENVIRONMENT
+#    ECAT
 
 /gate/world/daughters/name  ecat
 /gate/world/daughters/insert cylinder
@@ -15,26 +24,26 @@
 /gate/ecat/geometry/setRmax 70. cm
 /gate/ecat/geometry/setRmin 42.1 cm
 /gate/ecat/geometry/setHeight 25. cm
-
-# DEFINE MATERIAL
 /gate/ecat/setMaterial Air
 /gate/ecat/vis/forceWireframe
 /gate/ecat/vis/setColor grey
 /gate/ecat/vis/setVisible true
 
-# DEFINE BLOCK
-/gate/ecat/daughters/name detectorBlock
-/gate/ecat/daughters/insert box
-/gate/detectorBlock/placement/setTranslation 42.1 0. 0. cm
-/gate/detectorBlock/geometry/setXLength 2. cm
-/gate/detectorBlock/geometry/setYLength 5.6 cm 
-/gate/detectorBlock/geometry/setZLength 5.6 cm
-/gate/detectorBlock/setMaterial Air
-/gate/detectorBlock/vis/setColor green
+#     B L O C K
 
-# DEFINE CRYSTAL
-/gate/detectorBlock/daughters/name crystal
-/gate/detectorBlock/daughters/insert box
+/gate/ecat/daughters/name block
+/gate/ecat/daughters/insert box
+/gate/block/placement/setTranslation 42.1 0. 0. cm
+/gate/block/geometry/setXLength 2. cm
+/gate/block/geometry/setYLength 5.2 cm 
+/gate/block/geometry/setZLength 5.2 cm
+/gate/block/setMaterial Air
+/gate/block/vis/setColor green
+
+#      C R Y S T A L
+
+/gate/block/daughters/name crystal
+/gate/block/daughters/insert box
 /gate/crystal/placement/setTranslation 0. 0. 0. mm
 /gate/crystal/geometry/setXLength 20. mm
 /gate/crystal/geometry/setYLength 4. mm
@@ -45,14 +54,14 @@
 /gate/crystal/vis/setVisible false
 
 
-# REPEAT BLOCK IN RING	
-/gate/detectorBlock/repeaters/insert ring
-/gate/detectorBlock/ring/setRepeatNumber 48
-/gate/detectorBlock/repeaters/insert linear
-/gate/detectorBlock/linear/setRepeatNumber 4
-/gate/detectorBlock/linear/setRepeatVector 0. 0. 60. mm
+#         R E P E A T  B L O C K
+/gate/block/repeaters/insert ring
+/gate/block/ring/setRepeatNumber 48
+/gate/block/repeaters/insert linear
+/gate/block/linear/setRepeatNumber 4
+/gate/block/linear/setRepeatVector 0. 0. 60. mm
 
-# REPEAT CRYSTAL IN BLOCK
+#         R E P E A T   C R Y S T A L
 /gate/crystal/repeaters/insert cubicArray
 /gate/crystal/cubicArray/setRepeatNumberX 1
 /gate/crystal/cubicArray/setRepeatNumberY 13
@@ -60,10 +69,8 @@
 /gate/crystal/cubicArray/setRepeatVector 0. 4. 4. mm
 
 # ATTACH TO SYSTEM TREE
-/gate/systems/ecat/block/attach detectorBlock
+/gate/systems/ecat/block/attach block
 /gate/systems/ecat/crystal/attach crystal
-
-# DEFINE SENSITIVE DETECTOR
 /gate/crystal/attachCrystalSD
 
 # VERBOSITY ON SYSTEM
