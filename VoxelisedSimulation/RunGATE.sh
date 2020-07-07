@@ -33,11 +33,16 @@ then
 	QT=1 
 fi
 
+
 ## Get the activity source position in x,y,z
 SourcePositions=$( SubScripts/GetSourcePosition.sh $ActivityFilename 2>/dev/null ) 
 SourcePositionX=`echo ${SourcePositions} |awk '{print $1}'`
 SourcePositionY=`echo ${SourcePositions} |awk '{print $2}'`
 SourcePositionZ=`echo ${SourcePositions} |awk '{print $3}'`
+if [ $? -ne 0 ]; then
+	echo "Error in SubScripts/GetSourcePosition.sh"
+	exit 1
+fi
 
 
 ## Get the attenuation map translation in x,y,z
@@ -45,6 +50,10 @@ AttenuationTranslations=$( SubScripts/GetAttenuationTranslation.sh $AttenuationF
 AttenuationTranslationX=`echo ${AttenuationTranslations} |awk '{print $1}'`
 AttenuationTranslationY=`echo ${AttenuationTranslations} |awk '{print $2}'`
 AttenuationTranslationZ=`echo ${AttenuationTranslations} |awk '{print $3}'`
+if [ $? -ne 0 ]; then
+	echo "Error in SubScripts/GetAttenuationTranslation.sh"
+	exit 1
+fi
 
 
 ## Get the voxel size in x,y,z (stir_print_voxel_sizes.sh is found: $STIRINSTALLPATH/bin/stir_print_voxel_sizes.sh)
@@ -53,6 +62,10 @@ AttenuationVoxelSize=$( stir_print_voxel_sizes.sh $AttenuationFilename 2>/dev/nu
 AttenuationVoxelSizeX=`echo ${AttenuationVoxelSize} |awk '{print $3}'`
 AttenuationVoxelSizeY=`echo ${AttenuationVoxelSize} |awk '{print $2}'`
 AttenuationVoxelSizeZ=`echo ${AttenuationVoxelSize} |awk '{print $1}'`
+if [ $? -ne 0 ]; then
+	echo "Error in stir_print_voxel_sizes.sh"
+	exit 1
+fi
 
 
 ## Get the number of voxels in x,y,z (get_num_voxels.sh is found: $STIRINSTALLPATH/bin/get_num_voxels.sh)
@@ -60,6 +73,11 @@ NumberOfVoxels=$( get_num_voxels.sh $AttenuationFilename 2>/dev/null )
 NumberOfVoxelsX=`echo ${NumberOfVoxels} |awk '{print $1}'`
 NumberOfVoxelsY=`echo ${NumberOfVoxels} |awk '{print $2}'`
 NumberOfVoxelsZ=`echo ${NumberOfVoxels} |awk '{print $3}'`
+if [ $? -ne 0 ]; then
+	echo "Error in get_num_voxels.sh"
+	exit 1
+fi
+
 
 ## Run GATE with arguments
 if [ $QT -eq 1 ]; then
