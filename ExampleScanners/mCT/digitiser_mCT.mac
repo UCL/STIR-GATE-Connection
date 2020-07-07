@@ -17,6 +17,8 @@
 /gate/digitizer/Singles/insert                        upholder
 /gate/digitizer/Singles/upholder/setUphold            650. keV
 
+/gate/digitizer/Singles/insert timeResolution 
+/gate/digitizer/Singles/timeResolution/setTimeResolution 540 ps
 
 
 #=====================================================
@@ -27,7 +29,7 @@
 # DEFINE A DELAY COINCIDENCE SORTER 
 # TO ESTIMATE RANDOM COINCIDENCES
 
-/gate/digitizer/Coincidences/setWindow          4.066 ns
+/gate/digitizer/Coincidences/setWindow          4.1 ns
 
 /gate/digitizer/name                            delay
 /gate/digitizer/insert                          coincidenceSorter
