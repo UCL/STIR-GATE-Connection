@@ -37,6 +37,7 @@ ROOT_FILENAME=Sim_$TASK_ID
 
 ./RunGATE.sh $GATEMainMacro $ROOT_FILENAME $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
+
 if [ $? -ne 0 ]; then
 	echo "Error in RunGATE.sh"
 	exit 1
