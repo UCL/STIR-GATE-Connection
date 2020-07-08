@@ -20,8 +20,9 @@
 echo "TASK_ID = " $SGE_TASK_ID
 TASK_ID=$SGE_TASK_ID
 
+echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 
-# Here we assume that we have setup
+# Here we assume that we have setup the activity and attenuation
 ActivityFilename=activity.h33
 AttenuationFilename=attenuation_GATE.h33
 
@@ -48,5 +49,7 @@ if [ $? -ne 0 ]; then
 	echo "Error in RunGATE.sh"
 	exit 1
 fi
+
+echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`
 
 exit 0
