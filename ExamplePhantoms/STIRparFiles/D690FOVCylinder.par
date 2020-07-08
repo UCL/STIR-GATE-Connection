@@ -1,0 +1,29 @@
+generate_image Parameters :=
+output filename:=activity
+
+; D690 has axial FOV of 157 mm and transaxial FOV 700 mm
+; Bettinardi, V., et. al., (2011). Physical Performance of the new hybrid PETCT Discovery-690. Medical Physics, 38(10), 5394–5411. https://doi.org/10.1118/1.3635220
+
+
+; Create volume (804, 804, 404) mm
+X output image size (in pixels):=201
+Y output image size (in pixels):=201
+Z output image size (in pixels):=51
+X voxel size (in mm):= 4
+Y voxel size (in mm):= 4
+Z voxel size (in mm):= 4
+
+  Z number of samples to take per voxel := 1
+  Y number of samples to take per voxel := 1
+  X number of samples to take per voxel := 1
+
+shape type:= ellipsoidal cylinder
+Ellipsoidal Cylinder Parameters:=
+   radius-x (in mm):=350
+   radius-y (in mm):=350
+   length-z (in mm):=150
+   origin (in mm):={100,0,0}  ;(z,y,x)
+   END:=
+value :=10
+
+END:=
