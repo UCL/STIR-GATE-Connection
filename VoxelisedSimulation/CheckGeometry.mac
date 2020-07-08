@@ -31,9 +31,9 @@
 /gate/output/allowNoOutput
 
 ## ACQUISITION TIME (short for visualisation purpose)
-/gate/application/setTimeSlice   0.0000001 s
-/gate/application/setTimeStart   0 ms
-/gate/application/setTimeStop    0.0000001 s
+/gate/application/setTimeSlice   0.01 s
+/gate/application/setTimeStart   {StartTime} ms
+/gate/application/setTimeStop    {EndTime} s
 
 /gate/application/startDAQ
 
