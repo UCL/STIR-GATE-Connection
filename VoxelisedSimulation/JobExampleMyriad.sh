@@ -11,7 +11,6 @@
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
-SGE_TASK_ID=1
 echo "TASK_ID = " $SGE_TASK_ID
 TASK_ID=$SGE_TASK_ID
 
