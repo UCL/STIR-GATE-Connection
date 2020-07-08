@@ -12,6 +12,11 @@
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
+## This is an example job submission script for the UCL Computer Science Cluster to perform multiple GATE simulations. 
+## Each simulatuion is given a unique variable $SGE_TASK_ID by the scheduler, which is an int.
+## Using $TASK_ID, the start and end times of each simulation are staggered by staggered by 1 second.
+## Each simulatiuon will output a unique root file, which can be later unlisted.
+
 echo "TASK_ID = " $SGE_TASK_ID
 TASK_ID=$SGE_TASK_ID
 
@@ -43,7 +48,5 @@ if [ $? -ne 0 ]; then
 	echo "Error in RunGATE.sh"
 	exit 1
 fi
-
-exit 0
 
 exit 0
