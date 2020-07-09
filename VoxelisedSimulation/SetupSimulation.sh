@@ -33,10 +33,12 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+
 ## Check extension of ACTIVITY and ATTENUATION.
+ACT_EXT="${ACTIVITY##*.}"
+ATT_EXT="${ATTENUATION##*.}"
 ## If they are .par of .hv, send to SubScripts/GenerateSTIRGATEImages.sh
-if [ "${ACTIVITY: -3}" == "par" -a "${ATTENUATION: -3}" == "par" ] ||\
- [ "${ACTIVITY: -2}" == "hv" -a "${ATTENUATION: -2}" == "hv" ]
+if [ "$ACT_EXT" == "par" -a "$ATT_EXT" == "par" ] || [ "$ACT_EXT" == "hv" -a "$ATT_EXT" == "hv" ]
 then
 	GenerateSTIRGATEImagesOUTPUT=`SubScripts/GenerateSTIRGATEImages.sh $ACTIVITY $ATTENUATION 2>/dev/null`
 	if [ $? -ne 0 ] ;then
