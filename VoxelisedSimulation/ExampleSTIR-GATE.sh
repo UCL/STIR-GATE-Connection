@@ -25,39 +25,46 @@ fi
 echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 
 ##### ==============================================================
-## Activity and attenuation files
-##### ==============================================================
-
-## Generate example STIR activity and attenuation images and copy to main dir.
-ActivityPar=../ExamplePhantoms/STIRparFiles/SourceSingleCentralVoxel.par
-AttenuationPar=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
-
-## This could be done in SetupSimulation.sh but we need the $ActivityFilename and 
-## $AttenuationFilename for this example
-SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ActivityPar $AttenuationPar 2>/dev/null`
-## Get activity and attenuation filenames from $SourceFilenames
-ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
-AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
-
-##### ==============================================================
 ## GATE Arguments and files
 ##### ==============================================================
+
+## activity and attenuation files
+Activity=../ExamplePhantoms/STIRparFiles/SourceSingleCentralVoxel.par
+Attenuation=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
 GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
 StartTime=0  ## Start time in GATE time
-EndTime=1  ## End time in GATE time
+EndTime=0.001  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ROOT_FILENAME=Sim_$TASK_ID
 
+
+##### ==============================================================
+## Activity and attenuation files
+##### ==============================================================
+
+## This could be done in SetupSimulation.sh but we need the $ActivityFilename and 
+## $AttenuationFilename for this example
+SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $Activity $Attenuation 2>/dev/null`
+if [ $? -ne 0 ] ;then
+	echo "Error in SubScripts/GenerateSTIRGATEImages.sh"
+	echo $GenerateSTIRGATEImagesOUTPUT
+	exit 1
+fi
+## Get activity and attenuation filenames from $SourceFilenames
+ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
+AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
+
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
-./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
+./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $Activity $Attenuation
 # ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 if [ $? -ne 0 ] ;then
 	echo "Error in SetupSimulation.sh"
 	exit 1
 fi
+
 
 ##### ==============================================================
 ## RunGATE

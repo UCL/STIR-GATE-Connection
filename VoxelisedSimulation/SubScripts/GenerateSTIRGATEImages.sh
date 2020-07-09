@@ -33,17 +33,25 @@ elif [ "${Activity: -2}" == "hv" -a "${Attenuation: -2}" == "hv" ]; then
 	## If .hv files are given, set filename prefixes
 	ActivityFilename="${Activity%.*}"
 	AttenuationFilename="${Attenuation%.*}"
+else
+	echo "Error"
+	exit 1
 fi
+
+## Create a new copy of the image, this is to ensure the file format is consistant when going into GATE
+ActivityFilenameGATE=$ActivityFilename"_GATE"
+stir_math --including-first --times-scalar 1 $ActivityFilenameGATE".hv" $ActivityFilename".hv"
 
 ## Modify the scale of the attenuation file for GATE (requires int values).
 AttenuationFilenameGATE=$AttenuationFilename"_GATE"
-SubScripts/ModifyAttenuationImageForGate.sh $AttenuationFilename".hv" $AttenuationFilenameGATE
+stir_math --including-first --times-scalar 10000 $AttenuationFilenameGATE".hv" $AttenuationFilename".hv"
+
 
 ## Process .hv file into .h33 files.
 ## This adds fields: "!number of slices :=" and "slice thickness (pixels) :=".
-sh ./SubScripts/STIR2GATE_interfile.sh $ActivityFilename".h33" $ActivityFilename".hv" 
+sh ./SubScripts/STIR2GATE_interfile.sh $ActivityFilenameGATE".h33" $ActivityFilenameGATE".hv" 
 sh ./SubScripts/STIR2GATE_interfile.sh $AttenuationFilenameGATE".h33" $AttenuationFilenameGATE".hv" 
 
-echo $ActivityFilename".h33" $AttenuationFilenameGATE".h33"
+echo $ActivityFilenameGATE".h33" $AttenuationFilenameGATE".h33"
 
 exit 0
