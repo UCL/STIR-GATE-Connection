@@ -35,9 +35,13 @@ fi
 
 ## Check extension of ACTIVITY and ATTENUATION.
 ## If they are .par of .hv, send to SubScripts/GenerateSTIRGATEImages.sh
-if [ "${ACTIVITY: -3}" == "par" -a "${ATTENUATION: -3}" == "par" ] ||\
- [ "${ACTIVITY: -2}" == "hv" -a "${ATTENUATION: -2}" == "hv" ]
+
+if [ "${ACTIVITY: -3}" == "h33" -a "${ATTENUATION: -3}" == "h33" ]
 then
+	## User input a .h33 file for GATE to use. We assume everything is correct here
+	ActivityFilename=$ACTIVITY
+	AttenuationFilename=$ATTENUATION
+else
 	GenerateSTIRGATEImagesOUTPUT=`SubScripts/GenerateSTIRGATEImages.sh $ACTIVITY $ATTENUATION 2>/dev/null`
 	if [ $? -ne 0 ] ;then
 		echo "Error in SubScripts/GenerateSTIRGATEImages.sh"
@@ -47,10 +51,6 @@ then
 	## Get activity and attenuation filenames from $GenerateSTIRGATEImages and replace
 	ActivityFilename=`echo ${GenerateSTIRGATEImagesOUTPUT} |awk '{print $1}'`
 	AttenuationFilename=`echo ${GenerateSTIRGATEImagesOUTPUT} |awk '{print $2}'`
-else
-	# Otherwise, then generate voxelised phantom using STIR
-	ActivityFilename=$ACTIVITY
-	AttenuationFilename=$ATTENUATION
 fi
 
 # Check ActivityFilename and AttenuationFilename has extension "h33"

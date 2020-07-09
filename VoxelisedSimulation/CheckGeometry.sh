@@ -25,7 +25,7 @@ QT=1  # Tell RunGATE.sh to use QT visualisation
 StoreRootFilesDirectory=Output  # There is no file output from GATE
 TASK_ID=1  # No parallel processing required as no output
 StartTime=0  # Hardcoded in "CheckGeometry.mac"
-EndTime=1  # Hardcoded in "CheckGeometry.mac"
+EndTime=0.00000001  # Hardcoded in "CheckGeometry.mac"
 
 echo "Script initialised:" $(date +%d.%m.%y-%H:%M:%S)
 
