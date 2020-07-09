@@ -11,7 +11,7 @@
 #	- Opens Gate and creates DMAP for phantom (this should only be run once per phantom.)
 
 
-# {add parameter checks}
+# Usage Checks
 if [ $# != 4 ]
 then
 	echo "SetupSimulation: Setup scanner, voxelised phantom files and dmap"
@@ -33,17 +33,20 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-# Check extension of ACTIVITY and ATTENUATION
-if [ "${ACTIVITY##*.}" == "par"  ] && [ "${ATTENUATION##*.}" == "par"  ]
+## Check extension of ACTIVITY and ATTENUATION.
+## If they are .par of .hv, send to SubScripts/GenerateSTIRGATEImages.sh
+if [ "${ACTIVITY: -3}" == "par" -a "${ATTENUATION: -3}" == "par" ] ||\
+ [ "${ACTIVITY: -2}" == "hv" -a "${ATTENUATION: -2}" == "hv" ]
 then
-	# If "par", then generate voxelised phantom using STIR
-	ACTIVITYPAR=$ACTIVITY
-	ATTENUATIONPAR=$ATTENUATION
-	echo "Generating voxelised phantom"
-	SourceFilenames=`SubScripts/GenerateSTIRGATEImages.sh $ACTIVITYPAR $ATTENUATIONPAR 2>/dev/null`
-	## Get activity and attenuation filenames from $SourceFilenames and replace
-	ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
-	AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
+	GenerateSTIRGATEImagesOUTPUT=`SubScripts/GenerateSTIRGATEImages.sh $ACTIVITY $ATTENUATION 2>/dev/null`
+	if [ $? -ne 0 ] ;then
+		echo "Error in SubScripts/GenerateSTIRGATEImages.sh"
+		echo $GenerateSTIRGATEImagesOUTPUT
+		exit 1
+	fi
+	## Get activity and attenuation filenames from $GenerateSTIRGATEImages and replace
+	ActivityFilename=`echo ${GenerateSTIRGATEImagesOUTPUT} |awk '{print $1}'`
+	AttenuationFilename=`echo ${GenerateSTIRGATEImagesOUTPUT} |awk '{print $2}'`
 else
 	# Otherwise, then generate voxelised phantom using STIR
 	ActivityFilename=$ACTIVITY
