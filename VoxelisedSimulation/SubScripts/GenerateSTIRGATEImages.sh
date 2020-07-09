@@ -17,25 +17,22 @@ if [ $# -ne 2 ]; then
   exit 1
 fi
 
-ACTIVITY=$1  ## Activity parameter file
-ATTENUATION=$2  ## Attenuation parameter file
+Activity=$1  ## Activity parameter file
+Attenuation=$2  ## Attenuation parameter file
 STIRGATEHome=$PWD  
 
-ACT_EXT="${ACTIVITY##*.}"
-ATT_EXT="${ATTENUATION##*.}"
-
-if [ "$ACT_EXT" == "par" -a "$ATT_EXT" == "par" ]; then
+if [ "${Activity: -3}" == "par" -a "${Attenuation: -3}" == "par" ]; then
 	# If .par files are given, generate the data
-	ActivityFilename=`awk -F:= '/output filename/ { print $2 }' $ACTIVITY`
-	AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $ATTENUATION`
+	ActivityFilename=`awk -F:= '/output filename/ { print $2 }' $Activity`
+	AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $Attenuation`
 	## Generate images
 	generate_image $Activity 
-	generate_image $ATTENUATION
+	generate_image $Attenuation
 
-elif [ "$ACT_EXT" == "hv" -a "$ATT_EXT" == "hv" ]; then
+elif [ "${Activity: -2}" == "hv" -a "${Attenuation: -2}" == "hv" ]; then
 	## If .hv files are given, set filename prefixes
-	ActivityFilename="${ACTIVITY%.*}"
-	AttenuationFilename="${ATTENUATION%.*}"
+	ActivityFilename="${Activity%.*}"
+	AttenuationFilename="${Attenuation%.*}"
 fi
 
 ## Modify the scale of the attenuation file for GATE (requires int values).
