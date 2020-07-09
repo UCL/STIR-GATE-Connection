@@ -35,7 +35,7 @@ Attenuation=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
 ## OPTIONAL: Editable fields required by GATE macro scripts
 GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
 StartTime=0  ## Start time in GATE time
-EndTime=0.001  ## End time in GATE time
+EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ROOT_FILENAME=Sim_$TASK_ID
