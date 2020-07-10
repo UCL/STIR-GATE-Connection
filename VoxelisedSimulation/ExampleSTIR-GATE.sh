@@ -5,10 +5,9 @@
 
 ## An example of how to use this STIR-GATE-Connection project.
 
-## This script runs `SubScripts/GenerateSTIRGATEImages.sh`
-## to generate images from a parameter file using STIR.
-## Additional modifications are made to the interfile header 
-## for GATE compatibility.
+## Runs `SubScripts/GenerateSTIRGATEImages.sh` and `SetupSimulation.sh` to generate images from a parameter file using STIR and setup the GATE simulation.
+## Runs `RunGATE.sh` to simulate the photon emmissions of the phantom in the specified scanner.
+## Unlists the root file generated in the GATE simulation into sinograms using STIR functions.
 
 
 ## Job index for parallel GATE simulations
@@ -42,7 +41,7 @@ ROOT_FILENAME=Sim_$TASK_ID
 
 
 ##### ==============================================================
-## Activity and attenuation files
+## Create activity and attenuation files for GATE simulation
 ##### ==============================================================
 
 ## This could be done in SetupSimulation.sh but we need the $ActivityFilename and 

@@ -45,4 +45,4 @@ Scripts
 * `ExampleSTIR-GATE.sh`: example script to demonstrate how to use this STIR-GATE-Connection project. Generates data using STIR, converts it into a GATE compatible format, before running the GATE simulation.
 * `JobGATESimulationCS.sh` and `JobGATESimulationMyriad.sh`: example UCL CS/Myriad cluster job script to run parallel GATE simulations in an array job. These two platforms differ in job submission flag keys.
 * `RunGate.sh`: This script take and processes many inputs (see file for more detail) to setup the Gate simulations with the correct macro arguments.
-* `SetupSimulation.sh`: Copies all relevent scanner files, if two `*.par` files are given, will atempt to `GenerateSTIRGATEImages.sh`, and finally runs a GATE simulation to `SetupDmap.mac`.
+* `SetupSimulation.sh`: This script should be run before any GATE simulatiuon take place. The script copies all relevent scanner files. If this script is given two `*.par` files are given, will atempt to `GenerateSTIRGATEImages.sh`. If the script is given STIR readable volumes, it will convert them into a GATE readable form. Finally runs a GATE simulation to `SetupDmap.mac`. See file for more details.

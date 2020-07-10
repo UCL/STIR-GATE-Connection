@@ -3,18 +3,27 @@
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
-# This script should be run before any reconstruction.
+# This script should be run before any GATE simulations.
 
-# This script will:
-#	- Copy files from correct scanner geometry (runs SubScripts/PrepareScannerFiles.sh)
-#	- OPTIONAL: If ACTIVITY and ATTENUATION have "par" extension, use STIR to generate voxelised phantom
-#	- Opens Gate and creates DMAP for phantom (this should only be run once per phantom.)
+## This script:
+##	- Copies files from correct scanner geometry (runs SubScripts/PrepareScannerFiles.sh)
+##	- OPTIONAL: If ACTIVITY and ATTENUATION have "par" extension, use STIR to generate voxelised phantom
+##	- Opens Gate and creates DMAP for phantom (this should only be run once per phantom.)
 
+## Several arguements are required by this script:
+##  - ScannerType - A predefined scanner name in the ExampleScanner files directory.
+##  - StoreRootFilesDirectory - The directory the root files will be saved.
+##  - Activity - Activity file for setup. See below for more details.
+##  - Attenuation - Attenuation file for setup. See below for more details.
+
+## The activity and attenuation files to be provided can be one of two things. 
+## 1: These could be a STIR parameter file for generating data. See a collection of examples in `ExamplePhantoms/STIRparFiles/`.
+## 2: These could be a STIR reable voxelised phantom. 
 
 # Usage Checks
 if [ $# != 4 ]
 then
-	echo "SetupSimulation: Setup scanner, voxelised phantom files and dmap"
+	echo "SetupSimulation: This script sets up the scanner, voxelised phantom files, and dmap"
 	echo "Usage: ScannerType StoreRootFilesDirectory Activity(Par/Filename) Attenuation(Par/Filename)"
 	exit 1
 fi
