@@ -27,11 +27,11 @@ ActivityFilename=activity.h33
 AttenuationFilename=attenuation_GATE.h33
 
 if [ ! -f "$ActivityFilename" ]; then
-    echo "ActivityFilena = $ActivityFilename does not exist."
+    echo "ActivityFilename = $ActivityFilename does not exist."
 fi
 
 if [ ! -f "$AttenuationFilename" ]; then
-    echo "ActivityFilename = $AttenuationFilename does not exist."
+    echo "AttenuationFilename = $AttenuationFilename does not exist."
 fi
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
