@@ -27,6 +27,12 @@ The purpose of this project is to provide a simple method to:
 - combine and unlist root files for reconstruction using STIR
 
 
+Requirements
+=============
+
+This project is reliant on: ROOT, a minumum of STIR `release_4` branch (installed with ROOT support) or equivilant master, and GATE version 8.2. Both the STIR and GATE must be in your PATH. 
+
+
 Directories
 ===========
 
