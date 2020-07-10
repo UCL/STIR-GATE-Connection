@@ -32,7 +32,6 @@ fi
 if [ $ScannerType = "D690" ]; then
 	echo "Preparing D690 scanner files"
 	D690_DIR="../ExampleScanners/D690"
-	cp -vp $D690_DIR/csorter_D690.mac GATESubMacros/csorter.mac
 	cp -vp $D690_DIR/digitiser_D690.mac GATESubMacros/digitiser.mac
 	cp -vp $D690_DIR/geometry_D690.mac GATESubMacros/geometry.mac
 	cp -vp $D690_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
@@ -41,14 +40,21 @@ if [ $ScannerType = "D690" ]; then
 elif [ $ScannerType = "mMR" ]; then
 	echo "Preparing mMR scanner files"
 	mMR_DIR="../ExampleScanners/mMR"
-	cp -vp $mMR_DIR/csorter_mMR.mac GATESubMacros/csorter.mac
 	cp -vp $mMR_DIR/digitiser_mMR.mac GATESubMacros/digitiser.mac
 	cp -vp $mMR_DIR/geometry_mMR.mac GATESubMacros/geometry.mac
 	cp -vp $mMR_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
 	cp -vp $mMR_DIR/STIR_scanner.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
 
+elif [ $ScannerType = "mCT" ]; then
+	echo "Preparing mCT scanner files"
+	mCT_DIR="../ExampleScanners/mCT"
+	cp -vp $mCT_DIR/digitiser_mCT.mac GATESubMacros/digitiser.mac
+	cp -vp $mCT_DIR/geometry_mCT.mac GATESubMacros/geometry.mac
+	# cp -vp $mCT_DIR/root_header_template.hroot $StoreRootFilesDirectory/Templates/root_header_template.hroot
+	# cp -vp $mCT_DIR/STIR_scanner.hs $StoreRootFilesDirectory/Templates/STIR_scanner.hs
+
 else
-	echo "Invalid scanner name parsed. Please indicate 'D690' or 'mMR'."
+	echo "Invalid scanner name parsed. Please indicate 'D690', 'mMR', mCT."
 	exit 1
 fi
 
