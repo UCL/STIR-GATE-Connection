@@ -21,7 +21,7 @@ Activity=$1  ## Activity parameter file
 Attenuation=$2  ## Attenuation parameter file
 STIRGATEHome=$PWD  
 
-if [ "${Activity: -3}" == "par" -a "${Attenuation: -3}" == "par" ]; then
+if [ "${Activity##*.}" == "par" -a "${Attenuation##*.}" == "par" ]; then
 	# If .par files are given, generate the data
 	ActivityFilename=`awk -F:= '/output filename/ { print $2 }' $Activity`".hv"
 	AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $Attenuation`".hv"

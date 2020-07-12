@@ -45,12 +45,14 @@ fi
 ## Check extension of ACTIVITY and ATTENUATION.
 ## If they are .par of .hv, send to SubScripts/GenerateSTIRGATEImages.sh
 
-if [ "${ACTIVITY: -3}" == "h33" -a "${ATTENUATION: -3}" == "h33" ]
+if [ "${ACTIVITY##*.}" == "h33" -a "${ATTENUATION##*.}" == "h33" ]
 then
+	echo "User provided precreated .h33 files."
 	## User input a .h33 file for GATE to use. We assume everything is correct here
 	ActivityFilename=$ACTIVITY
 	AttenuationFilename=$ATTENUATION
 else
+	echo "\nRunning SubScripts/GenerateSTIRGATEImages.sh on\n    $ACTIVITY $ATTENUATION"
 	GenerateSTIRGATEImagesOUTPUT=`SubScripts/GenerateSTIRGATEImages.sh $ACTIVITY $ATTENUATION 2>/dev/null`
 	if [ $? -ne 0 ] ;then
 		echo "Error in SubScripts/GenerateSTIRGATEImages.sh"
@@ -65,14 +67,16 @@ fi
 # Check ActivityFilename and AttenuationFilename has extension "h33"
 if [ "${ActivityFilename##*.}" != "h33"  ] || [ "${AttenuationFilename##*.}" != "h33"  ]
 then
-	echo "SetupSimulation: ActivityFilename and/or AttenuationFilename does not have suffix '*.h33'"
+	echo "\nSetupSimulation: ActivityFilename and/or AttenuationFilename does not have suffix '*.h33'"
 	echo $ActivityFilename $AttenuationFilename
 	exit 1
 fi
 
+echo "\nSetting up GATE density map on using:"
+echo "    $AttenuationFilename"
 ## Run a very short simulation to setup and save dmap.hdr
 Gate GATESubMacros/SetupDmap.mac -a [AttenuationFilename,$AttenuationFilename]
 
-echo "SetupSimulation Complete"
+echo "\nSetupSimulation.sh Complete\n"
 
 exit 0
