@@ -48,6 +48,6 @@
 
 /gate/digitizer/name                            delay
 /gate/digitizer/insert                          coincidenceSorter
-/gate/digitizer/delay/setWindow                 11.5 ns
+/gate/digitizer/delay/setWindow                 4.9 ns
 /gate/digitizer/delay/setOffset                 500. ns
 
