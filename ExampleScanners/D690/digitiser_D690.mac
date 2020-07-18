@@ -38,16 +38,20 @@
 
 ## C O I N C I D E N C E S
 
-#/gate/digitizer/name                            Coincidences
-#/gate/digitizer/insert                          coincidenceSorter
-/gate/digitizer/Coincidences/setOffset          0. ns
-/gate/digitizer/Coincidences/setWindow          4.9 ns
+#/gate/digitizer/name                            	Coincidences
+#/gate/digitizer/insert                          	coincidenceSorter
+/gate/digitizer/Coincidences/setInputName 			Singles
+/gate/digitizer/Coincidences/setOffset          	0. ns
+/gate/digitizer/Coincidences/setWindow 				4.9 ns
+#/gate/digitizer/Coincidences/minSectorDifference 	2  ## Default=2 
+
 
 
 ## D E L A Y
 
-/gate/digitizer/name                            delay
-/gate/digitizer/insert                          coincidenceSorter
-/gate/digitizer/delay/setWindow                 4.9 ns
-/gate/digitizer/delay/setOffset                 500. ns
-
+/gate/digitizer/name 								Delayed
+/gate/digitizer/insert 								coincidenceSorter
+/gate/digitizer/Delayed/setInputName 				Singles
+/gate/digitizer/Delayed/setOffset 					200. ns
+/gate/digitizer/Delayed/setWindow 					4.9 ns
+#/gate/digitizer/Delayed/minSectorDifference 		2  ## Default=2 

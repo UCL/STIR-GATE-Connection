@@ -34,14 +34,15 @@
 ## ROOT LM OUTPUT
 
 /gate/output/root/enable
-/gate/output/root/setFileName            {StoreRootFilesDirectory}/{ROOT_FILENAME}
-/gate/output/root/setRootSinglesAdderFlag   0
-/gate/output/root/setRootSinglesReadoutFlag 0
-/gate/output/root/setRootHitFlag            0
-/gate/output/root/setRootSinglesFlag        0
-/gate/output/root/setRootOpticalFlag        0
-/gate/output/root/setRootNtupleFlag         0
-/gate/output/root/setRootCoincidencesFlag   1
+/gate/output/root/setFileName            		{StoreRootFilesDirectory}/{ROOT_FILENAME}
+/gate/output/root/setRootSinglesAdderFlag   	0
+/gate/output/root/setRootSinglesReadoutFlag 	0
+/gate/output/root/setRootHitFlag            	0
+/gate/output/root/setRootSinglesFlag       		1
+/gate/output/root/setRootOpticalFlag       		0
+/gate/output/root/setRootNtupleFlag        		0
+/gate/output/root/setRootCoincidencesFlag   	1
+/gate/output/root/setRootDelayedFlag 			1
 
 
 ## RANDOMS ENGINE AND SEED
