@@ -2,7 +2,8 @@
 
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
-Copyright (C) 2018-2019 University College London<br />
+Author: Robert Twyman<br />
+Copyright (C) 2018-2020 University College London<br />
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -17,7 +18,9 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 14:07:08 BST
 
-This is the directory contains examples of validated scanners.
+This directory contains examples of implemented scanners. These are GE Discovery 690 (D690) and Seimens mMR (mMR). 
+
+These directories should include the scanner specific `digitiser`, `geometry`, STIR interfile header, and template `hroot` file.
 
 Notes
 =======
