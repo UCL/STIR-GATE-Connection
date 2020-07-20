@@ -42,7 +42,7 @@
 /gate/output/root/setRootOpticalFlag       		0
 /gate/output/root/setRootNtupleFlag        		0
 /gate/output/root/setRootCoincidencesFlag   	1
-/gate/output/root/setRootDelayedFlag 			1
+#/gate/output/root/setRootDelayedFlag 			0
 
 
 ## RANDOMS ENGINE AND SEED
