@@ -13,7 +13,7 @@ Maximum number of non-arc-corrected bins := 344
 GATE scanner type := GATE_ECAT_PET
 GATE_ECAT_PET Parameters :=
 
-name of data file := ROOT_FILENAME.root
+name of data file := {ROOT_FILENAME}.root
 
 name of input TChain := Coincidences
 
@@ -40,15 +40,15 @@ Singles readout depth := 1
 
 ;
 ; If set the scattered events will be skipped
-exclude scattered events := 1
+exclude scattered events := {EXCLUDESCATTER}
 
 ;
 ; If set to 0 all the scatter events will be skipped
-maximum order of scatter := 1
+;maximum order of scatter := 1
 
 ;
 ; If set the random events will be skipped
-exclude random events := 1
+exclude random events := {EXCLUDERANDOM}
 
 ; 
 ; STIR will try to align the data. 
@@ -58,8 +58,8 @@ offset (num of detectors) := -4
 
 ; If want to deactivate set to [0, 10000]
 
-low energy window (keV)  := LOWTHRES
-upper energy window (keV) := UPTHRES
+low energy window (keV)  := {LOWTHRES}
+upper energy window (keV) := {UPTHRES}
 
 
 End GATE_ECAT_PET Parameters :=

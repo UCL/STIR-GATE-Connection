@@ -80,7 +80,7 @@ fi
 ## Unlist GATE data
 ##### ==============================================================
 
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME 0 0 
 if [ $? -ne 0 ]; then
 	echo "Error in ./SubScripts/UnlistRoot.sh"
 	exit 1
