@@ -21,7 +21,7 @@ UpperEngeryThreshold=1000
 echo "STIR-GATE-connection unlisting"
 
 if [ $# -lt 2 ]; then
-  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME [ ExcludeScatterFlag ExcludeRandomFlag ]" 1>&2
+  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME (no suffix) [ ExcludeScatterFlag ExcludeRandomFlag ]" 1>&2
   exit 1
 elif [ $# -lt 4 ]; then
 	ExcludeScatter=0
@@ -50,5 +50,7 @@ rm *.bak
 
 
 lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
+
+echo "Sinogram saved as ${StoreRootFilesDirectory}/sinogram_${ROOT_FILENAME}.hs"
 
 exit 0
