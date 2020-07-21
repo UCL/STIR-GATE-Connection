@@ -9,7 +9,7 @@
 
 # The Required Args:
 # - $1: Root files directory
-# - $2: Task_ID
+# - $2: ROOT_FILENAME (no suffix) 
 
 ## Optional Args:
 # - $3: Include Scatter flag (0 or 1. Default:1)
@@ -22,6 +22,8 @@ ROOT_FILENAME=$2
 ScatterFlag=$3
 RandomFlag=$4
 
+
+UnlistingDirectory="Unlisted/UnlistedSinograms"
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
@@ -71,7 +73,7 @@ cd $StoreRootFilesDirectory
 cp  Templates/lm_to_projdata_template.par lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{SinogramID}/${SinogramID}/g" lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s/{UNLISTINGDIRECTORY}/UnlistedSinograms/g" lm_to_projdata_${ROOT_FILENAME}.par
+sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" lm_to_projdata_${ROOT_FILENAME}.par
 
 
 cp  Templates/root_header_template.hroot  ${ROOT_FILENAME}.hroot
