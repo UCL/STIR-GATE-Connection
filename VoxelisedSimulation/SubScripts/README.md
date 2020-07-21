@@ -20,6 +20,7 @@ This directory contains a collection of scripts that are key to automatically fi
 
 Scripts
 =======
+* `EstimateGATESTIRNorm`: Creates normalisation correction sinogram from GATE measured data and STIR model data. 
 * `GenerateSTIRGATEImages.sh`: Generates STIR images from parameter files for GATE simulation. The attenuation file voxel values are heavily scaled and should not be used in STIR. Use the original attenuation file.
 * `GetAttenuationTranslation.sh`: shell script that reads an image with STIR and returns shifts for the attenuation translation.
 * `GetSourcePosition.sh`: shell script that reads an image with STIR and returns the source position offset for GATE
