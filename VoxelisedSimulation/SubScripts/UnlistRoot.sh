@@ -10,6 +10,13 @@
 # The Required Args:
 # - $1: Root files directory
 # - $2: Task_ID
+
+## Optional Args:
+# - $3: Include Scatter flag (0 or 1. Default:1)
+# - $4: Include Random flag (0 or 1. Default:1)
+
+
+## Input arguments
 StoreRootFilesDirectory=$1
 ROOT_FILENAME=$2
 ScatterFlag=$3
@@ -29,7 +36,7 @@ elif [ $# -lt 4 ]; then
 	RandomFlag=1
 fi
 
-## Ensure ScatterFlag and RandomFlag are 0 or 1
+## Ensure ScatterFlag and RandomFlag are 0 or 1. Set Exclude versions respectively
 if [ $ScatterFlag == 0 ]; then
 	ExcludeScatterFlag=1
 elif [ $ScatterFlag == 1 ]; then
@@ -52,6 +59,7 @@ fi
 SinogramID="Sino_${ROOT_FILENAME}_S${ScatterFlag}R${RandomFlag}"
 
 
+## Console ouput regarding unlisting
 echo "Unlisting ${StoreRootFilesDirectory}/${ROOT_FILENAME}.root"
 echo "Unlisting with EXCLUDESCATTER = ${ExcludeScatterFlag}"
 echo "Unlisting with EXCLUDERANDOM = ${ExcludeRandomFlag}"
@@ -75,9 +83,10 @@ sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" ${ROOT_FILENAME}.hroot
 rm *.bak
 
 
+## Perform Root file unlisting
 lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
 
-echo ""
-echo "Sinogram saved as ${StoreRootFilesDirectory}/${SinogramID}"
+## Echo sinogram filepath
+echo "Sinogram saved as ./${StoreRootFilesDirectory}/Unlisted/UnlistedSinograms/${SinogramID}"
 
 exit 0
