@@ -38,8 +38,8 @@ EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ROOT_FILENAME=Sim_$TASK_ID
-ExcludeScatter=0
-ExcludeRandoms=0
+UnlistScatter=1
+UnlistRandoms=1
 
 
 ##### ==============================================================
@@ -82,7 +82,7 @@ fi
 ## Unlist GATE data
 ##### ==============================================================
 
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $ExcludeScatter $ExcludeRandoms 
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
 if [ $? -ne 0 ]; then
 	echo "Error in ./SubScripts/UnlistRoot.sh"
 	exit 1
