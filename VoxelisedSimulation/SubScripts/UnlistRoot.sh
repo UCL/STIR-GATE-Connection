@@ -23,9 +23,14 @@ echo "STIR-GATE-connection unlisting"
 if [ $# -lt 2 ]; then
   echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME [ ExcludeScatterFlag ExcludeRandomFlag ]" 1>&2
   exit 1
-else
-	echo "Unlisting ${StoreRootFilesDirectory}/${ROOT_FILENAME}.root"
+elif [ $# -lt 4 ]; then
+	ExcludeScatter=0
+	ExcludeRandom=0
 fi
+
+echo "Unlisting ${StoreRootFilesDirectory}/${ROOT_FILENAME}.root"
+echo "Unlisting with EXCLUDESCATTER = ${ExcludeScatter}"
+echo "Unlisting with EXCLUDERANDOM = ${ExcludeRandom}"
 
 cd $StoreRootFilesDirectory
 
