@@ -1,7 +1,8 @@
 ## #! /bin/sh
 
 ## AUTHOR: Robert Twyman
-## Copyright (C) 2018-2020 University College London
+## AUTHOR: Kris Thielemans
+## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## Script is used to compute the normalisation factors for GATE data reconstruction.
