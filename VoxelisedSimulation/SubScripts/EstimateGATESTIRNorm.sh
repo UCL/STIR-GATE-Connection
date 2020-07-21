@@ -14,23 +14,26 @@
 
 ## PARAMETERS
 
-## Model Data Setup
-FOVCylindricalActivityFilename="activity.hv"
-STIR_Scanner_template=main_GATE_sim_dir/Output/Templates/STIR_scanner.hs
+if [ $# != 3 ]; then
+	echo "Usage: EstimateGATESTIRNorm.sh STIR_Scanner_template measured_data FOVCylindricalActivityVolumeFilename"
+	exit 1
+fi 
 
-## Measured Data
-measured_data=GATE_sino_DIR/GATE_sino.hs
+STIR_Scanner_template=$1
+measured_data=$2
+FOVCylindricalActivityVolumeFilename=$3
 
-## ML Normfactors loop numbers
+
+## ML Normfactors loop numbers (Hardcoded for now)
 outer_iters=5
 eff_iters=6
-
-## The filename of the data forward projected using STIR (Hardcoded)
 model_data=STIR_forward.hs
+
+## The filename of the data forward projected using STIR (Hardcoded for now)
 OutputFilename=norm_sino.hs
 
 ## Forward project using SITR to get model data
-forward_project STIR_forward $FOVCylindricalActivityFilename $STIR_Scanner_template
+forward_project STIR_forward $FOVCylindricalActivityVolumeFilename $STIR_Scanner_template
 
 
 ## find ML normfactors
