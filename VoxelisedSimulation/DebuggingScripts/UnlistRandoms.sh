@@ -13,6 +13,8 @@
 # - $2: Root files directory
 # - $3: ROOT_FILENAME_PREFIX (no suffix) 
 
+## Please note, this files is not actively maintained and is used for development.
+
 ## Input arguments
 
 if [ $# != 3 ]; then
@@ -35,7 +37,12 @@ ROOT_FILENAME_PREFIX=$3
 
 ## Subtract all from all(-randoms)
 echo "Subtracting all events from all events (minus Randoms)."
-stir_math -s --including-first --add ${OutputFilenamePrefix} ${StoreRootFilesDirectory}/Unlisted/UnlistedSinograms/Sino_${ROOT_FILENAME_PREFIX}_S1R1_f1g1d0b0.hs ${StoreRootFilesDirectory}/Unlisted/UnlistedSinograms/Sino_${ROOT_FILENAME_PREFIX}_S1R0_f1g1d0b0.hs
+stir_math -s --including-first --times-scalar -1 tmp_neg ${StoreRootFilesDirectory}/Unlisted/UnlistedSinograms/Sino_${ROOT_FILENAME_PREFIX}_S1R0_f1g1d0b0.hs
+stir_math -s --including-first --add ${OutputFilenamePrefix} ${StoreRootFilesDirectory}/Unlisted/UnlistedSinograms/Sino_${ROOT_FILENAME_PREFIX}_S1R1_f1g1d0b0.hs tmp_neg.hs
 echo "Saved sinogram as ${OutputFilenamePrefix}.hs"
+## Cleanups
+rm tmp_neg.hs
+rm tmp_neg.s
 
+# list_projdata_info --all ${OutputFilenamePrefix}".hs"
 exit 0
