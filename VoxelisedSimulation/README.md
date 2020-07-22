@@ -26,6 +26,7 @@ Note: Any paths to files/directories link are relative to the current working di
 Directories
 ===========
 
+* `DebuggingScripts/`: contains scripts useful for debugging.
 * `images/`: contains input and output images.
 * `GATESubMacros/`: contains a collection of GATE macros for simulation.
 * `Output/`: contains templates for unlisting and is used as the output of the GATE simulation and sinograms of the unlisted data.
