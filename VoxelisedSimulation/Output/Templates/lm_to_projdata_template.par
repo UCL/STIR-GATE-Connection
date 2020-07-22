@@ -1,7 +1,7 @@
 lm_to_projdata Parameters:=
 
   input file := {ROOT_FILENAME}.hroot
-  output filename prefix := Unlisted/{UNLISTINGDIRECTORY}/{SinogramID}
+  output filename prefix := {UNLISTINGDIRECTORY}/{SinogramID}
 
   ; parameters that determine the sizes etc of the output
        ; template_scanner.hs is delivered by `SubScripts/PrepareScannerFiles.sh`
