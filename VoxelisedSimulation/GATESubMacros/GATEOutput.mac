@@ -1,0 +1,55 @@
+## AUTHOR: Robert Twyman
+## Copyright (C) 2020 University College London
+## Licensed under the Apache License, Version 2.0 (the "License");
+
+
+## Output ROOT files
+
+## Save Singles and Coincidence Trees in their own files. Disable many aspects of Singles 
+
+/gate/output/tree/enable
+/gate/output/tree/addFileName {StoreRootFilesDirectory}/{ROOT_FILENAME}.root
+
+## Singles
+/gate/output/tree/addCollection Singles
+/gate/output/tree/Singles/branches/sourceID/disable
+/gate/output/tree/Singles/branches/runID/disable
+/gate/output/tree/Singles/branches/eventID/disable
+/gate/output/tree/Singles/branches/sourcePosX/disable
+/gate/output/tree/Singles/branches/sourcePosY/disable
+/gate/output/tree/Singles/branches/sourcePosZ/disable
+/gate/output/tree/Singles/branches/globalPosX/disable
+/gate/output/tree/Singles/branches/globalPosY/disable
+/gate/output/tree/Singles/branches/globalPosZ/disable
+/gate/output/tree/Singles/branches/time/disable
+/gate/output/tree/Singles/branches/energy/disable
+/gate/output/tree/Singles/branches/comptonPhantom/disable
+/gate/output/tree/Singles/branches/comptonCrystal/disable
+/gate/output/tree/Singles/branches/RayleighPhantom/disable
+/gate/output/tree/Singles/branches/RayleighCrystal/disable
+/gate/output/tree/Singles/branches/comptVolName/disable
+/gate/output/tree/Singles/branches/rotationAngle/disable
+/gate/output/tree/Singles/branches/axialPos/disable
+
+
+## Coincidences
+/gate/output/tree/addCollection Coincidences
+/gate/output/tree/Coincidences/branches/runID/disable
+/gate/output/tree/Coincidences/branches/rotationAngle/disable
+/gate/output/tree/Coincidences/branches/axialPos/disable
+
+
+
+
+
+
+
+
+## Create summary output
+/gate/output/summary/enable
+/gate/output/summary/setFileName Output/digit_summary.txt
+/gate/output/summary/addCollection Singles
+/gate/output/summary/addCollection Coincidences
+
+
+
