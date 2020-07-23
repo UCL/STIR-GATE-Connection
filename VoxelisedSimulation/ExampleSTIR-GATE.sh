@@ -38,8 +38,8 @@ EndTime=1  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ROOT_FILENAME=Sim_$TASK_ID
-UnlistScatter=1
-UnlistRandoms=1
+UnlistScatteredCoincidences=1
+UnlistRandomCoincidences=1
 
 
 ##### ==============================================================
@@ -83,7 +83,7 @@ fi
 ##### ==============================================================
 
 ## Unlist Coincidences, ROOT_FILENAME should be same as above, ignore "*.Coincidences.root" addition
-./SubScripts/UnlistCoincidences.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
+./SubScripts/UnlistCoincidences.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatteredCoincidences $UnlistRandomCoincidences 
 if [ $? -ne 0 ]; then
 	echo "Error in ./SubScripts/UnlistCoincidences.sh"
 	exit 1
