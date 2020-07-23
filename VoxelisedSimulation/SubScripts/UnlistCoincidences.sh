@@ -57,6 +57,10 @@ else
 	exit 1
 fi 
 
+
+## Rename the interpration of the ROOT file to have "*.Coincidences" in the name. Unlist the coincidence file.
+ROOT_FILENAME=$ROOT_FILENAME".Coincidences"
+
 ## Name of the sinogram file ID, uses Scatter and Random Flags
 SinogramID="Sino_${ROOT_FILENAME}_S${ScatterFlag}R${RandomFlag}"
 

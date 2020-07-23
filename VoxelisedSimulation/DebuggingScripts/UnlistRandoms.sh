@@ -28,10 +28,10 @@ ROOT_FILENAME_PREFIX=$3
 
 
 ## Unlist with all Trues, Scatter, Randoms
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME_PREFIX 1 1
+./SubScripts/UnlistCoincidences.sh $StoreRootFilesDirectory $ROOT_FILENAME_PREFIX 1 1
 
 ## Unlist with all Trues, Scatter
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME_PREFIX 1 0
+./SubScripts/UnlistCoincidences.sh $StoreRootFilesDirectory $ROOT_FILENAME_PREFIX 1 0
 
 
 

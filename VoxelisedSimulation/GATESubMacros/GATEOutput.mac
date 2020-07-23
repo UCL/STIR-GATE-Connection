@@ -15,7 +15,7 @@
 ## S I N G L E S 
 /gate/output/tree/addCollection Singles 
 
-## (exclude all the non-required branches)
+## (disable all the non-required branches)
 /gate/output/tree/Singles/branches/sourceID/disable
 /gate/output/tree/Singles/branches/runID/disable
 /gate/output/tree/Singles/branches/eventID/disable
@@ -39,7 +39,7 @@
 ## C O I N C I D E N C E S
 /gate/output/tree/addCollection Coincidences
 
-## (exclude all the non-required branches)
+## (disable all the non-required branches)
 /gate/output/tree/Coincidences/branches/runID/disable
 /gate/output/tree/Coincidences/branches/rotationAngle/disable
 /gate/output/tree/Coincidences/branches/axialPos/disable

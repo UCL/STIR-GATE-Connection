@@ -33,8 +33,9 @@ then
 	QT=1 
 fi
 
-## Compute the length of 1 of 100 TimeSlice(s) for GATE simulation
-TimeSlice="$(echo $StartTime $EndTime | awk '{ tmp=($2 - $1)/(100) ; printf"%0.10f", tmp }')"
+## Compute the length of 1 of NumSlices TimeSlice(s) for GATE simulation
+NumSlices=10
+TimeSlice="$(echo $StartTime $EndTime $NumSlices | awk '{ tmp=($2 - $1)/($3) ; printf"%0.10f", tmp }')"
 
 ## Get the activity source position in x,y,z
 SourcePositions=$( SubScripts/GetSourcePosition.sh $ActivityFilename 2>/dev/null ) 

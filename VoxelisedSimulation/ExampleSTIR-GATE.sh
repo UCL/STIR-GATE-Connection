@@ -82,9 +82,10 @@ fi
 ## Unlist GATE data
 ##### ==============================================================
 
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
+## Unlist Coincidences, ROOT_FILENAME should be same as above, ignore "*.Coincidences.root" addition
+./SubScripts/UnlistCoincidences.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
 if [ $? -ne 0 ]; then
-	echo "Error in ./SubScripts/UnlistRoot.sh"
+	echo "Error in ./SubScripts/UnlistCoincidences.sh"
 	exit 1
 fi
 

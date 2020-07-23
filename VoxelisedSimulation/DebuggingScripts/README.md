@@ -21,5 +21,5 @@ This directory contains a collection of scripts that are useful for debugging. P
 Scripts
 =======
 
-* `UnlistRandoms.sh`: Script unlists a root file twice, once with all coincidence event types and once without the randoms. Subtracting one from the other results in a sinogram of only randoms.
-* `UnlistScatter.sh`: Script unlists a root file twice, once with all coincidence event types and once without the scatter. Subtracting one from the other results in a sinogram of only scattered events.
+* `UnlistRandoms.sh`: Script unlists a root file coincidences twice, once with all coincidence event types and once without the randoms. Subtracting one from the other results in a sinogram of only randoms.
+* `UnlistScatter.sh`: Script unlists a root file coincidences twice, once with all coincidence event types and once without the scatter. Subtracting one from the other results in a sinogram of only scattered events.
