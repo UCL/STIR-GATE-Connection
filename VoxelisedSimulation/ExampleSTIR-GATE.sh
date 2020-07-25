@@ -59,7 +59,7 @@ ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
 AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
 
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
-./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $Activity $Attenuation
+./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
 # ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityPar $AttenuationPar
 if [ $? -ne 0 ] ;then
 	echo "Error in SetupSimulation.sh"
