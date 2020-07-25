@@ -22,6 +22,11 @@ TASK_ID=$SGE_TASK_ID
 
 echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 
+## Sleep for up to 5 minutes to stagger executable loading
+SLEEPTIME=$((1 + RANDOM % 300))
+echo "Sleeping ${SLEEPTIME} seconds"  
+sleep ${SLEEPTIME}
+
 # Here we assume that we have setup the activity and attenuation
 ActivityFilename=activity.h33
 AttenuationFilename=attenuation_GATE.h33
