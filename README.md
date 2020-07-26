@@ -22,15 +22,19 @@ limitations under the License.
 About
 ===========
 The purpose of this project is to provide a simple method to: 
-- create a voxelised phantom from a parameter file or image using STIR functionality
-- setup and run Gate in cluster array jobs
+- create a GATE compatible voxelised phantom from a parameter file or interfile using STIR functionality
+- setup and run GATE in cluster array jobs 
 - combine and unlist root files for reconstruction using STIR
 
+See `STIR-GATE-Connection/VoxelisedSimulation/README.md` for a Tutorial.
+
+New to STIR? Checkout the website (http://stir.sourceforge.net/) and github (https://github.com/UCL/STIR).
+New to GATE? Checkout their website (http://www.opengatecollaboration.org/) and their incredibly useful UsersGuide (https://opengate.readthedocs.io/en/latest/index.html) for all things GATE. 
 
 Requirements
 =============
 
-This project is reliant on: ROOT, a minumum of STIR `release_4` branch (installed with ROOT support) or equivilant master, and GATE version 8.2. Both the STIR and GATE must be in your PATH. 
+This project is reliant on: ROOT, a minumum of STIR `release_4` branch (https://github.com/UCL/STIR/tree/release_4) installed with ROOT support or equivilant master, and GATE version 8.2. GATE has dependancy on Geant4 and ROOT. Both STIR install `bin` and GATE `bin` must be in your PATH.
 
 
 Directories

@@ -19,8 +19,8 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 14:07:08 BST
 
-This directory contains the main macro files used for the GATE simulations and example scripts.
-Note: Any paths to files/directories link are relative to the current working directory.
+This directory contains the files for GATE simulations, example scripts and job scripts.
+Note: Any paths to files/directories are relative to this directory, all calls should be made from here. No testing has been done otherwise.
 
 
 Directories
