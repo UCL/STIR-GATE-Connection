@@ -20,7 +20,7 @@ limitations under the License.
 
 Created:  Mon 30 Sep 2019 14:07:08 BST
 
-This directory is used to create the input files for the GATE simulation.
+This directory is used to create XCAT files for GATE simulation.
 
 
 Files
@@ -29,4 +29,3 @@ Files
 * `create_XCAT.par`: parameter files to generate XCAT images
 * `CreateXCATImage.sh`: creates (i) input_image_atn_1.bin and (ii) input_image_act_1.bin. licence is needed
 * `input_image_atn_1.hv`: Header file for input_image_atn_1.bin. User needs to check that image size and voxel size match with the one of "create_XCAT.par".
-* `modifyAttenuationImageForGate.sh`: the attenuation image needs to be converted from float to int  so that GATE can use its thresholding method to define tissue classes: (we multiplied it by 10000)
