@@ -29,8 +29,8 @@ Directories
 * `DebuggingScripts/`: contains scripts useful for debugging.
 * `images/`: contains input and output images.
 * `GATESubMacros/`: contains a collection of GATE macros for simulation.
-* `Output/`: contains templates for unlisting and is used as the output of the GATE simulation and sinograms of the unlisted data.
 * `SubScripts/`: contains a collection of scripts that are key to automatically finding and computing variables for GATE similations.
+* `Templates/`: contains a number of template files for unlisting ROOT files.
 
 
 Files
