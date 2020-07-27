@@ -81,11 +81,6 @@ if [ $? -ne 0 ]; then
 fi
 
 
-
-echo "Making Output Directories"
-mkdir $StoreRootFilesDirectory/images
-
-
 ## Run GATE with arguments
 if [ $QT -eq 1 ]; then
 

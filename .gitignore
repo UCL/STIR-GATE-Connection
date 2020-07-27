@@ -86,3 +86,7 @@ install_manifest.txt
 *.idea
 *.user
 *.root
+
+VoxelisedSimulation/GATESubMacros/digitiser.mac
+
+VoxelisedSimulation/GATESubMacros/geometry.mac

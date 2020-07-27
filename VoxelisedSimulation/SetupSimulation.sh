@@ -72,6 +72,13 @@ then
 	exit 1
 fi
 
+
+echo "Making Output Directories"
+mkdir $StoreRootFilesDirectory
+mkdir $StoreRootFilesDirectory/images
+mkdir $StoreRootFilesDirectory/Unlisted
+mkdir $StoreRootFilesDirectory/Unlisted/UnlistedSinograms
+
 echo "\nSetting up GATE density map on using:"
 echo "    $AttenuationFilename"
 ## Run a very short simulation to setup and save dmap.hdr

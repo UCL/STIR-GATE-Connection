@@ -70,13 +70,13 @@ echo "Unlisting with EXCLUDERANDOM = ${ExcludeRandomFlag}"
 cd $StoreRootFilesDirectory
 
 #============= create parameter file from template =============
-cp  Templates/lm_to_projdata_template.par lm_to_projdata_${ROOT_FILENAME}.par
+cp  ../Templates/lm_to_projdata_template.par lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{SinogramID}/${SinogramID}/g" lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" lm_to_projdata_${ROOT_FILENAME}.par
 
 
-cp  Templates/root_header_template.hroot  ${ROOT_FILENAME}.hroot
+cp  ../Templates/root_header_template.hroot  ${ROOT_FILENAME}.hroot
 sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" ${ROOT_FILENAME}.hroot
 sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" ${ROOT_FILENAME}.hroot
 sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" ${ROOT_FILENAME}.hroot
