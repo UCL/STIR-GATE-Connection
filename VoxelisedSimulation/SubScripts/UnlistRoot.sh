@@ -23,7 +23,7 @@ ScatterFlag=$3
 RandomFlag=$4
 
 
-UnlistingDirectory="Unlisted/UnlistedSinograms"
+UnlistingDirectory="$StoreRootFilesDirectory/Unlisted/UnlistedSinograms"
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
@@ -67,26 +67,24 @@ echo "Unlisting with EXCLUDESCATTER = ${ExcludeScatterFlag}"
 echo "Unlisting with EXCLUDERANDOM = ${ExcludeRandomFlag}"
 
 
-cd $StoreRootFilesDirectory
-
 #============= create parameter file from template =============
-cp  ../Templates/lm_to_projdata_template.par lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s/{SinogramID}/${SinogramID}/g" lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" lm_to_projdata_${ROOT_FILENAME}.par
+cp  Templates/lm_to_projdata_template.par $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
+sed -i.bak "s|{ROOT_FILENAME}|$StoreRootFilesDirectory/${ROOT_FILENAME}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
+sed -i.bak "s/{SinogramID}/${SinogramID}/g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
+sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 
 
-cp  ../Templates/root_header_template.hroot  ${ROOT_FILENAME}.hroot
-sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" ${ROOT_FILENAME}.hroot
-sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" ${ROOT_FILENAME}.hroot
-sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" ${ROOT_FILENAME}.hroot
-sed -i.bak "s/{EXCLUDESCATTER}/${ExcludeScatterFlag}/g" ${ROOT_FILENAME}.hroot
-sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" ${ROOT_FILENAME}.hroot
-rm *.bak
+cp  Templates/root_header_template.hroot  $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+sed -i.bak "s/{EXCLUDESCATTER}/${ExcludeScatterFlag}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+rm $StoreRootFilesDirectory/*.bak
 
-
+pwd
 ## Perform Root file unlisting
-lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
+lm_to_projdata $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 
 ## Echo sinogram filepath
 echo "Sinogram saved as ./${StoreRootFilesDirectory}/Unlisted/UnlistedSinograms/${SinogramID}"
