@@ -75,7 +75,7 @@ fi
 echo "\nSetting up GATE density map on using:"
 echo "    $AttenuationFilename"
 ## Run a very short simulation to setup and save dmap.hdr
-Gate GATESubMacros/SetupDmap.mac -a [AttenuationFilename,$AttenuationFilename]
+Gate GATESubMacros/SetupDmap.mac -a [AttenuationFilename,$AttenuationFilename][StoreRootFilesDirectory,$StoreRootFilesDirectory]
 
 echo "\nSetupSimulation.sh Complete\n"
 
