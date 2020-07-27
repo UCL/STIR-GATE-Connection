@@ -1,16 +1,6 @@
-#$ -S /bin/bash
-#$ -l h_vmem=1G
-#$ -l tmem=1G
-#$ -l h_rt=10:00:00
-
-#$ -t 1-100:1
-# -tc 20
-#$ -cwd
-#$ -j y
-#$ -N MergeImages
-
 ## AUTHOR: Ludovica Brusaferri
-## Copyright (C) 2018-2019 University College London
+## AUTHOR: Robert Twyman
+## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
 startFile=$(($((${TASK_ID}-1))*200 +1))
