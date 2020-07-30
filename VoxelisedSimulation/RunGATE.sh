@@ -11,13 +11,13 @@
 
 if [ $# != 8 ] && [ $# !=9 ]; then
   echo "Error in $0 with number of arguments."
-  echo "Usage: $0 GATEMainMacro ROOT_FILENAME ActivityFilename AttenuationFilename SimuId StartTime EndTime [QT]" 1>&2
+  echo "Usage: $0 GATEMainMacro ROOT_FILENAME_PREFIX ActivityFilename AttenuationFilename SimuId StartTime EndTime [QT]" 1>&2
   exit 1
 fi
 
 # Parameters for GATE
 GATEMainMacro=$1
-ROOT_FILENAME=$2
+ROOT_FILENAME_PREFIX=$2
 ActivityFilename=$3
 AttenuationFilename=$4
 StoreRootFilesDirectory=$5
@@ -87,7 +87,7 @@ if [ $QT -eq 1 ]; then
 
 	echo "Running Gate with visualisation."
 	Gate --qt $GATEMainMacro -a \
-[SimuId,$TASK_ID][ROOT_FILENAME,$ROOT_FILENAME]\
+[SimuId,$TASK_ID][ROOT_FILENAME_PREFIX,$ROOT_FILENAME_PREFIX]\
 [StartTime,$StartTime][EndTime,$EndTime][TimeSlice,$TimeSlice]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [NumberOfVoxelsX,$NumberOfVoxelsX][NumberOfVoxelsY,$NumberOfVoxelsY][NumberOfVoxelsZ,$NumberOfVoxelsZ]\
@@ -100,7 +100,7 @@ else
 
 	echo "Running Gate."
 	Gate $GATEMainMacro -a \
-[SimuId,$TASK_ID][ROOT_FILENAME,$ROOT_FILENAME]\
+[SimuId,$TASK_ID][ROOT_FILENAME_PREFIX,$ROOT_FILENAME_PREFIX]\
 [StartTime,$StartTime][EndTime,$EndTime][TimeSlice,$TimeSlice]\
 [StoreRootFilesDirectory,$StoreRootFilesDirectory]\
 [NumberOfVoxelsX,$NumberOfVoxelsX][NumberOfVoxelsY,$NumberOfVoxelsY][NumberOfVoxelsZ,$NumberOfVoxelsZ]\
