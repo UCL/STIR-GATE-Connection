@@ -19,7 +19,7 @@
 /gate/VoxPhantom/geometry/setRangeToMaterialFile GATESubMacros/AttenuationConv.dat
 
 # Load distance map (dmap)
-/gate/VoxPhantom/geometry/distanceMap images/output/dmap.hdr
+/gate/VoxPhantom/geometry/distanceMap {StoreRootFilesDirectory}/images/dmap.hdr
 
 # UNITS TO MATERIAL CONVERSION DESCRIPTOR (label or HU values)
 # These are given as arguements to the GATE main.
@@ -35,7 +35,7 @@
 # to get mu map (REQUIRES GATE > 8.2)
 /gate/actor/addActor MuMapActor getMuMap
 /gate/actor/getMuMap/attachTo VoxPhantom
-/gate/actor/getMuMap/save images/output/Phantom{SimuId}.hdr
+/gate/actor/getMuMap/save {StoreRootFilesDirectory}/images/Phantom{SimuId}.hdr
 /gate/actor/getMuMap/setVoxelSize {AttenuationVoxelSizeX} {AttenuationVoxelSizeY} {AttenuationVoxelSizeZ}  mm
 /gate/actor/getMuMap/setResolution {NumberOfVoxelsX} {NumberOfVoxelsY} {NumberOfVoxelsZ}
 /gate/actor/getMuMap/setEnergy 511 keV

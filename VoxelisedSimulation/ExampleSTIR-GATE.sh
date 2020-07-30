@@ -90,6 +90,7 @@ fi
 ## Unlist GATE data
 ##### ==============================================================
 
+## Script unlists the root file into a sinogram. Here unlisting scatter and randoms are optional
 ./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
 if [ $? -ne 0 ]; then
 	echo "Error in ./SubScripts/UnlistRoot.sh"

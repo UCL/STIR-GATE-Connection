@@ -29,8 +29,8 @@
 /gate/VoxPhantom/geometry/setRangeToMaterialFile GATESubMacros/AttenuationConv.dat
 
 # Save dmap.hdr (need the later `/gate/run/initialize` to actually save)
-/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo images/output/dmap.hdr
-/gate/VoxPhantom/geometry/distanceMap images/output/dmap.hdr
+/gate/VoxPhantom/geometry/buildAndDumpDistanceTransfo {StoreRootFilesDirectory}/images/dmap.hdr
+/gate/VoxPhantom/geometry/distanceMap {StoreRootFilesDirectory}/images/dmap.hdr
 
 
 ## PHYSICAL INTERACTIONS
