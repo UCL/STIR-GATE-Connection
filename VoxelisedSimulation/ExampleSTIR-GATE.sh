@@ -48,7 +48,6 @@ UnlistScatteredCoincidences=1  ## Unlist Scattered photon coincidence events (0 
 UnlistRandomCoincidences=1  ## Unlist Random coincidence events (0 or 1)
 
 
-rm -r $StoreRootFilesDirectory
 ##### ==============================================================
 ## Create activity and attenuation files for GATE simulation
 ##### ==============================================================
