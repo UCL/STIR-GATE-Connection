@@ -27,7 +27,7 @@ echo "Sleeping ${SLEEPTIME} seconds"
 sleep ${SLEEPTIME}
 
 # Here we assume that we have setup the activity and attenuation
-ActivityFilename=activity.h33
+ActivityFilename=activity_GATE.h33
 AttenuationFilename=attenuation_GATE.h33
 
 if [ ! -f "$ActivityFilename" ]; then
@@ -39,12 +39,16 @@ if [ ! -f "$AttenuationFilename" ]; then
 fi
 
 ## OPTIONAL: Editable fields required by GATE macro scripts
+TimePerGATESim=10  # in seconds
 GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
-StartTime=$(expr $TASK_ID - 1)  ## Start time in GATE time
-EndTime=$(expr $TASK_ID)  ## End time in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data
 ScannerType="D690"  # Scanner type from Examples (eg. D690/mMR).
 ROOT_FILENAME=Sim_$TASK_ID
+
+## Start and End time in GATE time
+StartTime="$(echo $TASK_ID $TimePerGATESim | awk '{ tmp=(( $1 - 1 ) * $2) ; printf"%0.0f", tmp }')"
+EndTime="$(echo $TASK_ID $TimePerGATESim | awk '{ tmp=( $1  * $2) ; printf"%0.0f", tmp }')"
+
 
 ./RunGATE.sh $GATEMainMacro $ROOT_FILENAME $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
