@@ -44,8 +44,8 @@ StoreRootFilesDirectory=Output  ## Save location of root data (default: `Output/
 ScannerType="D690"  # Selection of scanner from Examples (eg. D690/mMR)
 ROOT_FILENAME=Sim_$TASK_ID ## This is the output filename of the root file from GATE. We suggest the usage of the $TASK_ID variable in this naming
 # Unlisting. STIR's unlisting has the ability to reject certain types of events.
-UnlistScatter=1  ## Unlist Scattered photon coincidence events (0 or 1)
-UnlistRandoms=1  ## Unlist Random coincidence events (0 or 1)
+UnlistScatterCoincidences=1  ## Unlist Scattered photon coincidence events (0 or 1)
+UnlistRandomCoincidences=1  ## Unlist Random coincidence events (0 or 1)
 
 
 ##### ==============================================================
@@ -91,7 +91,7 @@ fi
 ##### ==============================================================
 
 ## Script unlists the root file into a sinogram. Here unlisting scatter and randoms are optional
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatterCoincidences $UnlistRandomCoincidences
 if [ $? -ne 0 ]; then
 	echo "Error in ./SubScripts/UnlistRoot.sh"
 	exit 1

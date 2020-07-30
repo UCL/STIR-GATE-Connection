@@ -46,9 +46,9 @@
 
 ## D E L A Y
 
-#/gate/digitizer/name   Delayed
-#/gate/digitizer/insert   coincidenceSorter
-#/gate/digitizer/Delayed/setInputName   Singles
-#/gate/digitizer/Delayed/setOffset   200. ns
-#/gate/digitizer/Delayed/setWindow   4.9 ns
-#/gate/digitizer/Delayed/minSectorDifference   5  ## GATE default=2. STIR does not unlist any Sector difference < 5
+/gate/digitizer/name   Delayed
+/gate/digitizer/insert   coincidenceSorter
+/gate/digitizer/Delayed/setInputName   Singles
+/gate/digitizer/Delayed/setOffset   200. ns
+/gate/digitizer/Delayed/setWindow   4.9 ns
+/gate/digitizer/Delayed/minSectorDifference   5  ## GATE default=2. STIR does not unlist any Sector difference < 5
