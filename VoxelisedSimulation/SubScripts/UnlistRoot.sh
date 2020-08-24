@@ -14,7 +14,7 @@
 ## Optional Args:
 # - $3: Include Scatter flag (0 or 1. Default:1)
 # - $4: Include Random flag (0 or 1. Default:1)
-
+# - $5: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted.
 
 ## Input arguments
 StoreRootFilesDirectory=$1
@@ -22,6 +22,7 @@ ROOT_FILENAME_PREFIX=$2
 TreeType=$3
 ScatterFlag=$4
 RandomFlag=$5
+AcceptanceProb=$6
 
 
 UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${TreeType}"
@@ -32,7 +33,7 @@ echo "STIR-GATE-connection unlisting"
 
 ## Check the number of inputs
 if [ $# -lt 3 ]; then
-  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX TreeType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) ]" 1>&2
+  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX TreeType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) AcceptanceProb(Default:1) ]" 1>&2
   exit 1
 elif [ $# -lt 5 ]; then
 	ScatterFlag=1
@@ -97,10 +98,20 @@ sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" $StoreRootFilesDirectory/$
 rm $StoreRootFilesDirectory/*.bak
 
 ## Perform Root file unlisting
-lm_to_projdata $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
-if [ $? -ne 0 ]; then
+if [ -z ${AcceptanceProb} ]; then
+	echo "No AcceptanceProb given, unlist all using standard to lm_to_projdata"
+	lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
+	if [ $? -ne 0 ]; then
 	echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata failed, see error."
 	exit 1
+fi
+else
+	echo "AcceptanceProb = ${AcceptanceProb}, unlisting with random rejection"
+	lm_to_projdata_with_random_rejection lm_to_projdata_${ROOT_FILENAME}.par ${AcceptanceProb}
+	if [ $? -ne 0 ]; then
+	echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata_with_random_rejection failed, see error."
+	exit 1
+fi
 fi
 
 ## Echo sinogram filepath
