@@ -24,13 +24,13 @@ trap "echo ERROR in $0" ERR
 ## Input arguments
 StoreRootFilesDirectory=$1
 ROOT_FILENAME_PREFIX=$2
-DataSetType=$3
+EventDataType=$3
 ScatterFlag=$4
 RandomFlag=$5
 AcceptanceProb=$6
 
 
-UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${DataSetType}"
+UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${EventDataType}"
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
@@ -38,7 +38,7 @@ echo "STIR-GATE-connection unlisting"
 
 ## Check the number of inputs
 if [ $# -lt 3 ]; then
-  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX DataSetType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) AcceptanceProb(Default:1) ]" 1>&2
+  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX EventDataType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) AcceptanceProb(Default:1) ]" 1>&2
   exit 1
 elif [ $# -lt 5 ]; then
 	ScatterFlag=1
@@ -64,14 +64,14 @@ else
 	exit 1
 fi 
 
-## Check DataSetType is Coincidences or Delayed 
-if [ $DataSetType != "Coincidences" ] && [ $DataSetType != "Delayed" ]; then
+## Check EventDataType is Coincidences or Delayed 
+if [ $EventDataType != "Coincidences" ] && [ $EventDataType != "Delayed" ]; then
 	echo "Error UnlistRoot can currently only handle Coincidences and Delayed"
 	exit 1
 fi
 
-## Rename the interpration of the ROOT file to have "*.DataSetType" in the name.
-ROOT_FILENAME=$ROOT_FILENAME_PREFIX"."$DataSetType
+## Rename the interpration of the ROOT file to have "*.EventDataType" in the name.
+ROOT_FILENAME=$ROOT_FILENAME_PREFIX"."$EventDataType
 
 ## Name of the sinogram file ID, uses Scatter and Random Flags
 SinogramID="Sino_${ROOT_FILENAME}_S${ScatterFlag}R${RandomFlag}"
