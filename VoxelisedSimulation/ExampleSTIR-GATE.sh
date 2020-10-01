@@ -22,6 +22,9 @@ else
 	echo "TASK_ID = $TASK_ID"
 fi
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 
 echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 

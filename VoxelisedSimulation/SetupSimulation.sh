@@ -28,6 +28,9 @@ then
 	exit 1
 fi
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 # Parameters
 ScannerType=$1
 StoreRootFilesDirectory=$2

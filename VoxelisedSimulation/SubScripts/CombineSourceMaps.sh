@@ -3,6 +3,9 @@
 ## Copyright (C) 2020 University College London
 ## Licensed under the Apache License, Version 2.0
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 startFile=$(($((${TASK_ID}-1))*200 +1))
 stopFile=$((${TASK_ID}*200))
 

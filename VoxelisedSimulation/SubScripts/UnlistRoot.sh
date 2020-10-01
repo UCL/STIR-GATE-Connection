@@ -12,10 +12,14 @@
 # - $2: ROOT_FILENAME_PREFIX 
 
 ## Optional Args:
+
 # - $3: Which data to unlist ("Coincidences" or "Delayed")
 # - $4: Include Scatter flag (0 or 1. Default:1)
 # - $5: Include Random flag (0 or 1. Default:1)
 # - $6: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted.
+
+set -e # exit on error
+trap "echo ERROR in $0" ERR
 
 ## Input arguments
 StoreRootFilesDirectory=$1
