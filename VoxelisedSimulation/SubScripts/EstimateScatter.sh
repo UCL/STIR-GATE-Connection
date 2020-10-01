@@ -35,7 +35,7 @@ scatter_par=$1
 MeasuredData=$2
 NormalisationSinogram=$3
 RandomsEstimate=$4
-tmpImage=$5
+AttenuationImage=$5  ## AttenuationImage
 AttenIsGATE=$6
 
 ## SETUP: No need to change stuff here, setup for exports
@@ -52,16 +52,25 @@ scatter_recon_num_subsets=18
 ### Manipulate the attenuation map from GATE
 ## GATE outputs with an offset and inverted z axis, these methods correct for this
 if [ $AttenIsGATE == 1 ]; then
-	## Create zeros with 0 origin (we have to reposition the volume)
-	stir_math --times-scalar 0.0 --including-first zeros.hv ../attenuation_corrected_GATE.h33
+	## Create zeros with 0 origin
+	tmpImage="my_zflipped_atten.hv"
+	stir_math --times-scalar 0.0 --including-first zeros.hv ${AttenuationImage}
 	stir_math --add $tmpImage zeros.hv $AttenuationImage
 	## invert the z axis of $tmpImage if it is a GATE output
-	invert_axis "z" $tmpImage $tmpImage
+	invert_axis z $tmpImage $tmpImage
+	## Reassign AttenuationImage to the flipped tmpImage 
+	AttenuationImage=$tmpImage
+	rm zeros.*
 fi
 
-AttenuationImage=$tmpImage
-
-export MeasuredData AttenuationImage NormalisationSinogram acf3d RandomsEstimate scatter_pardir num_scat_iters scatter_prefix total_additive_prefix scatter_recon_num_subiterations scatter_recon_num_subsets
+## Exports
+## Outputs
+export total_additive_prefix scatter_prefix
+## Input data
+export MeasuredData AttenuationImage NormalisationSinogram acf3d RandomsEstimate scatter_pardir
+## Scatter sim arguements
+export num_scat_iters scatter_recon_num_subiterations scatter_recon_num_subsets
+## masks (debug)
 export mask_projdata_filename mask_image
 
 echo "Compute attenuation coefficient factors"
@@ -75,5 +84,4 @@ echo "Estimate scatter time. This takes time."
 # estimate_scatter ${scatter_par} > /dev/null
 estimate_scatter ${scatter_par}
 
-
-
+echo "Done with ${0}"
