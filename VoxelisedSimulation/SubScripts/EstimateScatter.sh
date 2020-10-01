@@ -11,22 +11,16 @@
 # template_scatter_proj_data specifies down-sampled sizes for the scatter calculation.
 # By default, this script expects scatter.par in 
 
-# scatter_par=scatter_estimation.par
-# MeasuredData=../Output/Unlisted/Coincidences/Sino_SumSim.Coincidences_S1R1.hs
-# # AttenuationImage=../images/output/Phantom1-MuMap.hdr
-# NormalisationSinogram=../../../../../Normalisation/STIR-GATE-Connection/VoxelisedSimulation/norm_sino.hs
-# RandomsEstimate=../Output/Unlisted/Delayed/RandomsEstimate.hs
-
-# ### inputs
-# AttenuationImage=../images/output/Phantom1-MuMap.hdr
-# AttenIsGATE=1
 
 
 if [[ $# != 6 ]]; then
-	echo "Usage: EstimateScatter scatter_par MeasuredData NormalisationSinogram RandomsEstimate AttenuationImage AttenIsGATE"
-	echo "The final option (AttenIsGATE) is required because GATE images are inverted in z axis"
+	echo "Usage: sh ${0} scatter_estimation.par MeasuredData NormSino RandomsEst AttenuationImage AttenIsGATE"
+	echo "The final option (AttenIsGATE) is required because GATE images are inverted in z axis (no idea why...)"
 	exit 1
 fi
+
+set -e # exit on error
+trap "echo ERROR in $0" ERR
 
 echo "====="
 echo "Begining Scatter Estimation Script"
@@ -38,9 +32,6 @@ RandomsEstimate=$4
 ### inputs
 tmpImage=$5
 AttenIsGATE=$6
-
-
-
 
 ## SETUP: No need to change stuff here, setup for exports
 
@@ -90,36 +81,3 @@ estimate_scatter ${scatter_par}
 ## Check if the total additive = acf * NormalisationSinogram * (scatter est. + randoms est.)
 echo "creating multifactors"
 stir_math -s --mult my_mutifactors.hs $NormalisationSinogram $acf3d
-
-# echo "creating background"
-# echo my_background ${scatter_prefix}${num_scat_iters}".hs" $RandomsEstimate
-# stir_math -s --add my_background $scatter_prefix"_"$num_scat_iters".hs" $RandomsEstimate
-
-# echo "creating scaled background"
-# stir_math -s --mult my_scaled_background my_background.hs my_mutifactors.hs
-
-# echo "creating scaled background"
-# stir_math -s --mult my_scaled_measured $MeasuredData my_mutifactors.hs
-
-
-
-
-
-### MASKING
-
-# stir_math -s --mult masked_MeasuredData ${mask_projdata_filename}".hs" $MeasuredData
-# stir_math -s --mult masked_RandomsEstimate ${mask_projdata_filename}".hs" $RandomsEstimate
-# stir_math -s --mult masked_scatter ${mask_projdata_filename}".hs" my_scatter_5.hs
-# stir_math -s --mult masked_additive ${mask_projdata_filename}".hs" my_total_additive_5.hs
-
-
-# cd $data_dir
-# pwd
-
-# for f in *.hs; do
-# 	stir_math -s --mult masked_$f ${mask_projdata_filename}".hs" $f
-
-# done
-
-
-
