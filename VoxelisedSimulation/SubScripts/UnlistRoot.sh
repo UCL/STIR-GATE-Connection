@@ -12,20 +12,21 @@
 # - $2: ROOT_FILENAME_PREFIX 
 
 ## Optional Args:
-# - $3: Include Scatter flag (0 or 1. Default:1)
-# - $4: Include Random flag (0 or 1. Default:1)
-# - $5: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted.
+# - $3: Which data to unlist ("Coincidences" or "Delayed")
+# - $4: Include Scatter flag (0 or 1. Default:1)
+# - $5: Include Random flag (0 or 1. Default:1)
+# - $6: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted.
 
 ## Input arguments
 StoreRootFilesDirectory=$1
 ROOT_FILENAME_PREFIX=$2
-TreeType=$3
+DataSetType=$3
 ScatterFlag=$4
 RandomFlag=$5
 AcceptanceProb=$6
 
 
-UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${TreeType}"
+UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${DataSetType}"
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
@@ -33,7 +34,7 @@ echo "STIR-GATE-connection unlisting"
 
 ## Check the number of inputs
 if [ $# -lt 3 ]; then
-  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX TreeType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) AcceptanceProb(Default:1) ]" 1>&2
+  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX DataSetType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) AcceptanceProb(Default:1) ]" 1>&2
   exit 1
 elif [ $# -lt 5 ]; then
 	ScatterFlag=1
@@ -59,14 +60,14 @@ else
 	exit 1
 fi 
 
-## Check TreeType is Coincidences or Delayed 
-if [ $TreeType != "Coincidences" ] && [ $TreeType != "Delayed" ]; then
+## Check DataSetType is Coincidences or Delayed 
+if [ $DataSetType != "Coincidences" ] && [ $DataSetType != "Delayed" ]; then
 	echo "Error UnlistRoot can currently only handle Coincidences and Delayed"
 	exit 1
 fi
 
-## Rename the interpration of the ROOT file to have "*.TreeType" in the name.
-ROOT_FILENAME=$ROOT_FILENAME_PREFIX"."$TreeType
+## Rename the interpration of the ROOT file to have "*.DataSetType" in the name.
+ROOT_FILENAME=$ROOT_FILENAME_PREFIX"."$DataSetType
 
 ## Name of the sinogram file ID, uses Scatter and Random Flags
 SinogramID="Sino_${ROOT_FILENAME}_S${ScatterFlag}R${RandomFlag}"
@@ -84,12 +85,13 @@ fi
 
 #============= create parameter file from template =============
 cp  UnlistingTemplates/lm_to_projdata_template.par $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
+## sed lm_to_projdata.par
 sed -i.bak "s|{ROOT_FILENAME}|$StoreRootFilesDirectory/${ROOT_FILENAME}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{SinogramID}/${SinogramID}/g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 
-
 cp  UnlistingTemplates/root_header_template.hroot  $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+## sed .hroot 
 sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
 sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
 sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
@@ -102,16 +104,16 @@ if [ -z ${AcceptanceProb} ]; then
 	echo "No AcceptanceProb given, unlist all using standard to lm_to_projdata"
 	lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
 	if [ $? -ne 0 ]; then
-	echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata failed, see error."
-	exit 1
-fi
+		echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata failed, see error."
+		exit 1
+	fi
 else
 	echo "AcceptanceProb = ${AcceptanceProb}, unlisting with random rejection"
 	lm_to_projdata_with_random_rejection lm_to_projdata_${ROOT_FILENAME}.par ${AcceptanceProb}
 	if [ $? -ne 0 ]; then
-	echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata_with_random_rejection failed, see error."
-	exit 1
-fi
+		echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata_with_random_rejection failed, see error."
+		exit 1
+	fi
 fi
 
 ## Echo sinogram filepath
