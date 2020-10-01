@@ -8,10 +8,16 @@
 
 ## PARAMETERS
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 if [ $# != 2 ]; then
 	echo "Usage: EstimateGATESTIRNorm.sh OutputFilename DelayedData"
 	exit 1
 fi 
+
+set -e # exit on error
+trap "echo ERROR in $0" ERR
 
 OutputFilename=$1 
 DelayedData=$2 ## Delayed Coincidences Sinogram

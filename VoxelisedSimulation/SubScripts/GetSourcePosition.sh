@@ -10,6 +10,9 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 FirstEdges=`list_image_info $ImageFilename| awk -F: '/Physical coordinate of first edge in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2
 LastEdges=`list_image_info $ImageFilename| awk -F: '/Physical coordinate of last edge in mm/ {print $2}'|tr -d '{}'|awk -F, '{print $3, $2, $1}'` 1>&2
 

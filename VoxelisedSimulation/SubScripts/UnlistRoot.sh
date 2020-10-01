@@ -15,6 +15,8 @@
 # - $3: Include Scatter flag (0 or 1. Default:1)
 # - $4: Include Random flag (0 or 1. Default:1)
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
 
 ## Input arguments
 StoreRootFilesDirectory=$1

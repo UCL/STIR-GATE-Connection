@@ -17,6 +17,9 @@ if [ $# -ne 2 ]; then
   exit 1
 fi
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 Activity=$1  ## Activity parameter file
 Attenuation=$2  ## Attenuation parameter file
 STIRGATEHome=$PWD  
