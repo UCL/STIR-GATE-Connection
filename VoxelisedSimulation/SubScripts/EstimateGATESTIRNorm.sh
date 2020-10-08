@@ -54,7 +54,7 @@ stir_math -s --including-first --times-scalar 0 --add-scalar 1 ones.hs $model_da
 
 ## mutiply ones with the norm factors to get a sino
 echo "apply_normfactors3D"
-apply_normfactors3D $eff_factors $factors $model_data 1 $outer_iters $eff_iters
+apply_normfactors3D $eff_factors $factors ones.hs 1 $outer_iters $eff_iters
 
 echo "inverting the eff_factors to get norm"
 stir_math -s --including-first --power -1 $OutputFilename $eff_factors
