@@ -43,17 +43,15 @@ eff_factors="eff_factors.hs"
 model_data=STIR_forward.hs
 
 ## Forward project using SITR to get model data
-forward_project $model_data $FOVCylindricalActivityVolumeFilename $MeasuredData
+echo "Forward projecting (${FOVCylindricalActivityVolumeFilename}) with STIR to get model_data"
+forward_project $model_data $FOVCylindricalActivityVolumeFilename $MeasuredData > /dev/null 2>&1
+echo "stir_math to create sino of ones"
+stir_math -s --including-first --times-scalar 0 --add-scalar 1 ones.hs $model_data
 
 
 ## find ML normfactors
 echo "find_ML_normfactors3D"
 find_ML_normfactors3D $factors $MeasuredData $model_data $outer_iters $eff_iters
-
-
-## create ones sino
-echo "stir_math"
-stir_math -s --including-first --times-scalar 0 --add-scalar 1 ones.hs $model_data
 
 
 ## mutiply ones with the norm factors to get a sino
@@ -76,7 +74,5 @@ fi
 
 rm ones.hs
 rm ones.s
-
-
 
 exit 0
