@@ -63,17 +63,20 @@ apply_normfactors3D $eff_factors $factors ones.hs 1 $outer_iters $eff_iters
 ## Creates the span-1 normalisation sinogram
 echo "inverting the eff_factors to get norm"
 stir_math -s --including-first --power -1 $OutputFilename $eff_factors
+echo "Norm factors are saved as: $OutputFilename"
 
 ## Creates the span-n normalisation sinogram if $span > 1
 if [ span != 1 ]; then
+	SpanOutputFilename=span${span}_$OutputFilename
 	echo "Compressing axial component using SSRB with num_segments_to_combine=${span}"
 	SSRB span${span}_${eff_factors} ${eff_factors} $span 1 0
-	stir_math -s --including-first --power -1 span${span}_$OutputFilename span${span}_$eff_factors
+	stir_math -s --including-first --power -1 $SpanOutputFilename span${span}_$eff_factors
+	echo "Compressed norm factors are saved as: ${SpanOutputFilename}"
 fi
 
 rm ones.hs
 rm ones.s
 
-echo "Norm factors are saved as $OutputFilename"
+
 
 exit 0
