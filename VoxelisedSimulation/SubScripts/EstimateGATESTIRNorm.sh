@@ -65,7 +65,8 @@ echo "inverting the eff_factors to get norm"
 stir_math -s --including-first --power -1 $OutputFilename $eff_factors
 
 ## Creates the span-n normalisation sinogram if $span > 1
-if [ span != 1]; then
+if [ span != 1 ]; then
+	echo "Compressing axial component using SSRB with num_segments_to_combine=${span}"
 	SSRB span${span}_${eff_factors} ${eff_factors} $span 1 0
 	stir_math -s --including-first --power -1 span${span}_$OutputFilename span${span}_$eff_factors
 fi
