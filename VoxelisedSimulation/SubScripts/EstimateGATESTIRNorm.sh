@@ -17,7 +17,7 @@
 ## To obtain the normalisation sinogram in a different format, provide a norm_template. 
 ## This script will SSRB the efficiency factors into the shape of norm_template before inverting to provide the correct sinogram shaped normalisation sinogram.
 
-if [ $# -lt 4 ]; then
+if [ $# -lt 3 ]; then
 	echo "Usage: EstimateGATESTIRNorm.sh OutputFilename MeasuredData FOVCylindricalActivityVolumeFilename [ norm_template ]"
 	exit 1
 fi 
@@ -29,7 +29,7 @@ OutputFilename=$1
 MeasuredData=$2
 FOVCylindricalActivityVolumeFilename=$3
 
-if [ $# > 4 ]; then
+if [ $# -ge 4 ]; then
 	## Optional template norm
 	norm_template=$4
 else
@@ -97,4 +97,3 @@ if [ ${cleanup} == 1 ]; then
 fi
 
 exit 0
-
