@@ -15,7 +15,7 @@ GATE_Cylindrical_PET Parameters :=
 
 name of data file := {ROOT_FILENAME}.root
 
-name of input TChain := Coincidences
+name of input TChain := tree
 
 ; As the GATE repeaters. 
 ; If you skip a level in GATE's hierarchy, 

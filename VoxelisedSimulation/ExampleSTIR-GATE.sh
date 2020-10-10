@@ -45,10 +45,10 @@ StartTime=0  ## Start time (s) in GATE time
 EndTime=1  ## End time (s) in GATE time
 StoreRootFilesDirectory=Output  ## Save location of root data (default: `Output/`)
 ScannerType="D690"  # Selection of scanner from Examples (eg. D690/mMR)
-ROOT_FILENAME=Sim_$TASK_ID ## This is the output filename of the root file from GATE. We suggest the usage of the $TASK_ID variable in this naming
+ROOT_FILENAME_PREFIX=Sim_$TASK_ID ## This is the output filename of the root file from GATE. We suggest the usage of the $TASK_ID variable in this naming
 # Unlisting. STIR's unlisting has the ability to reject certain types of events.
-UnlistScatter=1  ## Unlist Scattered photon coincidence events (0 or 1)
-UnlistRandoms=1  ## Unlist Random coincidence events (0 or 1)
+UnlistScatteredCoincidences=1  ## Unlist Scattered photon coincidence events (0 or 1)
+UnlistRandomCoincidences=1  ## Unlist Random coincidence events (0 or 1)
 
 
 ##### ==============================================================
@@ -82,7 +82,7 @@ fi
 ## Here many arguments are given to the script ./RunGate.sh 
 ## This script does computation to center the voxelised phantom on the origin (center of scanner).
 ## This script will also handle a lot of the GATE macro variables.
-./RunGATE.sh $GATEMainMacro $ROOT_FILENAME $ActivityFilename $AttenuationFilename\
+./RunGATE.sh $GATEMainMacro $ROOT_FILENAME_PREFIX $ActivityFilename $AttenuationFilename\
 			$StoreRootFilesDirectory $TASK_ID $StartTime $EndTime
 if [ $? -ne 0 ]; then
 	echo "Error in RunGATE.sh"
@@ -93,11 +93,18 @@ fi
 ## Unlist GATE data
 ##### ==============================================================
 
-## Script unlists the root file into a sinogram. Here unlisting scatter and randoms are optional
-./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME $UnlistScatter $UnlistRandoms 
+## Unlist Coincidences, ROOT_FILENAME_PREFIX should be same as above, ignore "*.Coincidences.root" addition
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME_PREFIX "Coincidences" $UnlistScatteredCoincidences $UnlistRandomCoincidences 
 if [ $? -ne 0 ]; then
-	echo "Error in ./SubScripts/UnlistRoot.sh"
+	echo "Error in ./SubScripts/UnlistRoot.sh for Coincidences"
 	exit 1
+fi
+
+## Unlist Delayed, ROOT_FILENAME_PREFIX should be same as above, ignore "*.Delayed.root" addition
+./SubScripts/UnlistRoot.sh $StoreRootFilesDirectory $ROOT_FILENAME_PREFIX "Delayed" $UnlistScatteredCoincidences $UnlistRandomCoincidences 
+if [ $? -ne 0 ]; then
+	echo "Error in ./SubScripts/UnlistRoot.sh for Delayed."
+	echo "Sometimes with the Example single voxel this can happen becasue there are no Delayed events."
 fi
 
 echo "Script finished: " `date +%d.%m.%y-%H:%M:%S`

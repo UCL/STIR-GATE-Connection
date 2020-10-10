@@ -78,7 +78,6 @@ fi
 
 echo "Making Output Directories"
 mkdir -p $StoreRootFilesDirectory/images
-mkdir -p $StoreRootFilesDirectory/Unlisted/UnlistedSinograms
 
 echo "\nSetting up GATE density map on using:"
 echo "    $AttenuationFilename"

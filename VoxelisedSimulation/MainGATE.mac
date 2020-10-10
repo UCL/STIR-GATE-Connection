@@ -3,8 +3,10 @@
 ## Copyright (C) 2018-2019 University College London<br />
 ## Licensed under the Apache License, Version 2.0 (the "License");
 
+
 ## NO UI
 /vis/disable
+
 
 # MATERIAL DATABASE
 /gate/geometry/setMaterialDatabase GATESubMacros/GateMaterials.db
@@ -13,36 +15,33 @@
 # WORLD and SCANNER GEOMETRY
 /control/execute GATESubMacros/geometry.mac
 
+
 ## VOXELISED PHANTOM
 /control/execute GATESubMacros/PhantomAttenuation.mac
+
 
 ## PHYSICAL INTERACTIONS
 /control/execute GATESubMacros/physics.mac
 
+
 ## CUTS
 /control/execute GATESubMacros/cuts.mac
+
 
 ## INITIALISATION OF GATE
 /gate/run/initialize
 
+
 ## DIGITISER
 /control/execute GATESubMacros/digitiser.mac
+
 
 ## RADIOACTIVE SOURCE
 /control/execute GATESubMacros/PhantomActivity.mac
 
-## ROOT LM OUTPUT
 
-/gate/output/root/enable
-/gate/output/root/setFileName            		{StoreRootFilesDirectory}/{ROOT_FILENAME}
-/gate/output/root/setRootSinglesAdderFlag   	0
-/gate/output/root/setRootSinglesReadoutFlag 	0
-/gate/output/root/setRootHitFlag            	0
-/gate/output/root/setRootSinglesFlag       		1
-/gate/output/root/setRootOpticalFlag       		0
-/gate/output/root/setRootNtupleFlag        		0
-/gate/output/root/setRootCoincidencesFlag   	1
-#/gate/output/root/setRootDelayedFlag 			0
+## ROOT LM OUTPUT
+/control/execute GATESubMacros/GATEOutput.mac  		
 
 
 ## RANDOMS ENGINE AND SEED
@@ -55,6 +54,7 @@
 #/gate/random/setEngineSeed default
 #/gate/random/resetEngineFrom fileName
 #/gate/random/verbose 1
+
 
 ## ACQUISITION TIME
 /gate/application/setTimeSlice    {TimeSlice} s
