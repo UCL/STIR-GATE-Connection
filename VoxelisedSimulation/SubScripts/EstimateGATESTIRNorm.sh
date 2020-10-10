@@ -8,12 +8,14 @@
 ## The current standard to do this is to forward project, in STIR and GATE (run simulations), a cylindrical activity, the size of the scanner FOV, without attenuation.
 ## The MeasuredData (sinogram) is obtained by unlisting the GATE output with the exclusion of randoms and scatter.
 
-## Span: This should be an positive integer that saves an additional sinogram with the indicated span. 
-## If no span changes is wanted, please input 1.
-
 ## This script forward projects the same activity cylinder in SITR to obtain model_data. 
-## The script will estimate the norm factors (norm_sino.hs) using STIR functionality. 
-## See find_ML_normfactors3D and apply_normfactors3D for more information
+## The script use find_ML_normfactors3D and apply_normfactors3D to compute the efficiency factors. 
+## See find_ML_normfactors3D and apply_normfactors3D for more information.
+
+## Due to algorithm limitations with find_ML_normfactors3D and apply_normfactors3D, the computation of the efficiency factors must be done with span-1 data.
+## In many instances, this is not the datatype measured on the scanner, but for this script MeasuredData should be span-1.
+## To obtain the normalisation sinogram in a different format, provide a norm_template. 
+## This script will SSRB the efficiency factors into the shape of norm_template before inverting to provide the correct sinogram shaped normalisation sinogram.
 
 if [ $# -lt 4 ]; then
 	echo "Usage: EstimateGATESTIRNorm.sh OutputFilename MeasuredData FOVCylindricalActivityVolumeFilename [ norm_template ]"
@@ -49,19 +51,19 @@ model_data=STIR_forward
 
 ## Forward project using SITR to get model data
 echo "Forward projecting (${FOVCylindricalActivityVolumeFilename}) with STIR to get model_data"
-forward_project $model_data $FOVCylindricalActivityVolumeFilename $MeasuredData > /dev/null 2>&1
+forward_project ${model_data} ${FOVCylindricalActivityVolumeFilename} ${MeasuredData} > /dev/null 2>&1
 echo "stir_math is creating sinogram of ones."
-stir_math -s --including-first --times-scalar 0 --add-scalar 1 ones.hs $model_data".hs"
+stir_math -s --including-first --times-scalar 0 --add-scalar 1 ones.hs ${model_data}".hs"
 
 
 ## find ML normfactors
 echo "Running STIR's find_ML_normfactors3D"
-find_ML_normfactors3D $factors $MeasuredData $model_data".hs" $outer_iters $eff_iters
+find_ML_normfactors3D ${norm_factors} ${MeasuredData} ${model_data}".hs" ${outer_iters} ${eff_iters}
 
 
 ## mutiply ones with the norm factors to get a sino
 echo "Running STIR's apply_normfactors3D"
-apply_normfactors3D ${eff_factors}"_span1" ${norm_factors} ones.hs 1 $outer_iters $eff_iters
+apply_normfactors3D ${eff_factors}"_span1" ${norm_factors} ones.hs 1 ${outer_iters} ${eff_iters}
 
 
 ## Creates the span-1 normalisation sinogram
