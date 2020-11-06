@@ -51,4 +51,4 @@
 /gate/digitizer/Delayed/setInputName   Singles
 /gate/digitizer/Delayed/setOffset   200. ns
 /gate/digitizer/Delayed/setWindow   4.9 ns
-/gate/digitizer/Delayed/minSectorDifference   5  ## GATE default=2. STIR does not unlist any Sector difference < 5
+/gate/digitizer/Delayed/minSectorDifference   5  ## GATE default=2. For this scanner, STIR does not unlist any Sector difference < 5. This value has been optimised to reduce the root file size

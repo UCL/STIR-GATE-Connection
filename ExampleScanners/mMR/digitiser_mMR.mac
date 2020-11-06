@@ -60,5 +60,5 @@ gate/digitizer/name   Delayed
 /gate/digitizer/Delayed/setInputName   Singles
 /gate/digitizer/Delayed/setOffset   200. ns
 /gate/digitizer/Delayed/setWindow   5.85938 ns
-/gate/digitizer/Delayed/minSectorDifference   8  
+/gate/digitizer/Delayed/minSectorDifference   8  ## GATE default=2. For this scanner, STIR does not unlist any block difference < 8. This value has been optimised to reduce the root file size
 
