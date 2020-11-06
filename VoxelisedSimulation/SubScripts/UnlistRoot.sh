@@ -70,6 +70,9 @@ if [ $EventDataType != "Coincidences" ] && [ $EventDataType != "Delayed" ]; then
 	exit 1
 fi
 
+# Get a random seed int
+seed=${RANDOM}
+
 ## Rename the interpration of the ROOT file to have "*.EventDataType" in the name.
 ROOT_FILENAME=$ROOT_FILENAME_PREFIX"."$EventDataType
 
@@ -93,6 +96,7 @@ cp  UnlistingTemplates/lm_to_projdata_template.par $StoreRootFilesDirectory/lm_t
 sed -i.bak "s|{ROOT_FILENAME}|$StoreRootFilesDirectory/${ROOT_FILENAME}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{SinogramID}/${SinogramID}/g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
+sed -i.bak "s|{seed}|${seed}|g" lm_to_projdata_${ROOT_FILENAME}.par
 
 cp  UnlistingTemplates/root_header_template.hroot  $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
 ## sed .hroot 
