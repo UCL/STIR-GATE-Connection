@@ -1,4 +1,5 @@
 # STIR-GATE-Connection
+[![zenodo-badge]][zenodo-link]
 
 Author: Robert Twyman <br />
 Author: Ludovica Brusaferri<br />
@@ -50,3 +51,6 @@ Acknowledgements
 Additional help with testing an early stage of the macros:
 - Catherine Scott (UCL/UCLH)
 - Ana Margarida Motta (Universidade de Lisboa)
+
+[zenodo-badge]: https://zenodo.org/badge/262778436.svg
+[zenodo-link]: https://zenodo.org/badge/latestdoi/262778436
