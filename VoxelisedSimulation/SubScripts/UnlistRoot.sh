@@ -96,7 +96,7 @@ cp  UnlistingTemplates/lm_to_projdata_template.par $StoreRootFilesDirectory/lm_t
 sed -i.bak "s|{ROOT_FILENAME}|$StoreRootFilesDirectory/${ROOT_FILENAME}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s/{SinogramID}/${SinogramID}/g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
 sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s|{seed}|${seed}|g" lm_to_projdata_${ROOT_FILENAME}.par
+sed -i.bak "s|{seed}|${seed}|g" ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par
 
 cp  UnlistingTemplates/root_header_template.hroot  $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
 ## sed .hroot 
@@ -110,14 +110,14 @@ rm $StoreRootFilesDirectory/*.bak
 ## Perform Root file unlisting
 if [ -z ${AcceptanceProb} ]; then
 	echo "No AcceptanceProb given, unlist all using standard to lm_to_projdata"
-	lm_to_projdata lm_to_projdata_${ROOT_FILENAME}.par
+	lm_to_projdata ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par
 	if [ $? -ne 0 ]; then
 		echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata failed, see error."
 		exit 1
 	fi
 else
 	echo "AcceptanceProb = ${AcceptanceProb}, unlisting with random rejection"
-	lm_to_projdata_with_random_rejection lm_to_projdata_${ROOT_FILENAME}.par ${AcceptanceProb}
+	lm_to_projdata_with_random_rejection ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par ${AcceptanceProb}
 	if [ $? -ne 0 ]; then
 		echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata_with_random_rejection failed, see error."
 		exit 1
