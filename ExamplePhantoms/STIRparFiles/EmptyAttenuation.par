@@ -1,3 +1,4 @@
+; This parameter file is used to create a volume of with uniform zero value using STIR's `generate_image` utility.
 generate_image Parameters :=
 output filename:=attenuation
 
