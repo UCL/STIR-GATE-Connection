@@ -26,6 +26,7 @@ The purpose of this project is to provide a simple method to:
 - create a GATE compatible voxelised phantom from a parameter file or interfile using STIR functionality
 - setup and run GATE in cluster array jobs 
 - combine and unlist root files for reconstruction using STIR
+- Compute normalisation factors, scatter correction, and random correction from the measured GATE data using STIR
 
 See `STIR-GATE-Connection/VoxelisedSimulation/README.md` for a Tutorial.
 
