@@ -63,6 +63,7 @@ find_ML_normfactors3D ${norm_factors} ${MeasuredData} ${model_data}".hs" ${outer
 
 ## mutiply ones with the norm factors to get a sino
 echo "Running STIR's apply_normfactors3D"
+## This executable can error with `ERROR: Cannot do geometric factors in 3D yet`. This is likely due to being on the `release_4` branch of STIR
 apply_normfactors3D ${eff_factors}"_span1" ${norm_factors} ones.hs 1 ${outer_iters} ${eff_iters}
 
 
