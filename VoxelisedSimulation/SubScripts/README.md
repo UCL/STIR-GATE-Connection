@@ -23,6 +23,7 @@ Scripts
 * `EstimateGATESTIRNorm.sh`: Creates normalisation correction sinogram from GATE measured data and STIR model data.<br />
    *Warning:* You will need to make sure that the projector that you use during reconstruction matches the one used for the estimation of the norm factors. See `forward_projector_proj_matrix_ray_tracing.par`.
 * `EstimateRandomsFromDelays.sh`: Creates a sinogram of the randoms estimation from Delayed coincidence data.
+* `forward_projector_proj_matrix_ray_tracing.par`: Forward projector parameters for normalisation computation. See `EstimateGATESTIRNorm.sh`
 * `GenerateSTIRGATEImages.sh`: Generates STIR images from parameter files for GATE simulation. The attenuation file voxel values are heavily scaled and should not be used in STIR. Use the original attenuation file.
 * `GetAttenuationTranslation.sh`: shell script that reads an image with STIR and returns shifts for the attenuation translation.
 * `GetSourcePosition.sh`: shell script that reads an image with STIR and returns the source position offset for GATE
