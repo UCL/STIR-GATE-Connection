@@ -17,9 +17,10 @@ X voxel size (in mm):= 4
 Y voxel size (in mm):= 4
 Z voxel size (in mm):= 6.54
 
-  Z number of samples to take per voxel := 1
-  Y number of samples to take per voxel := 1
-  X number of samples to take per voxel := 1
+  ; use 3x3x3 samples per voxel to reduce sharp edges
+  Z number of samples to take per voxel := 3
+  Y number of samples to take per voxel := 3
+  X number of samples to take per voxel := 3
 
 shape type:= ellipsoidal cylinder
 Ellipsoidal Cylinder Parameters:=
