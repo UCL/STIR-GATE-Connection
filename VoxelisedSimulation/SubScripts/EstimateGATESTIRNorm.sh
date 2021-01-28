@@ -1,7 +1,7 @@
 ## #! /bin/sh
 ## AUTHOR: Robert Twyman
 ## AUTHOR: Kris Thielemans
-## Copyright (C) 2020 University College London
+## Copyright (C) 2020, 2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## Script is used to compute the normalisation factors for GATE data reconstruction.
@@ -36,6 +36,9 @@ else
 	norm_template=0
 fi
 
+## Parameter file to use for STIR forward projection
+current_dir=`dirname $0`
+forward_project_pars=${current_dir}/forward_projector_proj_matrix_ray_tracing.par
 
 ## ML Normfactors loop numbers (Hardcoded for now)
 outer_iters=5
@@ -51,7 +54,7 @@ model_data=STIR_forward
 
 ## Forward project using SITR to get model data
 echo "Forward projecting (${FOVCylindricalActivityVolumeFilename}) with STIR to get model_data"
-forward_project ${model_data} ${FOVCylindricalActivityVolumeFilename} ${MeasuredData} > /dev/null 2>&1
+forward_project ${model_data} ${FOVCylindricalActivityVolumeFilename} ${MeasuredData} ${forward_project_pars} > /dev/null 2>&1
 echo "stir_math is creating sinogram of ones."
 stir_math -s --including-first --times-scalar 0 --add-scalar 1 ones.hs ${model_data}".hs"
 
