@@ -1,6 +1,7 @@
-; This parameter file is used to create a single voxel of activity at the center of the volume using STIR's `generate_image` utility.
 generate_image Parameters :=
 output filename:=activity
+
+; This parameter file is used to create a single voxel of activity at the center of the volume using STIR's `generate_image` utility.
 
 X output image size (in pixels):=110
 Y output image size (in pixels):=110
