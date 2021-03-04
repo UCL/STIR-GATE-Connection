@@ -20,6 +20,6 @@ Ellipsoidal Cylinder Parameters:=
    length-z (in mm):=110
    origin (in mm):={70,10,20}
    END:=
-value :=1
+value :=10
 
 END:=

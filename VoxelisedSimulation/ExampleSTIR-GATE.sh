@@ -36,8 +36,8 @@ echo "Script initialised:" `date +%d.%m.%y-%H:%M:%S`
 ## There are two main options here: 
 ##		1. define `.par` files, or 
 ##		2. provide interfile images (i.e. precreated voxelised phantoms) and as long as STIR can read them, they are usable in this project. 
-Activity=../ExamplePhantoms/STIRparFiles/SourceSingleCentralVoxel.par
-Attenuation=../ExamplePhantoms/STIRparFiles/EmptyAttenuation.par
+Activity=../ExamplePhantoms/STIRparFiles/generate_uniform_cylinder.par
+Attenuation=../ExamplePhantoms/STIRparFiles/generate_atten_cylinder.par
 
 ## OPTIONAL: Editable fields required by the GATE macro scripts
 GATEMainMacro="MainGATE.mac" ## Main macro script for GATE - links to many GATESubMacro/ files 
