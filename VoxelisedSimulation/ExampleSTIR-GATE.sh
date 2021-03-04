@@ -64,8 +64,8 @@ if [ $? -ne 0 ] ;then
 	exit 1
 fi
 ## Get activity and attenuation filenames from the output of SubScripts/GenerateSTIRGATEImages.sh
-ActivityFilename=`echo ${SourceFilenames} |awk '{print $1}'`
-AttenuationFilename=`echo ${SourceFilenames} |awk '{print $2}'`
+ActivityFilename=`echo $SourceFilenames | awk '{print $(NF-1)}'`
+AttenuationFilename=`echo $SourceFilenames | awk '{print $NF}'`
 
 ## Setup Simulation. Copy files, (possibly generate phantom), and create GATE density map
 ./SetupSimulation.sh $ScannerType $StoreRootFilesDirectory $ActivityFilename $AttenuationFilename
