@@ -1,0 +1,45 @@
+generate_image Parameters :=
+output filename:=ThreePointActivity
+
+X output image size (in pixels):=110
+Y output image size (in pixels):=110
+Z output image size (in pixels):=65
+X voxel size (in mm):= 3
+Y voxel size (in mm):= 3
+Z voxel size (in mm):= 3
+
+  Z number of samples to take per voxel := 1
+  Y number of samples to take per voxel := 1
+  X number of samples to take per voxel := 1
+
+shape type:= ellipsoid
+Ellipsoid Parameters:=
+   radius-x (in mm):=2
+   radius-y (in mm):=2
+   radius-z (in mm):=2
+   origin (in mm):={96,0,0}  ;(z,y,x)
+   END:=
+value :=10000
+
+next shape:=
+shape type:= ellipsoid
+Ellipsoid Parameters:=
+   radius-x (in mm):=2
+   radius-y (in mm):=2
+   radius-z (in mm):=2
+   origin (in mm):={96,99,0}  ;(z,y,x)
+   END:=
+value :=10000
+
+next shape:=
+shape type:= ellipsoid
+Ellipsoid Parameters:=
+   radius-x (in mm):=2
+   radius-y (in mm):=2
+   radius-z (in mm):=2
+   origin (in mm):={96,0,99}  ;(z,y,x)
+   END:=
+value :=10000
+
+END:=
+
