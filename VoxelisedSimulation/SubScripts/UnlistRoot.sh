@@ -34,6 +34,7 @@ UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${EventDataType}"
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
+echo ""
 echo "STIR-GATE-Connection unlisting"
 
 ## Check the number of inputs
