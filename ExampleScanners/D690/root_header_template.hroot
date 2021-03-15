@@ -54,7 +54,7 @@ exclude random events := {EXCLUDERANDOM}
 ; STIR will try to align the data. 
 ; If you have used non standart GATE axes, 
 ; rotate using: 
-offset (num of detectors) := -8
+offset (num of detectors) := 0
 
 ; If want to deactivate set to [0, 10000]
 low energy window (keV) := {LOWTHRES}
