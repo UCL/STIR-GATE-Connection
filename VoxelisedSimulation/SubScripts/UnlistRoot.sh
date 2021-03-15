@@ -34,7 +34,8 @@ UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${EventDataType}"
 LowerEnergyThreshold=0
 UpperEngeryThreshold=1000
 
-echo "STIR-GATE-connection unlisting"
+echo ""
+echo "STIR-GATE-Connection unlisting"
 
 ## Check the number of inputs
 if [ $# -lt 3 ]; then
