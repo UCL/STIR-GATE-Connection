@@ -83,7 +83,7 @@ if [ ${norm_template} != 0 ]; then
 	echo "Compressed Normalisation sinogram is saved as: ${OutputFilename}"
 else
 	## No template given, rename the ${OutputFilename}"_span1.hs" to ${OutputFilename}
-	stir_math -s --including-first --add-scalar 0 ${OutputFilename} ${OutputFilename}"_span1.hs"
+	stir_math -s ${OutputFilename} ${OutputFilename}"_span1.hs"
 	echo "Normalisation sinogram is saved as: ${OutputFilename}"
 fi
 
