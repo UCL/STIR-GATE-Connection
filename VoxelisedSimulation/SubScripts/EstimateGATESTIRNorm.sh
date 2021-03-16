@@ -92,9 +92,7 @@ if [ ${cleanup} == 1 ]; then
 	echo "Cleaning up!"
 	for suffix in ".hs" ".s"; do
 		rm "ones"${suffix}
-		# rm ${OutputFilename}"_span1"${suffix}
 		rm ${eff_factors}"_span1"${suffix}
-		rm ${eff_factors}${suffix}
 		rm ${model_data}${suffix}
 	done
 	rm ${norm_factors}*
