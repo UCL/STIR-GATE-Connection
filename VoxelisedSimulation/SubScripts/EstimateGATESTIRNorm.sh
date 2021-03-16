@@ -90,12 +90,16 @@ fi
 cleanup=1
 if [ ${cleanup} == 1 ]; then
 	echo "Cleaning up!"
+	rm ${norm_factors}*
 	for suffix in ".hs" ".s"; do
 		rm "ones"${suffix}
 		rm ${eff_factors}"_span1"${suffix}
 		rm ${model_data}${suffix}
+		if [ ${norm_template} == 0 ]; then
+			echo "No norm_template so ${OutputFilename}_span1 and ${OutputFilename} are equal"
+			rm ${OutputFilename}"_span1"${suffix}
+		fi
 	done
-	rm ${norm_factors}*
 fi
 
 exit 0
