@@ -15,6 +15,9 @@ if [ $# -ne 2 ]; then
   exit 1
 fi
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 GATEFilename=$1
 STIRFilename=$2
 

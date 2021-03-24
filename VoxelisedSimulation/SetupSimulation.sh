@@ -28,6 +28,9 @@ then
 	exit 1
 fi
 
+set -e # exit on error
+trap "echo ERROR in $0" ERR
+
 # Parameters
 ScannerType=$1
 StoreRootFilesDirectory=$2
@@ -75,7 +78,6 @@ fi
 
 echo "Making Output Directories"
 mkdir -p $StoreRootFilesDirectory/images
-mkdir -p $StoreRootFilesDirectory/Unlisted/UnlistedSinograms
 
 echo "\nSetting up GATE density map on using:"
 echo "    $AttenuationFilename"

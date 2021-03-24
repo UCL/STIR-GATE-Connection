@@ -1,0 +1,16 @@
+Forward Projector parameters:=
+; example par file for specifying the forward projector for forward_project etc
+; This is used for the normalisation.
+; WARNING: You need to adapt this to the forward projector that you want to use
+; with your STIR reconstructions.
+type:=Matrix
+  Forward Projector Using Matrix Parameters :=
+  Matrix type := Ray Tracing
+  Ray tracing matrix parameters :=
+   ; use multiple (almost) parallel LORs for every bin in the sinogram 
+   ; to avoid discretisation artefacts
+   ; current STIR default value is 1 (which is actually not recommended)
+   number of rays in tangential direction to trace for each bin:= 10
+  End Ray tracing matrix parameters :=
+  End Forward Projector Using Matrix Parameters :=
+end:=
