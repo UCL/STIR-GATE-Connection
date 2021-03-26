@@ -77,14 +77,40 @@ export num_scat_iters scatter_recon_num_subiterations scatter_recon_num_subsets
 ## masks (debug)
 export mask_projdata_filename mask_image
 
+
+## Computations
 echo "Compute attenuation coefficient factors"
 calculate_attenuation_coefficients --PMRT --ACF $acf3d $atnimg $sino_input
 
 echo "creating mulltfactors"
 stir_math -s --mult my_multfactors.hs $NORM $acf3d
 
-echo "Estimate scatter time. This takes time."
-## Estimate the scatter
+echo "Estimate scatter time. This takes time..."
 estimate_scatter ${scatter_par}
+
+
+## Optional cleanup
+cleanup=1
+if [ ${cleanup} == 1 ]; then
+	echo "Cleaning up unneeded data!"
+	rm -r extras/
+	rm ${acf3d%.hs}*
+	rm ${mask_image}*
+	rm ${scatter_prefix}*
+	rm ${mask_projdata_filename}*
+	# Delete all ${total_additive_prefix}* files that are not the final one.
+	for total_additive_file in ${total_additive_prefix}*; 
+	do 
+		if [[ ${total_additive_file} != *"${total_additive_prefix}_${num_scat_iters}"* ]]; 
+		then
+			echo "Deleting ${total_additive_file}"
+			rm "${total_additive_file}"
+		else
+			echo "Keeping ${total_additive_file}"
+		fi
+	done
+else
+	echo "Not performing cleanup."
+fi
 
 echo "Done with ${0}"
