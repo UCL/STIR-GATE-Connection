@@ -20,8 +20,8 @@
 ## then this script will flip the image in the z axis, because GATE seems to do that...
 
 
-if [[ $# != 6 ]]; then
-	echo "Usage: sh ${0} scatter_estimation.par MeasuredData NormSino RandomsEst AttenuationImage AttenIsGATE"
+if [[ $# != 5 ]]; then
+	echo "Usage: sh ${0} sino_input NormSino randoms3d atnimg AttenIsGATE"
 	echo "The final option (AttenIsGATE) is required because GATE images are inverted in z axis (no idea why...)"
 	exit 1
 fi
@@ -33,16 +33,14 @@ echo "====="
 echo "Begining Scatter Estimation Script"
 
 ## Inputs
-scatter_par=$1
-MeasuredData=$2
-NormalisationSinogram=$3
-RandomsEstimate=$4
-AttenuationImage=$5
-AttenIsGATE=$6
+sino_input=$1
+NORM=$2
+randoms3d=$3
+atnimg=$4
+AttenIsGATE=$5
 
 ## SETUP: No need to change stuff here, setup for exports
 acf3d=attenuation_coefficients.hs
-scatter_pardir=$PWD
 scatter_prefix=my_scatter
 total_additive_prefix=my_total_additive
 mask_image=my_mask
@@ -51,37 +49,42 @@ num_scat_iters=5
 scatter_recon_num_subiterations=18
 scatter_recon_num_subsets=18
 
+
+## This gets the example par data from the STIR install. 
+STIR_install_dir=$(dirname $(dirname $(command -v estimate_scatter)))
+scatter_pardir=$STIR_install_dir/share/doc/stir-5.0/examples/samples/scatter_estimation_par_files
+scatter_par="${scatter_pardir}/scatter_estimation.par"
+
 ### Manipulate the attenuation map from GATE
 ## GATE outputs with an offset and inverted z axis, these methods correct for this
 if [ $AttenIsGATE == 1 ]; then
 	## Create zeros with 0 origin
 	tmpImage="my_zflipped_atten.hv"
-	stir_math  $tmpImage $AttenuationImage
+	stir_math  $tmpImage $atnimg
 	## invert the z axis of $tmpImage if it is a GATE output
 	invert_axis z $tmpImage $tmpImage
-	## Reassign AttenuationImage to the flipped tmpImage 
-	AttenuationImage=$tmpImage
+	## Reassign atnimg to the flipped tmpImage 
+	atnimg=$tmpImage
 fi
 
 ## Exports
 ## Outputs
 export total_additive_prefix scatter_prefix
 ## Input data
-export MeasuredData AttenuationImage NormalisationSinogram acf3d RandomsEstimate scatter_pardir
+export sino_input atnimg NORM acf3d randoms3d scatter_pardir
 ## Scatter sim arguements
 export num_scat_iters scatter_recon_num_subiterations scatter_recon_num_subsets
 ## masks (debug)
 export mask_projdata_filename mask_image
 
 echo "Compute attenuation coefficient factors"
-calculate_attenuation_coefficients --PMRT --ACF $acf3d $AttenuationImage $MeasuredData
+calculate_attenuation_coefficients --PMRT --ACF $acf3d $atnimg $sino_input
 
 echo "creating mulltfactors"
-stir_math -s --mult my_multfactors.hs $NormalisationSinogram $acf3d
+stir_math -s --mult my_multfactors.hs $NORM $acf3d
 
 echo "Estimate scatter time. This takes time."
 ## Estimate the scatter
-# estimate_scatter ${scatter_par} > /dev/null
 estimate_scatter ${scatter_par}
 
 echo "Done with ${0}"
