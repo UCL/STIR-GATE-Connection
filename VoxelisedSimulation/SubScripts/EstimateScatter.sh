@@ -20,8 +20,8 @@
 ## then this script will flip the image in the z axis, because GATE seems to do that...
 
 
-if [[ $# != 5 ]]; then
-	echo "Usage: sh ${0} sino_input NormSino randoms3d atnimg AttenIsGATE"
+if [[ $# != 6 ]]; then
+	echo "Usage: sh ${0} OutputFilename MeasuredData[sino_input] NormalisationSinogram[NormSino] RandomsEstimate[randoms3d] AttenuationImage[atnimg] AttenuationIsGateOutput[AttenIsGATE]"
 	echo "The final option (AttenIsGATE) is required because GATE images are inverted in z axis (no idea why...)"
 	exit 1
 fi
@@ -33,11 +33,12 @@ echo "====="
 echo "Begining Scatter Estimation Script"
 
 ## Inputs
-sino_input=$1
-NORM=$2
-randoms3d=$3
-atnimg=$4
-AttenIsGATE=$5
+OutputFilename=$1
+sino_input=$2
+NORM=$3
+randoms3d=$4
+atnimg=$5
+AttenIsGATE=$6
 
 ## SETUP: No need to change stuff here, setup for exports
 acf3d=attenuation_coefficients.hs
@@ -88,6 +89,8 @@ stir_math -s --mult my_multfactors.hs $NORM $acf3d
 echo "Estimate scatter time. This takes time..."
 estimate_scatter ${scatter_par}
 
+# Rename total additive sinogram to the OutputFilename
+stir_math -s ${OutputFilename} "${total_additive_prefix}_${num_scat_iters}.hs"
 
 ## Optional cleanup
 cleanup=1
@@ -98,19 +101,11 @@ if [ ${cleanup} == 1 ]; then
 	rm ${mask_image}*
 	rm ${scatter_prefix}*
 	rm ${mask_projdata_filename}*
-	# Delete all ${total_additive_prefix}* files that are not the final one.
-	for total_additive_file in ${total_additive_prefix}*; 
-	do 
-		if [[ ${total_additive_file} != *"${total_additive_prefix}_${num_scat_iters}"* ]]; 
-		then
-			echo "Deleting ${total_additive_file}"
-			rm "${total_additive_file}"
-		else
-			echo "Keeping ${total_additive_file}"
-		fi
-	done
+	rm ${total_additive_prefix}*
 else
 	echo "Not performing cleanup."
 fi
 
 echo "Done with ${0}"
+echo "Total additive sinogram has been saved as: ${OutputFilename}"
+
