@@ -1,22 +1,24 @@
+#!/usr/bin/env bash
 
-## This is my development script for estiamting scatter
+## AUTHOR: Robert Twyman
+## AUTHOR: Kris Thielemans
+## Copyright (C) 2021 University College London
+## Licensed under the Apache License, Version 2.0
 
-
-## main function estimate_scatter
-## USAGE: EstimateScatter.sh scatter_estimation.par MeasuredData NormSino RandomsEst AttenuationImage AttenIsGATE
 ## This script estimates the scatter on the Measured data using STIR tools.
+## Built around the STIR function estimate_scatter.
 
-## This script requires many data sets but will output a estimation of the scatter and the additive sinogram 
+## This script requires many data sets and outputs a estimation of the scatter and the additive sinogram 
 ## for direct use in STIR reconstructions. 
 
-## If the attenuation image given is the output of GATE (it should be) then this script will flip the image in 
-## the z axis because GATE seems to do that...
+## The script will: 
+# 	- forward project the attentuation image to get attenuation correction factors,
+#	- output the multfactors (normalisation * acf for the system matrix), and
+#	- then estimate the scatter using STIR's estimate_scatter code.
 
-## The script will forward project the attentuation image to get attenuation correction factors.
+## If the attenuation image given is the output of GATE (it should be if computing GATE data corrections)
+## then this script will flip the image in the z axis, because GATE seems to do that...
 
-## The script will also output the multfactors (normalisation * acf for the system matrix)
-
-## The script will then estimate the scatter using STIR's estimate_scatter code.
 
 if [[ $# != 6 ]]; then
 	echo "Usage: sh ${0} scatter_estimation.par MeasuredData NormSino RandomsEst AttenuationImage AttenIsGATE"
@@ -35,7 +37,7 @@ scatter_par=$1
 MeasuredData=$2
 NormalisationSinogram=$3
 RandomsEstimate=$4
-AttenuationImage=$5  ## AttenuationImage
+AttenuationImage=$5
 AttenIsGATE=$6
 
 ## SETUP: No need to change stuff here, setup for exports
@@ -54,13 +56,11 @@ scatter_recon_num_subsets=18
 if [ $AttenIsGATE == 1 ]; then
 	## Create zeros with 0 origin
 	tmpImage="my_zflipped_atten.hv"
-	stir_math --times-scalar 0.0 --including-first zeros.hv ${AttenuationImage}
-	stir_math --add $tmpImage zeros.hv $AttenuationImage
+	stir_math  $tmpImage $AttenuationImage
 	## invert the z axis of $tmpImage if it is a GATE output
 	invert_axis z $tmpImage $tmpImage
 	## Reassign AttenuationImage to the flipped tmpImage 
 	AttenuationImage=$tmpImage
-	rm zeros.*
 fi
 
 ## Exports
