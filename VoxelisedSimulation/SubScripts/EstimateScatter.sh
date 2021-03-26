@@ -21,7 +21,7 @@
 
 
 if [[ $# != 6 ]]; then
-	echo "Usage: sh ${0} OutputFilename MeasuredData[sino_input] NormalisationSinogram[NormSino] RandomsEstimate[randoms3d] AttenuationImage[atnimg] AttenuationIsGateOutput[AttenIsGATE]"
+	echo "Usage: ${0} OutputFilename MeasuredData[sino_input] NormalisationSinogram[NormSino] RandomsEstimate[randoms3d] AttenuationImage[atnimg] AttenuationIsGateOutput[AttenIsGATE]"
 	echo "The final option (AttenIsGATE) is required because GATE images are inverted in z axis (no idea why...)"
 	exit 1
 fi
