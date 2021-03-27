@@ -1,7 +1,7 @@
 #! /bin/sh
 
 ## AUTHOR: Robert Twyman
-## Copyright (C) 2020 University College London
+## Copyright (C) 2020, 2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
 # This file will make a altered copy of "lm_to_projdata_template.par" and 
@@ -9,14 +9,15 @@
 
 # The Required Args:
 # - $1: Root files directory
-# - $2: ROOT_FILENAME_PREFIX 
+# - $2: ROOT_FILENAME_PREFIX
+# - $3: Which data to unlist ("Coincidences" or "Delayed") 
 
 ## Optional Args:
-
-# - $3: Which data to unlist ("Coincidences" or "Delayed")
 # - $4: Include Scatter flag (0 or 1. Default:1)
 # - $5: Include Random flag (0 or 1. Default:1)
-# - $6: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted.
+# - $6: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted. If 1, all events are accepted.
+# - $7: Lower Energy Threshold in keV (Default: 0)
+# - $8: Upper Energy Threshold in keV (Default: 1000)
 
 set -e # exit on error
 trap "echo ERROR in $0" ERR
@@ -28,22 +29,27 @@ EventDataType=$3
 ScatterFlag=$4
 RandomFlag=$5
 AcceptanceProb=$6
+LowerEnergyThreshold=$7
+UpperEngeryThreshold=$8
 
 
 UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${EventDataType}"
-LowerEnergyThreshold=0
-UpperEngeryThreshold=1000
 
 echo ""
-echo "STIR-GATE-Connection unlisting"
+echo "STIR-GATE-Connection Unlisting ROOT data script"
 
 ## Check the number of inputs
 if [ $# -lt 3 ]; then
-  echo "Usage:"$0 "StoreRootFilesDirectory ROOT_FILENAME_PREFIX EventDataType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) AcceptanceProb(Default:1) ]" 1>&2
+  echo "Usage: $0 StoreRootFilesDirectory ROOT_FILENAME_PREFIX EventDataType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) [AcceptanceProb(Default:1) [LowerEngeryThreshold(Default:0) UpperEngeryThreshold(Default:1000)]]]" 1>&2
   exit 1
-elif [ $# -lt 5 ]; then
+fi
+if [ $# -lt 5 ]; then
 	ScatterFlag=1
 	RandomFlag=1
+fi
+if [ $# -lt 8 ]; then
+	LowerEnergyThreshold=0
+	UpperEngeryThreshold=1000
 fi
 
 ## Ensure ScatterFlag and RandomFlag are 0 or 1. Set Exclude versions respectively
@@ -109,7 +115,7 @@ sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" $StoreRootFilesDirectory/$
 rm $StoreRootFilesDirectory/*.bak
 
 ## Perform Root file unlisting
-if [ -z ${AcceptanceProb} ]; then
+if [[ -z ${AcceptanceProb} || ${AcceptanceProb} == 1 ]]; then
 	echo "No AcceptanceProb given, unlist all using standard to lm_to_projdata"
 	lm_to_projdata ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par
 	if [ $? -ne 0 ]; then
