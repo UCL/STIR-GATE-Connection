@@ -79,10 +79,8 @@ echo "Beginning Scatter Estimation"
 ### Manipulate the attenuation map from GATE
 ## GATE outputs with an offset and inverted z axis, these methods correct for this
 if [ $AttenIsGATE == 1 ]; then
-	## Create zeros with 0 origin
-	tmpImage="my_zflipped_atten.hv"
-	stir_math  $tmpImage $atnimg
 	## invert the z axis of $tmpImage if it is a GATE output
+	tmpImage="my_zflipped_atten.hv"	
 	invert_axis z $tmpImage $tmpImage
 	## Reassign atnimg to the flipped tmpImage 
 	atnimg=$tmpImage
