@@ -74,7 +74,7 @@ scatter_par="${scatter_pardir}/scatter_estimation.par"
 
 
 echo "====="
-echo "Begining Scatter Estimation Script"
+echo "Beginning Scatter Estimation"
 
 ### Manipulate the attenuation map from GATE
 ## GATE outputs with an offset and inverted z axis, these methods correct for this
@@ -93,7 +93,7 @@ fi
 export total_additive_prefix scatter_prefix
 ## Input data
 export sino_input atnimg NORM acf3d randoms3d scatter_pardir
-## Scatter sim arguements
+## Scatter sim arguments
 export num_scat_iters scatter_recon_num_subiterations scatter_recon_num_subsets
 ## masks (debug)
 export mask_projdata_filename mask_image
@@ -103,7 +103,7 @@ export mask_projdata_filename mask_image
 echo "Compute attenuation coefficient factors"
 calculate_attenuation_coefficients --PMRT --ACF $acf3d $atnimg $sino_input
 
-echo "creating mulltfactors"
+echo "creating multfactors"
 stir_math -s --mult my_multfactors.hs $NORM $acf3d
 
 echo "Estimate scatter time. This takes time..."
