@@ -101,7 +101,7 @@ export mask_projdata_filename mask_image
 
 ## Computations
 echo "Compute attenuation coefficient factors"
-calculate_attenuation_coefficients --PMRT --ACF $acf3d $atnimg $sino_input
+calculate_attenuation_coefficients --ACF $acf3d $atnimg $sino_input
 
 echo "creating multfactors"
 stir_math -s --mult my_multfactors.hs $NORM $acf3d
