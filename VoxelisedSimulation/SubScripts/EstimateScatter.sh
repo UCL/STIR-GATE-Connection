@@ -5,19 +5,20 @@
 ## Copyright (C) 2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
-## This script estimates the scatter on the Measured data using STIR tools.
-## Built around the STIR function estimate_scatter.
+## This script estimates the scatter on the measured data using STIR tools and
+#  is built around the STIR utility `estimate_scatter`.
 
-## This script requires many datasets and outputs am estimation of the scatter and the additive sinogram 
-## for use in STIR reconstructions. 
+## This script requires many datasets and outputs an additive sinogram and multiplication 
+#  (mult)factors for use in STIR iterative reconstruction. 
 
 ## The script will: 
-# 	- forward project the attentuation image to get attenuation correction factors,
-#	- output the multfactors (normalisation * acf for the system matrix), and
-#	- then estimate the scatter using STIR's estimate_scatter code.
+# 	- forward project the attentuation image to get attenuation correction factors (acf),
+#	- output the multfactors (normalisation * acf for the system matrix), 
+#	- then estimate the scatter using STIR's estimate_scatter code, and
+#	- save the total additive sinogram for STIR reconstruction
 
-## If the attenuation image given is the output of GATE (it should be if computing GATE data corrections)
-## then this script will flip the image in the z axis, because GATE seems to do that...
+## N.B. If the attenuation image given is the output of GATE (it should be if computing GATE data corrections)
+#  then this script will flip the image in the z axis, because GATE seems to do that...
 
 ## Verbose usage:
 # 	0: EstimateScatter.sh 						- Script name
@@ -27,7 +28,7 @@
 #	4: RandomsEstimate[randoms3d] 				- Estimated randoms filename
 #	5: AttenuationImage[atnimg] 				- Attenuation image filename
 # 	6: AttenuationIsGateOutput[AttenIsGATE] 	- The attenuation image the output of GATE, may be flipped in z axis
-## Optional:
+## Optional (estimate scatter related):
 #	7: num_scat_iters 							- Number of scatter estimation iterations
 #	8: scatter_recon_num_subiterations 			- The number of reconstruction subiterations
 #	9: scatter_recon_num_subsets				- The number of reconstruction subsets
@@ -61,11 +62,14 @@ else
 fi
 
 ## SETUP: No need to change stuff here, setup for exports
-acf3d=attenuation_coefficients.hs
+acf3d=my_attenuation_coefficients.hs
+multfactors=my_multfactors.hs
 scatter_prefix=my_scatter
 total_additive_prefix=my_total_additive
 mask_image=my_mask
 mask_projdata_filename=my_sino_mask
+
+cleanup=1 ## At the end of the script delete all files except $OutputFilename and $multfactors
 
 ## Gets the scatter par(dir) from the STIR install path (STIR examples are installed with latest versions of STIR)
 STIR_install_dir=$(dirname $(dirname $(command -v estimate_scatter)))
@@ -99,19 +103,19 @@ export mask_projdata_filename mask_image
 
 ## Computations
 echo "Compute attenuation coefficient factors"
-calculate_attenuation_coefficients --ACF $acf3d $atnimg $sino_input
-
-echo "creating multfactors"
-stir_math -s --mult my_multfactors.hs $NORM $acf3d
+calculate_attenuation_coefficients --ACF ${acf3d} ${atnimg} ${sino_input}
 
 echo "Estimate scatter time. This takes time..."
 estimate_scatter ${scatter_par}
 
 # Rename total additive sinogram to the OutputFilename
+echo "Creating Output: ${OutputFilename}"
 stir_math -s ${OutputFilename} "${total_additive_prefix}_${num_scat_iters}.hs"
 
+echo "Creating Multiplicative Factors: ${multfactors}"
+stir_math -s --mult ${multfactors} ${NORM} ${acf3d}
+
 ## Optional cleanup
-cleanup=1
 if [ ${cleanup} == 1 ]; then
 	echo "Cleaning up unneeded data!"
 	rm -r extras/
@@ -126,4 +130,4 @@ fi
 
 echo "Done with ${0}"
 echo "Total additive sinogram has been saved as: ${OutputFilename}"
-
+echo "Multiplicative factors has been saved as: ${multfactors}"
