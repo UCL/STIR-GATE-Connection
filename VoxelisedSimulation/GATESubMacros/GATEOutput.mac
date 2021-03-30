@@ -14,6 +14,9 @@
 /gate/output/tree/addFileName {StoreRootFilesDirectory}/{ROOT_FILENAME_PREFIX}.root  ## be aware, GATE adds the Tree name e.g. {StoreRootFilesDirectory}/{ROOT_FILENAME_PREFIX}.Coincidences.root
 
 ## S I N G L E S 
+# Please note, Singles output collection has been disabled as STIR is currently unable to
+# utilise the data in the estimation of the randoms events. In future, this may be addressed.
+
 #/gate/output/tree/addCollection Singles 
 
 ## (disable all the non-required branches)
