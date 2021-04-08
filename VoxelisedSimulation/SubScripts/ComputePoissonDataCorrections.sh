@@ -5,18 +5,15 @@
 ## Copyright (C) 2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
-## This script estimates the scatter on the measured data using STIR tools and
-#  is built around the STIR utility `estimate_scatter`.
-
-## This script requires many datasets and outputs an additive sinogram and multiplication 
-#  (mult)factors for use in STIR iterative reconstruction. 
+## This script computes the data correction terms for PET reconstruction from the measured data output by GATE simulations.
+## Many datasets are required and the two outputs are: an additive sinogram and multiplication(mult)factors sinogram. 
 
 ## The script will: 
 #	- estimate the contribution background due to random events from a delayed coincidence window sinogram
 # 	- forward project the attentuation image to get attenuation correction factors (acf),
-#	- then estimate the scatter using STIR's estimate_scatter code,
+#	- estimate the scatter using STIR's estimate_scatter code,
 #	- save the multiplicative factors (normalisation * acf for the system matrix), and
-#	- save the total additive sinogram for STIR reconstruction
+#	- save the total additive sinogram (randoms and scatter estimations).
 
 ## N.B. If the attenuation image given is the output of GATE (it should be if computing GATE data corrections)
 #  then this script will flip the image in the z axis, because GATE seems to do that...
@@ -25,23 +22,25 @@
 # 	0:  EstimateScatter.sh 						- Script name
 #	1:  OutputMultiplicativeFactorsFilename		- Output filename of the multiplicative factors
 # 	2:  OutputAdditiveSinogramFilename			- Output filename of the additive sinogram
-#	3:  CoincidenceData[sino_input]				- Measured coincidence data sinogram filename
+#	3:  CoincidenceData[sino_input]				- Coincidence data sinogram filename
 #	4:  DelayedData								- Delayed coincidence data singoram filename
 #	5:  NormalisationSinogram[NormSino]			- Normalisation sinogram filename
 #	6:  AttenuationImage[atnimg]				- Attenuation image filename
-# 	7:  AttenuationIsGateOutput[AttenIsGATE]	- The attenuation image the output of GATE, may be flipped in z axis
+# 	7:  AttenuationIsGateOutput[AttenIsGATE]	- Is attenuation image the output of GATE, may be flipped in z axis [0 or 1]
 ## Optional (estimate scatter related):
-#	8:  num_scat_iters							- Number of scatter estimation iterations
-#	9:  scatter_recon_num_subiterations			- The number of reconstruction subiterations
-#	10: scatter_recon_num_subsets				- The number of reconstruction subsets
+#	8:  num_scat_iters							- Number of scatter estimation iterations [Default: 5]
+#	9:  scatter_recon_num_subiterations			- The number of reconstruction subiterations [Default: 18]
+#	10: scatter_recon_num_subsets				- The number of reconstruction subsets [Default: 18]
 
 set -e # exit on error
 trap "echo ERROR in $0" ERR
 
 if [[ $# == 7 || $# == 10 ]]; then
-	## Required inputs
+	## Required arguments
+	#  Output filename
 	OutputMultiplicativeFactorsFilename=$1
 	OutputAdditiveSinogramFilename=$2
+	# Input filenames
 	sino_input=$3
 	DelayedData=$4
 	NORM=$5
@@ -68,7 +67,7 @@ fi
 
 ## Echo the script arguments for debugging
 echo "  =========================  "
-echo "Compute Poisson Data Correction script has the following arguments:"
+echo "Compute Poisson Data Correction script will use the following configuration:"
 echo "    OutputMultiplicativeFactorsFilename = ${OutputMultiplicativeFactorsFilename}"
 echo "    OutputAdditiveSinogramFilename = ${OutputAdditiveSinogramFilename}"
 echo "    CoincidenceData[sino_input] = ${sino_input}"
@@ -76,7 +75,7 @@ echo "    DelayedData = ${DelayedData}"
 echo "    NormalisationSinogram[NormSino] = ${NormSino}"
 echo "    AttenuationImage[atnimg] = ${atnimg}"
 echo "    AttenuationIsGateOutput[AttenIsGATE] = ${AttenIsGATE}"
-echo "Optional arguments:"
+echo "Optional variables:"
 echo "    num_scat_iters = ${num_scat_iters}"
 echo "    scatter_recon_num_subiterations = ${scatter_recon_num_subiterations}"
 echo "    scatter_recon_num_subsets = ${scatter_recon_num_subsets}"
@@ -162,3 +161,4 @@ fi
 echo "Done with ${0}"
 echo "Total additive sinogram has been saved as: ${OutputAdditiveSinogramFilename}"
 echo "Multiplicative factors has been saved as: ${OutputMultiplicativeFactorsFilename}"
+exit 0
