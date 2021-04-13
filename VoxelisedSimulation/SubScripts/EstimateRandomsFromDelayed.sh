@@ -1,4 +1,4 @@
-## #! /bin/sh
+#!/usr/bin/env bash
 ## AUTHOR: Robert Twyman
 ## AUTHOR: Kris Thielemans
 ## Copyright (C) 2020, 2021 University College London
@@ -22,6 +22,9 @@ DelayedData=$2 ## INPUT: Delayed coincidences sinogram
 factors=singles_from_delayed
 num_iterations=10
 
+echo "Estimating the randoms from the delayed sinogram:"
+echo "   ${DelayedData}"
+
 echo "find_ML_singles_from_delayed"
 find_ML_singles_from_delayed ${factors} ${DelayedData} ${num_iterations} < /dev/null
 
@@ -35,3 +38,4 @@ if [ $cleanup == 1 ]; then
 fi
 
 echo "Estimated Randoms sinogram and saved as:" ${OutputFilename}
+exit 0
