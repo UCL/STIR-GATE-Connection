@@ -103,7 +103,7 @@ SGC_SubScripts=$(dirname ${0})
 ## Estimate the randoms from delays
 echo "====="
 echo "Computing contribution due to randoms from DelayedData"
-sh ${SGC_SubScripts}SubScripts/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
+sh ${SGC_SubScripts}/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
 
 
 echo "====="
