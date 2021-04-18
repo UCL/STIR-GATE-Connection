@@ -97,11 +97,13 @@ STIR_install_dir=$(dirname $(dirname $(command -v estimate_scatter)))
 scatter_pardir="$STIR_install_dir/share/doc/stir-5.0/examples/samples/scatter_estimation_par_files"
 scatter_par="${scatter_pardir}/scatter_estimation.par"
 
+## Get the SGC_Home
+SGC_SubScripts=$(dirname ${0})
 
 ## Estimate the randoms from delays
 echo "====="
 echo "Computing contribution due to randoms from DelayedData"
-sh SubScripts/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
+sh ${SGC_SubScripts}SubScripts/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
 
 
 echo "====="
