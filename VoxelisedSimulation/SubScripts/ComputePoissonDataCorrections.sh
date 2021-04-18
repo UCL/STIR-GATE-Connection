@@ -24,7 +24,7 @@
 # 	2:  OutputAdditiveSinogramFilename			- Output filename of the additive sinogram
 #	3:  CoincidenceData[sino_input]				- Coincidence data sinogram filename
 #	4:  DelayedData								- Delayed coincidence data singoram filename
-#	5:  NormalisationSinogram[NormSino]			- Normalisation sinogram filename
+#	5:  NormalisationSinogram[NORM]				- Normalisation sinogram filename
 #	6:  AttenuationImage[atnimg]				- Attenuation image filename
 # 	7:  AttenuationIsGateOutput[AttenIsGATE]	- Is attenuation image the output of GATE, may be flipped in z axis [0 or 1]
 ## Optional (estimate scatter related):
@@ -72,7 +72,7 @@ echo "    OutputMultiplicativeFactorsFilename = ${OutputMultiplicativeFactorsFil
 echo "    OutputAdditiveSinogramFilename = ${OutputAdditiveSinogramFilename}"
 echo "    CoincidenceData[sino_input] = ${sino_input}"
 echo "    DelayedData = ${DelayedData}"
-echo "    NormalisationSinogram[NormSino] = ${NormSino}"
+echo "    NormalisationSinogram[NORM] = ${NORM}"
 echo "    AttenuationImage[atnimg] = ${atnimg}"
 echo "    AttenuationIsGateOutput[AttenIsGATE] = ${AttenIsGATE}"
 echo "Optional variables:"
