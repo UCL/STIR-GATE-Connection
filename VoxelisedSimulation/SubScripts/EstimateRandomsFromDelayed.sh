@@ -10,7 +10,7 @@ set -e # exit on error
 trap "echo ERROR in $0" ERR
 
 if [ $# != 2 ]; then
-	echo "Usage: EstimateGATESTIRNorm.sh OutputFilename DelayedData"
+	echo "Usage: EstimateRandomsFromDelayed.sh OutputFilename DelayedData"
 	exit 1
 fi 
 
