@@ -39,6 +39,8 @@ Requirements
 
 This project is reliant on: ROOT, current STIR `master` branch (https://github.com/UCL/STIR/tree/master) installed with ROOT support, and GATE version 9.0. GATE has dependancy on Geant4 and ROOT. Both STIR install `bin` and GATE `bin` must be in your `PATH`.
 
+STIR-GATE-Connection requires the `SGCPATH` enviromental variable to be set to this primary directory (containing this README file). Many scripts use this variable when executing sub-scripts.
+
 
 Directories
 ===========
