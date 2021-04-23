@@ -37,7 +37,7 @@ else
 fi
 
 ## Parameter file to use for STIR forward projection
-forward_project_pars=${SGCPATH}/VoxelisedSimulation/SubScripts/forward_projector_proj_matrix_ray_tracing.par
+forward_project_pars=${SGCPATH}/DataCorrectionsComputation/forward_projector_proj_matrix_ray_tracing.par
 
 ## ML Normfactors loop numbers (Hardcoded for now)
 outer_iters=5

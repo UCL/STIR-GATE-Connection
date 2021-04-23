@@ -100,8 +100,7 @@ scatter_par="${scatter_pardir}/scatter_estimation.par"
 ## Estimate the randoms from delays
 echo "====="
 echo "Computing contribution due to randoms from DelayedData"
-SGCSubScripts=${SGCPATH}/VoxelisedSimulation/SubScripts
-sh ${SGCSubScripts}/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
+sh ${SGCPATH}/DataCorrectionsComputation/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
 
 echo "====="
 echo "Beginning Scatter Estimation"
