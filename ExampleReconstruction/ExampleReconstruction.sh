@@ -14,8 +14,7 @@ echo "    Multiplicative Factors [MultFactors] = ${MultFactors}"
 
 if [ $# != 3 ]; then 
 	echo "USAGE: $0 Coincidence Data[Prompts] AdditiveSinogram MultiplicativeFactors[MultFactors]"
+fi
 
 export Prompts AdditiveSinogram MultFactors SGCPATH
-
-
 OSMAPOSL ${SGCPATH}/ExampleReconstruction/OSEM.par
