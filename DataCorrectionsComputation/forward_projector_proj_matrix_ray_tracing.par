@@ -1,6 +1,6 @@
 Forward Projector parameters:=
 ; example par file for specifying the forward projector for forward_project etc
-; This is used for the normalisation.
+; This is used in the `EstimateGATESTIRNorm.sh` script.
 ; WARNING: You need to adapt this to the forward projector that you want to use
 ; with your STIR reconstructions.
 type:=Matrix
