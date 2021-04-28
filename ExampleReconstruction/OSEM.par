@@ -4,6 +4,7 @@ OSMAPOSLParameters :=
   objective function type:= PoissonLogLikelihoodWithLinearModelForMeanAndProjData
   PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
 
+    ; The unlisted Coincidence data output by GATE.
     input file := ${Prompts}
 
     projector pair type := Matrix
@@ -14,10 +15,14 @@ OSMAPOSLParameters :=
       End Ray tracing matrix parameters :=
     End Projector Pair Using Matrix Parameters :=
 
-    ; additive projection data to handle randoms etc
+    ; Additive projection data to handle randoms and scattered events estimates.
+    ; This can be computed using the `ComputePoissonDataCorrections.sh` scripts.
     additive sinogram := ${AdditiveSinogram} 
 
-    ; norm and acf
+    ; Normalisation and Attenuation Correction Factors
+    ; In the STIR-GATE-Connection the product of this is often known as
+    ; Multiplicative Factors (or MultFactors).
+    ; This can be computed using the `ComputePoissonDataCorrections.sh` scripts.
     Bin Normalisation type := From ProjData
     Bin Normalisation From ProjData :=
       normalisation projdata filename:= ${MultFactors}
@@ -30,7 +35,6 @@ OSMAPOSLParameters :=
 
   end PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
 
-  ; Number of subsets should usually be a divisor of num_views/8
   output filename prefix := OSEM
   number of subsets:= ${NumSubsets}
   number of subiterations:= ${NumSubiterations}
