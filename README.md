@@ -4,6 +4,7 @@
 Author: Robert Twyman <br />
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
+Author: Francesca Leek<br />
 Author: Vesna Cuplov <br />
 Author: Kris Thielemans <br />
 Copyright (C) 2014-2020 University College London<br />
