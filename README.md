@@ -48,6 +48,7 @@ Directories
 * `ExamplesOfScannersMacros/`: Contains examples of macros for creating a scanner in GATE.
 * `ExamplesOfPhantomMacros/`: Contains examples of macros and STIR parameter files for creating/importing source and attenuation phantoms.
 * `VoxelisedSimulation/`: Main GATE simulation directory.
+* `ExampleReconstuction/`: Contains example scripts for iterative reconstruction using STIR, e.g. OSEM.
 
 
 Acknowledgements
