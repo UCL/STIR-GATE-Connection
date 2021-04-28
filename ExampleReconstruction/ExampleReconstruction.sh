@@ -8,7 +8,7 @@
 #  The required inputs are as follow:
 #		Coincidence Data 
 #		Additive Sinogram 
-#		MultiplicativeF actors"
+#		Multiplicative Factors"
 
 if [ $# != 3 ]; then 
 	echo "USAGE: $0 CoincidenceData[Prompts] AdditiveSinogram MultiplicativeFactors[MultFactors]"

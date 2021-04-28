@@ -20,10 +20,10 @@ This directory contains the files for PET image reconstruction using STIR.
 Files
 =======
 
-* `OSEM.par`: Example STIR OSEM reconstuction parameter file. The file contains enviromental variable.
+* `OSEM.par`: Example STIR OSEM reconstruction parameter file. The file uses environment variables.
 
 
 Scripts
 =======
 
-* `ExampleOSEM.sh`: An example script that exports the required enviromental variables for image reconstruction using `OSEM.par`.
+* `ExampleOSEM.sh`: An example script that exports the required enviroment variables for image reconstruction using `OSEM.par`.
