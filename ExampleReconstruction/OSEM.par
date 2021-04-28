@@ -32,8 +32,8 @@ OSMAPOSLParameters :=
 
   ; Number of subsets should usually be a divisor of num_views/8
   output filename prefix := ${SGCPATH}/ExampleReconstruction/OSEM
-  number of subsets:= 8
-  number of subiterations:= 40
+  number of subsets:= ${NumSubsets}
+  number of subiterations:= ${NumSubiterations}
   save estimates at subiteration intervals:= 1
 
 END :=
