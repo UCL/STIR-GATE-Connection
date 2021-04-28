@@ -15,14 +15,14 @@ OSMAPOSLParameters :=
       End Ray tracing matrix parameters :=
     End Projector Pair Using Matrix Parameters :=
 
-    ; Additive projection data to handle randoms and scattered events estimates.
-    ; This can be computed using the `ComputePoissonDataCorrections.sh` scripts.
+    ; Additive projection data containing randoms and scattered events estimates.
+    ; This can be computed using the `ComputePoissonDataCorrections.sh` script.
     additive sinogram := ${AdditiveSinogram} 
 
     ; Normalisation and Attenuation Correction Factors
-    ; In the STIR-GATE-Connection the product of this is often known as
-    ; Multiplicative Factors (or MultFactors).
-    ; This can be computed using the `ComputePoissonDataCorrections.sh` scripts.
+    ; In the STIR-GATE-Connection the product of these sinograms is often 
+    ; known as Multiplicative Factors (or MultFactors).
+    ; This can be computed using the `ComputePoissonDataCorrections.sh` script.
     Bin Normalisation type := From ProjData
     Bin Normalisation From ProjData :=
       normalisation projdata filename:= ${MultFactors}
