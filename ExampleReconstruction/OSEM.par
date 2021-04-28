@@ -31,7 +31,7 @@ OSMAPOSLParameters :=
   end PoissonLogLikelihoodWithLinearModelForMeanAndProjData Parameters:=
 
   ; Number of subsets should usually be a divisor of num_views/8
-  output filename prefix := ${SGCPATH}/ExampleReconstruction/OSEM
+  output filename prefix := OSEM
   number of subsets:= ${NumSubsets}
   number of subiterations:= ${NumSubiterations}
   save estimates at subiteration intervals:= 1
