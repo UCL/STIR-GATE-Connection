@@ -2,7 +2,7 @@
 
 ## AUTHOR: Robert Twyman
 ## AUTHOR: Kris Thielemans
-## Copyright (C) 2020, 2021 University College London
+## Copyright (C) 2020-2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## This script computes the data correction terms for PET reconstruction from the measured data output by GATE simulations.

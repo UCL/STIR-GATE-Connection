@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## AUTHOR: Robert Twyman
 ## AUTHOR: Kris Thielemans
-## Copyright (C) 2020, 2021 University College London
+## Copyright (C) 2020-2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## This script estimates the background randoms from Delayed coincidences projection data.

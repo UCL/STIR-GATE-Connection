@@ -27,7 +27,4 @@ Scripts
 
 Files
 =======
-
 * `forward_projector_proj_matrix_ray_tracing.par`: Forward projector parameters for normalisation computation. See `EstimateGATESTIRNorm.sh`
-
-
