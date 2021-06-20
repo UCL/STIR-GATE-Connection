@@ -36,6 +36,12 @@ else
 	norm_template=0
 fi
 
+# Check for $SGCPATH variable existance
+if [ -z ${SGCPATH} ]; then 
+	echo "SGCPATH was not found in enviromental variables..."
+	exit 1
+fi
+
 ## Parameter file to use for STIR forward projection
 forward_project_pars=${SGCPATH}/VoxelisedSimulation/SubScripts/forward_projector_proj_matrix_ray_tracing.par
 

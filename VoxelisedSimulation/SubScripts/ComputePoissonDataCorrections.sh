@@ -64,6 +64,12 @@ else
 	scatter_recon_num_subsets=18
 fi
 
+# Check for $SGCPATH variable existance
+if [ -z ${SGCPATH} ]; then 
+	echo "SGCPATH was not found in enviromental variables..."
+	exit 1
+fi
+
 
 ## Echo the script arguments for debugging
 echo "  =========================  "
