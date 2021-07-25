@@ -3,8 +3,9 @@
 SGCPATH=$(cd "$(dirname "$0")"; pwd)/$(basename "$1")
 SGCVoxelisedSimulation="${SGCPATH}/VoxelisedSimulation"
 SGCDataCorrectionsComputation="${SGCPATH}/DataCorrectionsComputation"
+SGCExampleReconstruction="${SGCPATH}/ExampleReconstruction"
 
-export SGCPATH SGCVoxelisedSimulation SGCDataCorrectionsComputation
+export SGCPATH SGCVoxelisedSimulation SGCDataCorrectionsComputation SGCExampleReconstruction
 export PATH=${SGCPATH}:${PATH}
 
 echo " "
