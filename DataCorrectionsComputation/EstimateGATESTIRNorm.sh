@@ -1,7 +1,7 @@
-## #! /bin/sh
+#!/usr/bin/env bash
 ## AUTHOR: Robert Twyman
 ## AUTHOR: Kris Thielemans
-## Copyright (C) 2020, 2021 University College London
+## Copyright (C) 2020-2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## Script is used to compute the normalisation factors for GATE data reconstruction.
@@ -43,7 +43,7 @@ if [ -z ${SGCPATH} ]; then
 fi
 
 ## Parameter file to use for STIR forward projection
-forward_project_pars=${SGCPATH}/VoxelisedSimulation/SubScripts/forward_projector_proj_matrix_ray_tracing.par
+forward_project_pars=${SGCPATH}/DataCorrectionsComputation/forward_projector_proj_matrix_ray_tracing.par
 
 ## ML Normfactors loop numbers (Hardcoded for now)
 outer_iters=5

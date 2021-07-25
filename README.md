@@ -49,6 +49,7 @@ Directories
 * `ExamplesOfScannersMacros/`: Contains examples of macros for creating a scanner in GATE.
 * `ExamplesOfPhantomMacros/`: Contains examples of macros and STIR parameter files for creating/importing source and attenuation phantoms.
 * `VoxelisedSimulation/`: Main GATE simulation directory.
+* `DataCorrectionsComputation/`: Contains scripts to compute the data corrections for iterative image reconstruction, including: normalisation and attentuation correction coefficients, plus randoms and scattered estimations of the measured data.
 
 
 Files
