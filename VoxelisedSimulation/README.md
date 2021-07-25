@@ -1,10 +1,10 @@
-# Input
+# Voxelised Simulation
 
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
 Author: Kris Thielemans<br />
 Author: Robert Twyman<br />
-Copyright (C) 2018-2020 University College London<br />
+Copyright (C) 2018-2021 University College London<br />
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -35,7 +35,6 @@ Directories
 
 Files
 =======
-
 * `CheckGeometry.mac`: this script can be used to visualise scanner and activity images from GUI: `Gate --qt CheckGeometry.mac` (requires geant4 OpenGL {and maybe QT?}). Note, additional parameters may be required. Refer to `CheckGeometry.sh`. 
 * `MainGATE.mac`: main macro file for GATE simulation. Utilises macro files within `GATESubMacros/`.
 

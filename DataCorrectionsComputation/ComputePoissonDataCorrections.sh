@@ -2,7 +2,7 @@
 
 ## AUTHOR: Robert Twyman
 ## AUTHOR: Kris Thielemans
-## Copyright (C) 2020, 2021 University College London
+## Copyright (C) 2020-2021 University College London
 ## Licensed under the Apache License, Version 2.0
 
 ## This script computes the data correction terms for PET reconstruction from the measured data output by GATE simulations.
@@ -64,6 +64,12 @@ else
 	scatter_recon_num_subsets=18
 fi
 
+# Check for $SGCPATH variable existance
+if [ -z ${SGCPATH} ]; then 
+	echo "SGCPATH was not found in enviromental variables..."
+	exit 1
+fi
+
 
 ## Echo the script arguments for debugging
 echo "  =========================  "
@@ -100,8 +106,7 @@ scatter_par="${scatter_pardir}/scatter_estimation.par"
 ## Estimate the randoms from delays
 echo "====="
 echo "Computing contribution due to randoms from DelayedData"
-SGCSubScripts=${SGCPATH}/VoxelisedSimulation/SubScripts
-sh ${SGCSubScripts}/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
+sh ${SGCPATH}/DataCorrectionsComputation/EstimateRandomsFromDelayed.sh ${randoms3d} ${DelayedData}
 
 echo "====="
 echo "Beginning Scatter Estimation"

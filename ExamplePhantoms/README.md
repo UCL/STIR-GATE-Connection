@@ -1,4 +1,4 @@
-# ExamplesOfPhantomMacros
+# Example Phantoms
 
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />

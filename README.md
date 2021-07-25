@@ -4,6 +4,7 @@
 Author: Robert Twyman <br />
 Author: Ludovica Brusaferri<br />
 Author: Elise Emond<br />
+Author: Francesca Leek<br />
 Author: Vesna Cuplov <br />
 Author: Kris Thielemans <br />
 Copyright (C) 2014-2020 University College London<br />
@@ -49,6 +50,14 @@ Directories
 * `ExamplesOfPhantomMacros/`: Contains examples of macros and STIR parameter files for creating/importing source and attenuation phantoms.
 * `VoxelisedSimulation/`: Main GATE simulation directory.
 * `ExampleReconstruction/`: Contains example scripts for iterative reconstruction using STIR, e.g. OSEM.
+* `DataCorrectionsComputation/`: Contains scripts to compute the data corrections for iterative image reconstruction, including: normalisation and attentuation correction coefficients, plus randoms and scattered estimations of the measured data.
+
+
+Files
+=====
+
+* `this_SGC.sh`: This script sets the `SGCPATH` enviromental variable. It also adds `SGCPATH` to PATH. Additional enviromental variables are added for the major project directories. See script for more details.
+>>>>>>> master
 
 
 Acknowledgements
