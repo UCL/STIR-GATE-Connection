@@ -1,6 +1,7 @@
 # This file should be sourced, e.g. `source this_SGC.sh`
 
-SGCPATH=$(cd "$(dirname "$0")"; pwd)/$(basename "$1")
+SGCPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 SGCVoxelisedSimulation="${SGCPATH}/VoxelisedSimulation"
 SGCDataCorrectionsComputation="${SGCPATH}/DataCorrectionsComputation"
 SGCExampleReconstruction="${SGCPATH}/ExampleReconstruction"
