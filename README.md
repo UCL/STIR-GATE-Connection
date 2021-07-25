@@ -50,6 +50,12 @@ Directories
 * `VoxelisedSimulation/`: Main GATE simulation directory.
 
 
+Files
+=====
+
+* `this_SGC.sh`: This script sets the `SGCPATH` enviromental variable. It also adds `SGCPATH` to PATH. Additional enviromental variables are added for the major project directories. See script for more details.
+
+
 Acknowledgements
 ================
 Additional help with testing an early stage of the macros:
