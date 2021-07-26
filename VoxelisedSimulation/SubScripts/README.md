@@ -33,4 +33,5 @@ Therefore they assume that the GATE scanner is defined as in `ExamplesOfScanners
 Comments
 =======
 * Concatenating root files: Use the ROOT provided tool `hadd` (`hadd --help` for more information).
-* Combining interfile sinograms: Use `stir_math`.
+  * The `hadd` executable has a limit of 100GB that can be merged into a single ROOT file. This can be overcome with minor modification in ROOT. Please refer to the solution provided [here](https://root-forum.cern.ch/t/root-6-04-14-hadd-100gb-and-rootlogon/24581).
+* Combining interfile sinograms: Use STIR's `stir_math` utility.
