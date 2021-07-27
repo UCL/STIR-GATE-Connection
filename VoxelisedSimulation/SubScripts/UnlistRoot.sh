@@ -18,6 +18,8 @@
 # - $6: Acceptance Probability (range 0-1. Default:1). The probability an event is accepted to be unlisted. If 1, all events are accepted.
 # - $7: Lower Energy Threshold in keV (Default: 0)
 # - $8: Upper Energy Threshold in keV (Default: 1000)
+# - $9: The Maximum Number of Events to Unlist into a Sinogram. (Default: -1, no limit)
+
 
 set -e # exit on error
 trap "echo ERROR in $0" ERR
