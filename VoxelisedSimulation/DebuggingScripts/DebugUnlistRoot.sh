@@ -8,10 +8,10 @@
 # This is a debugging script and may not be properly maintained.
 # This script utilises a debug hroot file and unlists 4 different event types into 4 different sinograms via multiple unlistings.
 # The event types that are unlisted are:
-#   1. Unscattered from same eventID 				(Trues)
-#   2. Unscattered from different eventIDs 	(Randoms)
-#   3. Scattered from same eventID 					(Scattered)
-#   4. Scattered different eventIDs 				(ScatteredRandoms)
+#   1. Unscattered from same eventID        (Trues)
+#   2. Unscattered from different eventIDs  (Randoms)
+#   3. Scattered from same eventID          (Scattered)
+#   4. Scattered different eventIDs         (ScatteredRandoms)
 # There is no overlap between the output sinograms and the summation of the sinograms equates to the unlisting of the total data, without exclusions.
 
 # The Required Args:
