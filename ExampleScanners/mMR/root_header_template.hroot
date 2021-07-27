@@ -1,5 +1,9 @@
 ROOT header := 
 
+; This header files is used in the examples for the STIR-GATE-Connection project for the Siemens mMR PET scanner configuration.
+; This header provides meta information for STIR to read a ROOT data file (see name of data file key).
+; Many of values in this file are undefined and use a temporary placeholder, denoted by the use of curly brackets {}.
+
 originating system := User_defined_scanner
 Number of rings                          := 64
 Number of detectors per ring             := 504

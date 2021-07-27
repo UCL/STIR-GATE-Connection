@@ -1,5 +1,9 @@
 ROOT header := 
 
+; This header files is used in the examples for the STIR-GATE-Connection project for the GE Discovery 690 PET scanner configuration.
+; This header provides meta information for STIR to read a ROOT data file (see name of data file key).
+; Many of values in this file are undefined and use a temporary placeholder, denoted by the use of curly brackets {}.
+
 originating system := GE Discovery 690
 Number of rings                          := 24
 Number of detectors per ring             := 576
