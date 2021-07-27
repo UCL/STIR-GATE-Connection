@@ -31,6 +31,7 @@ RandomFlag=$5
 AcceptanceProb=$6
 LowerEnergyThreshold=$7
 UpperEngeryThreshold=$8
+NumEventsToStore=$9
 
 
 UnlistingDirectory="${StoreRootFilesDirectory}/Unlisted/${EventDataType}"
@@ -40,7 +41,7 @@ echo "STIR-GATE-Connection Unlisting ROOT data script"
 
 ## Check the number of inputs
 if [ $# -lt 3 ]; then
-  echo "Usage: $0 StoreRootFilesDirectory ROOT_FILENAME_PREFIX EventDataType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) [AcceptanceProb(Default:1) [LowerEngeryThreshold(Default:0) UpperEngeryThreshold(Default:1000)]]]" 1>&2
+  echo "Usage: $0 StoreRootFilesDirectory ROOT_FILENAME_PREFIX EventDataType [ IncludeScatterFlag(Default:1) IncludeRandomFlag(Default:1) [AcceptanceProb(Default:1) [LowerEngeryThreshold(Default:0) UpperEngeryThreshold(Default:1000) [NumEventsToStore(Default=-1)]]]]" 1>&2
   exit 1
 fi
 if [ $# -lt 5 ]; then
@@ -51,6 +52,10 @@ if [ $# -lt 8 ]; then
 	LowerEnergyThreshold=0
 	UpperEngeryThreshold=1000
 fi
+if [ $# -lt 9 ]; then
+	NumEventsToStore=-1
+fi
+
 
 ## Ensure ScatterFlag and RandomFlag are 0 or 1. Set Exclude versions respectively
 if [ $ScatterFlag == 0 ]; then
@@ -86,45 +91,59 @@ ROOT_FILENAME=$ROOT_FILENAME_PREFIX"."$EventDataType
 ## Name of the sinogram file ID, uses Scatter and Random Flags
 SinogramID="Sino_${ROOT_FILENAME}_S${ScatterFlag}R${RandomFlag}"
 
+## ============= Console ouput regarding unlisting configuration =============
 
-## Console ouput regarding unlisting
 echo "Unlisting ${StoreRootFilesDirectory}/${ROOT_FILENAME}.root"
 echo "Unlisting with EXCLUDESCATTER = ${ExcludeScatterFlag}"
 echo "Unlisting with EXCLUDERANDOM = ${ExcludeRandomFlag}"
+if [ ${NumEventsToStore} != -1 ]; then
+	echo "Unlisting a maximim of ${NumEventsToStore} events."
+fi
 
+
+## Ensure the UnlistingDirectory exists.
 if [ ! -d $UnlistingDirectory ]; then
 	echo "creating directory $UnlistingDirectory"
 	mkdir -p $UnlistingDirectory  ## Made from respect of $StoreRootFilesDirectory
 fi
 
-#============= create parameter file from template =============
-cp  UnlistingTemplates/lm_to_projdata_template.par $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
-## sed lm_to_projdata.par
-sed -i.bak "s|{ROOT_FILENAME}|$StoreRootFilesDirectory/${ROOT_FILENAME}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s/{SinogramID}/${SinogramID}/g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" $StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
-sed -i.bak "s|{seed}|${seed}|g" ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par
 
-cp  UnlistingTemplates/root_header_template.hroot  $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
-## sed .hroot 
-sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
-sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
-sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
-sed -i.bak "s/{EXCLUDESCATTER}/${ExcludeScatterFlag}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
-sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" $StoreRootFilesDirectory/${ROOT_FILENAME}.hroot
+## ============= Create parameter file from template =============
+
+## lm_to_projdata parameter file from template
+LM_TO_PROJDATA_PAR_PATH=$StoreRootFilesDirectory/lm_to_projdata_${ROOT_FILENAME}.par
+cp  UnlistingTemplates/lm_to_projdata_template.par ${LM_TO_PROJDATA_PAR_PATH}
+sed -i.bak "s|{ROOT_FILENAME}|$StoreRootFilesDirectory/${ROOT_FILENAME}|g" ${LM_TO_PROJDATA_PAR_PATH}
+sed -i.bak "s/{SinogramID}/${SinogramID}/g" ${LM_TO_PROJDATA_PAR_PATH}
+sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" ${LM_TO_PROJDATA_PAR_PATH}
+sed -i.bak "s|{seed}|${seed}|g" ${LM_TO_PROJDATA_PAR_PATH}
+sed -i.bak "s|{NumEventsToStore}|${NumEventsToStore}|g" ${LM_TO_PROJDATA_PAR_PATH}
+
+## ROOT header file from template (from scanner configuration)
+ROOT_FILENAME_PATH="${StoreRootFilesDirectory}/${ROOT_FILENAME}.hroot"
+cp  UnlistingTemplates/root_header_template.hroot ${ROOT_FILENAME_PATH}
+sed -i.bak "s/{ROOT_FILENAME}/${ROOT_FILENAME}/g" ${ROOT_FILENAME_PATH}
+sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" ${ROOT_FILENAME_PATH}
+sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" ${ROOT_FILENAME_PATH}
+sed -i.bak "s/{EXCLUDESCATTER}/${ExcludeScatterFlag}/g" ${ROOT_FILENAME_PATH}
+sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" ${ROOT_FILENAME_PATH}
+
+## Remove sed temporary files
 rm $StoreRootFilesDirectory/*.bak
 
-## Perform Root file unlisting
+
+## ============= Perform ROOT file unlisting =============
+
 if [[ -z ${AcceptanceProb} || ${AcceptanceProb} == 1 ]]; then
 	echo "No AcceptanceProb given, unlist all using standard to lm_to_projdata"
-	lm_to_projdata ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par
+	lm_to_projdata ${LM_TO_PROJDATA_PAR_PATH}
 	if [ $? -ne 0 ]; then
 		echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata failed, see error."
 		exit 1
 	fi
 else
 	echo "AcceptanceProb = ${AcceptanceProb}, unlisting with random rejection"
-	lm_to_projdata_with_random_rejection ${StoreRootFilesDirectory}/lm_to_projdata_${ROOT_FILENAME}.par ${AcceptanceProb}
+	lm_to_projdata_with_random_rejection ${LM_TO_PROJDATA_PAR_PATH} ${AcceptanceProb}
 	if [ $? -ne 0 ]; then
 		echo "Error in ./SubScripts/UnlistRoot.sh: lm_to_projdata_with_random_rejection failed, see error."
 		exit 1
