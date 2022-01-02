@@ -42,6 +42,8 @@ This project is reliant on: ROOT, current STIR `master` branch (https://github.c
 
 STIR-GATE-Connection requires the `SGCPATH` enviromental variable to be set to this primary directory (containing this README file). Many scripts use this variable when executing sub-scripts.
 
+The project is designed to be run on Linux or Unix (MacOS does normally work) using Shell/Bash/Zsh. Furthermore, the project uses programs, such as `sed` and `awk`, for various manipulations. 
+
 
 Directories
 ===========
