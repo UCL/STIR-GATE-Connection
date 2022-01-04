@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 ## AUTHOR: Ludovica Brusaferri
 ## AUTHOR: Robert Twyman
 ## Copyright (C) 2020 University College London
