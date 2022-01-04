@@ -1,5 +1,6 @@
 #! /bin/bash
 ## AUTHOR: Robert Twyman
+## AUTHOR: Kris Thielemans
 ## Copyright (C) 2020-2022 University College London
 ## Licensed under the Apache License, Version 2.0
 
@@ -22,17 +23,33 @@ Activity=$1  ## Activity parameter file
 Attenuation=$2  ## Attenuation parameter file
 STIRGATEHome=$PWD  
 
-if [ "${Activity##*.}" == "par" -a "${Attenuation##*.}" == "par" ]; then
-	# If .par files are given, generate the data
-	ActivityFilename=`awk -F:= '/output filename/ { print $2 }' $Activity`".hv"
-	AttenuationFilename=`awk -F:= '/output filename/ { print $2 }' $Attenuation`".hv"
-	## Generate images
+if [ ! -r "$Activity" ]; then
+    echo "Error opening activity file $Activity" 2>&1
+    exit 1
+fi
+if [ ! -r "$Attenuation" ]; then
+    echo "Error opening attenuation file $Attenuation" 2>&1
+    exit 1
+fi
+
+# test if Activity input is a par file containing "generate_image", in that case, run generate_image
+if grep -q -i 'generate_image *parameters' $Activity
+then
+	ActivityFilename=$(awk -F:= '/output filename/ { print $2 }' $Activity)".hv"
 	generate_image $Activity 
+
+else
+	# Set filename
+	ActivityFilename=$Activity
+fi
+# same for attenuation
+if grep -q -i 'generate_image *parameters' $Attenuation
+then
+	AttenuationFilename=$(awk -F:= '/output filename/ { print $2 }' $Attenuation)".hv"
 	generate_image $Attenuation
 
 else
-	# Set filenames
-	ActivityFilename=$Activity
+	# Set filename
 	AttenuationFilename=$Attenuation
 fi
 
