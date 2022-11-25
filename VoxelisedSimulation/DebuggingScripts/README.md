@@ -21,6 +21,4 @@ This directory contains a collection of scripts that are useful for debugging. P
 Scripts
 =======
 
-* `UnlistRandoms.sh`: Script unlists a root file twice, once with all coincidence event types and once without the randoms. Subtracting one from the other results in a sinogram of only randoms.
-* `UnlistScatter.sh`: Script unlists a root file twice, once with all coincidence event types and once without the scatter. Subtracting one from the other results in a sinogram of only scattered events.
 * `DebugUnlistRoot.sh`: Uses STIR's `exclude [event_type] events :=` keywords to unlist the root file to obtain sinograms with only Trues, Scattered, Randoms and RandomScattered events. This script is useful for debugging the unlisting of root files.
