@@ -25,6 +25,10 @@
 # - $6: Upper Energy Threshold in keV (Default: 1000)
 # - $7: The Maximum Number of Events to Unlist into a Sinogram. (Default: -1, no limit) For this script setting this variable does not make much sense.
 
+## Example Usgage:
+# Minimum arguments for an `sh ExampleSTIR-GATE.sh 1` simulation to debug unlist the coincidences:
+# - `sh ${SGCPATH}/VoxelisedSimulation/DebuggingScripts/DebugUnlistRoot.sh ${SGCPATH}/VoxelisedSimulation/Output Sim_1 Coincidences`
+
 
 set -e # exit on error
 trap "echo ERROR in $0" ERR
