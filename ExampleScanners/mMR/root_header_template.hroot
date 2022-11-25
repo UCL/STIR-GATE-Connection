@@ -1,5 +1,9 @@
 ROOT header := 
 
+; This header files is used in the examples for the STIR-GATE-Connection project for the Siemens mMR PET scanner configuration.
+; This header provides meta information for STIR to read a ROOT data file (see name of data file key).
+; Many of values in this file are undefined and use a temporary placeholder, denoted by the use of curly brackets {}.
+
 originating system := User_defined_scanner
 Number of rings                          := 64
 Number of detectors per ring             := 504
@@ -38,17 +42,23 @@ number of crystals Z := 8
 ; per singles unit. 
 Singles readout depth := 1
 
-;
-; If set the scattered events will be skipped
-exclude scattered events := {EXCLUDESCATTER}
 
 ;
 ; If set to 0 all the scatter events will be skipped
 ;maximum order of scatter := 1
 
 ;
-; If set the random events will be skipped
+; If set, the scattered events will be skipped
+exclude scattered events := {EXCLUDESCATTER}
+
+; If set, the random events will be skipped
 exclude random events := {EXCLUDERANDOM}
+
+; If set, non-random events will be skipped
+exclude non-random events := {EXCLUDENONRANDOM}
+
+;If set, unscattered events will be skipped
+exclude unscattered events := {EXCLUDEUNSCATTERED}
 
 ; 
 ; STIR will try to align the data. 
