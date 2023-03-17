@@ -55,7 +55,7 @@
 
 ## D E L A Y
 
-gate/digitizer/name   Delayed
+/gate/digitizer/name   Delayed
 /gate/digitizer/insert   coincidenceSorter
 /gate/digitizer/Delayed/setInputName   Singles
 /gate/digitizer/Delayed/setOffset   200. ns
