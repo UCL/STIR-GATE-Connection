@@ -116,7 +116,7 @@ echo "Beginning Scatter Estimation"
 if [ $AttenIsGATE == 1 ]; then
 	## invert the z axis of $tmpImage if it is a GATE output
 	tmpImage="my_zflipped_atten.hv"	
-	invert_axis z $tmpImage $tmpImage
+	invert_axis z $tmpImage $atnimg
 	## Reassign atnimg to the flipped tmpImage 
 	atnimg=$tmpImage
 fi
