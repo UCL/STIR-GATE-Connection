@@ -19,7 +19,7 @@
 #  then this script will flip the image in the z axis, because GATE seems to do that...
 
 ## Verbose usage:
-# 	0:  EstimateScatter.sh 						- Script name
+# 	0:  ComputePoissonDataCorrections.sh		- Script name
 #	1:  OutputMultiplicativeFactorsFilename		- Output filename of the multiplicative factors
 # 	2:  OutputAdditiveSinogramFilename			- Output filename of the additive sinogram
 #	3:  CoincidenceData[sino_input]				- Coincidence data sinogram filename
@@ -116,7 +116,7 @@ echo "Beginning Scatter Estimation"
 if [ $AttenIsGATE == 1 ]; then
 	## invert the z axis of $tmpImage if it is a GATE output
 	tmpImage="my_zflipped_atten.hv"	
-	invert_axis z $tmpImage $tmpImage
+	invert_axis z $tmpImage $atnimg
 	## Reassign atnimg to the flipped tmpImage 
 	atnimg=$tmpImage
 fi

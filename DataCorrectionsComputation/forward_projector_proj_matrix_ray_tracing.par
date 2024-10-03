@@ -7,10 +7,16 @@ type:=Matrix
   Forward Projector Using Matrix Parameters :=
   Matrix type := Ray Tracing
   Ray tracing matrix parameters :=
+
    ; use multiple (almost) parallel LORs for every bin in the sinogram 
    ; to avoid discretisation artefacts
    ; current STIR default value is 1 (which is actually not recommended)
    number of rays in tangential direction to trace for each bin:= 10
+
+   ; restricting the fov to cylindrical can lead to edge of fov artefacts
+   ; disabling this is recommended but STIR default is to enable
+   restrict to cylindrical fov := 1
+   
   End Ray tracing matrix parameters :=
   End Forward Projector Using Matrix Parameters :=
 end:=

@@ -129,6 +129,8 @@ sed -i.bak "s/{LOWTHRES}/${LowerEnergyThreshold}/g" ${ROOT_FILENAME_PATH}
 sed -i.bak "s/{UPTHRES}/${UpperEngeryThreshold}/g" ${ROOT_FILENAME_PATH}
 sed -i.bak "s/{EXCLUDESCATTER}/${ExcludeScatterFlag}/g" ${ROOT_FILENAME_PATH}
 sed -i.bak "s/{EXCLUDERANDOM}/${ExcludeRandomFlag}/g" ${ROOT_FILENAME_PATH}
+sed -i.bak "s/{EXCLUDENONRANDOM}/0/g" ${ROOT_FILENAME_PATH}  	# Hardcoded to include non-random events
+sed -i.bak "s/{EXCLUDEUNSCATTERED}/0/g" ${ROOT_FILENAME_PATH} # Hardcoded to include unscattered events
 
 ## Remove sed temporary files
 rm $StoreRootFilesDirectory/*.bak
