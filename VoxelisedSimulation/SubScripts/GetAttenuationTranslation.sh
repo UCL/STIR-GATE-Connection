@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 ## AUTHOR: Robert Twyman
 ## Script used to automatically gather GATE x,y,z attenuation translation for STIR images.
 ## Script echo (returns) x y z variables.

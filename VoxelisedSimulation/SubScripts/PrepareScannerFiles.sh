@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
 ## AUTHOR: Kris Thielemans 
 ## AUTHOR: Robert Twyman
