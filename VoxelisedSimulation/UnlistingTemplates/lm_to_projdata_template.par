@@ -6,7 +6,9 @@ lm_to_projdata Parameters:=
 
   ; parameters that determine the sizes etc of the output
        ; template_scanner.hs is delivered by `SubScripts/PrepareScannerFiles.sh`
-       template_projdata := UnlistingTemplates/STIR_scanner.hs
+       ; if there isn't any, STIR will use a span=1, no mashing sinogram (which could
+       ; be very large!)
+       template_projdata := {UNLISTINGTEMPLATE}
 
     ; the next can be used to use a smaller number of segments than given 
     ; in the template

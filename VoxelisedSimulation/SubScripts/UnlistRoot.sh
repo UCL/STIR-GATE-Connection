@@ -101,6 +101,13 @@ echo "Unlisting with EXCLUDERANDOM = ${ExcludeRandomFlag}"
 if [ ${NumEventsToStore} != -1 ]; then
 	echo "Unlisting a maximim of ${NumEventsToStore} events."
 fi
+if [ -f UnlistingTemplates/STIR_scanner.hs ]; then
+	echo "Using existing UnlistingTemplates/STIR_scanner.hs"
+	TEMPLATE_PROJDATA=UnlistingTemplates/STIR_scanner.hs
+else
+	echo "No UnlistingTemplates/STIR_scanner.hs present. Using span 1, unmashed data"
+	TEMPLATE_PROJDATA=""
+fi
 
 
 ## Ensure the UnlistingDirectory exists.
@@ -120,6 +127,8 @@ sed -i.bak "s/{SinogramID}/${SinogramID}/g" ${LM_TO_PROJDATA_PAR_PATH}
 sed -i.bak "s|{UNLISTINGDIRECTORY}|${UnlistingDirectory}|g" ${LM_TO_PROJDATA_PAR_PATH}
 sed -i.bak "s|{seed}|${seed}|g" ${LM_TO_PROJDATA_PAR_PATH}
 sed -i.bak "s|{NumEventsToStore}|${NumEventsToStore}|g" ${LM_TO_PROJDATA_PAR_PATH}
+sed -i.bak s|{UNLISTINGTEMPLATE}|${TEMPLATE_PROJDATA}|g" ${LM_TO_PROJDATA_PAR_PATH}
+
 
 ## ROOT header file from template (from scanner configuration)
 ROOT_FILENAME_PATH="${StoreRootFilesDirectory}/${ROOT_FILENAME}.hroot"
