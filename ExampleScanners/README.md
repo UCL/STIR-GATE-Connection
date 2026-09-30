@@ -20,10 +20,14 @@ Created:  Mon 30 Sep 2019 14:07:08 BST
 
 This directory contains examples of implemented scanners. These are GE Discovery 690 (D690) and Seimens mMR (mMR). 
 
-These directories should include the scanner specific `digitiser`, `geometry`, STIR interfile header, and template `hroot` file.
+These directories should include the scanner specific `digitiser`, `geometry`, (optional) STIR interfile header, and template `hroot` file.
 
 Notes
 =======
 
-* The orientation of the ECAT mMR scanner differs to STIR axies orientation: it's shifted of half a block (4 detectors). It needs offset (num of detectors) := -4 in the root header file.
+* The orientation of the ECAT mMR scanner differs to STIR axis orientation: it's shifted of half a block (4 detectors). It needs offset (num of detectors) := -4 in the root header file.
 
+* mMR files actually do not correspond to the mMR scanner, as they were written before STIR supported virtual crystals.
+
+* STIR's `lm_to_projdata` has an optional "template projdata" parameter. If this is not set, output will be in span 1, no mashing.
+  This could however be very large, especially with TOF (many scanners use TOF-mashing be default).

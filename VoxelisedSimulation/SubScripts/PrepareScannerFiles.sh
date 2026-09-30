@@ -34,7 +34,8 @@ if [ $ScannerType = "D690" ]; then
 	cp -vp $D690_DIR/digitiser_D690.mac GATESubMacros/digitiser.mac
 	cp -vp $D690_DIR/geometry_D690.mac GATESubMacros/geometry.mac
 	cp -vp $D690_DIR/root_header_template.hroot UnlistingTemplates/root_header_template.hroot
-	cp -vp $D690_DIR/STIRScanner_D690_full_segment.hs UnlistingTemplates/STIR_scanner.hs
+	# we won't use a template .hs, which means all data should be used at span 1, no mashing.
+	# cp -vp $D690_DIR/STIRScanner_D690_full_segment.hs UnlistingTemplates/STIR_scanner.hs
 
 elif [ $ScannerType = "mMR" ]; then
 	echo "\nPreparing mMR scanner files"
@@ -42,6 +43,7 @@ elif [ $ScannerType = "mMR" ]; then
 	cp -vp $mMR_DIR/digitiser_mMR.mac GATESubMacros/digitiser.mac
 	cp -vp $mMR_DIR/geometry_mMR.mac GATESubMacros/geometry.mac
 	cp -vp $mMR_DIR/root_header_template.hroot UnlistingTemplates/root_header_template.hroot
+	# Use the provided span=11 template
 	cp -vp $mMR_DIR/STIR_scanner.hs UnlistingTemplates/STIR_scanner.hs
 
 else
